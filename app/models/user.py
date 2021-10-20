@@ -7,9 +7,14 @@ class User(db.Model, UserMixin):
     __tablename__ = 'users'
 
     id = db.Column(db.Integer, primary_key=True)
+    avatar = db.Column(db.String(2000), nullable=True, default='https://i.imgur.com/RBkqFEg.jpg')
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
+
+    businesses = db.relationship("Business", back_populates="user")
+    images = db.relationship("Image", back_populates="user", cascade="all, delete-orphan")
+    reviews = db.relationship("Review", back_populates="user", cascade="all, delete-orphan")
 
     @property
     def password(self):
@@ -25,6 +30,7 @@ class User(db.Model, UserMixin):
     def to_dict(self):
         return {
             'id': self.id,
+            'avatar': self.avatar,
             'username': self.username,
             'email': self.email
         }
