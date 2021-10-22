@@ -29,3 +29,17 @@
   color: #FFFFFF;
   font-family: "Open Sans", Helvetica, Arial, sans-serif;
 }
+
+.businessBottom {
+  margin: 24px 0 48px;
+}
+
+.businessBottomContent {
+  max-width: 1144px;
+  padding: 0 40px;
+  margin: 0 auto;
+}
+
+.businessButton {
+  padding: 10px;
+}

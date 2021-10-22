@@ -2,7 +2,7 @@ import React, { useEffect, useState }  from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import "./business.css";
 import { getBusiness } from '../../store/business';
-import { useParams } from 'react-router-dom';
+import { useParams, NavLink } from 'react-router-dom';
 
 function Business() {
   const dispatch = useDispatch();
@@ -29,6 +29,15 @@ function Business() {
         </div>
         <div className="photoCarousel">
 
+        </div>
+      </div>
+      <div className="businessBottom">
+        <div className="businessBottomContent">
+          <div className="buttonBox">
+            <NavLink to='/writereview' exact={true} className="redButton businessButton button" activeClassName='active'>
+              Write a Review
+            </NavLink>
+          </div>
         </div>
       </div>
     </>
