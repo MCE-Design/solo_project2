@@ -12,9 +12,22 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
 
-    businesses = db.relationship("Business", back_populates="user")
-    images = db.relationship("Image", back_populates="user", cascade="all, delete-orphan")
-    reviews = db.relationship("Review", back_populates="user", cascade="all, delete-orphan")
+    businesses = db.relationship(
+      "Business",
+      secondary="images",
+      primaryjoin="foreign(Image.userId)==User.id",
+      secondaryjoin="and_(Image.imageable_type=='business', foreign(Image.imageable_id)==Business.id)",
+      backref=db.backref("userImage_Business", lazy="dynamic"),
+      lazy="dynamic"
+    )
+    reviews = db.relationship(
+      "Review",
+      secondary="images",
+      primaryjoin="foreign(Image.userId)==User.id",
+      secondaryjoin="and_(Image.imageable_type=='review', foreign(Image.imageable_id)==Review.id)",
+      backref=db.backref("userImage_Review", lazy="dynamic"),
+      lazy="dynamic"
+    )
 
     @property
     def password(self):
@@ -32,5 +45,7 @@ class User(db.Model, UserMixin):
             'id': self.id,
             'avatar': self.avatar,
             'username': self.username,
-            'email': self.email
+            'email': self.email,
+            'userImage_Business': [business.to_dict() for business in self.businesses],
+            'userImage_Review': [review.to_dict() for review in self.reviews],
         }

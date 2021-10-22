@@ -1,0 +1,56 @@
+/* ========================================
+
+   Navbar - Landing Page
+
+======================================== */
+
+.landingContainer {
+  position: absolute;
+  padding: 30px 0 0;
+  width: 100%;
+}
+
+.landingContainer nav {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.landingContainer nav ul {
+  display: flex;
+  flex-direction: row;
+  padding: 0;
+}
+
+.landingContainer nav ul li {
+  list-style: none;
+}
+
+.landingContainer nav ul li {
+  margin-right: 2px;
+}
+
+.landingContainer nav .headerLink {
+  display: flex;
+  padding: 9px 12px 10px;
+  color: #FFFFFF;
+  font-weight: 500;
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+}
+
+.landingContainer nav .headerLink:hover {
+  border-color: #FFFFFF;
+}
+
+/* ========================================
+
+   Navbar - Log In / Sign Up Page
+
+======================================== */
+
+/* ========================================
+
+   Navbar - Business Page
+
+======================================== */

@@ -1,0 +1,47 @@
+.landingTop.container {
+  padding-top: 30px;
+  height: 570px;
+  background-color: #AAAAAA;
+}
+
+.landingTopContent {
+  margin: 0 auto;
+  padding: 0 15px;
+  max-width: 960px;
+}
+
+.landingTopInner {
+  padding: 148px 0 0;
+}
+
+.landingLogo {
+  width: 160px;
+  height: 80px;
+  padding: 0;
+  margin: 0 auto 48px;
+  background-color: red; /* Placeholder for image */
+}
+
+.landingTopInner .landingSearchBar {
+  width: 100%;
+}
+
+.landingTopInner .landingSearchBar .inputField {
+  box-sizing: border-box;
+  border: none;
+  padding: 11px;
+  width: 50%;
+  font-size: 18px;
+}
+
+.landingTopInner .landingSearchBar .inputField:focus-visible {
+  outline: none;
+}
+
+.landingTopInner .landingSearchBar .searchInputLeft.inputField{
+  border-radius: 4px 0 0 4px;
+}
+
+.landingTopInner .landingSearchBar .searchInputRight.inputField{
+  border-radius: 0 4px 4px 0;
+}

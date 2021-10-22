@@ -1,0 +1,28 @@
+.businessTop {
+  width: 100%;
+  max-width: 1922px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.businessTopContent {
+  padding: 40px 65px;
+  min-width: 1145px;
+  max-width: 1270px;
+  background-color: #AAAAAA;
+}
+
+.businessTitleBox {
+  position: relative;
+}
+
+.businessTitle h1 {
+  font-size: 48px;
+  color: #FFFFFF;
+  font-family: "Poppins","Roboto",Helvetica,Arial,sans-serif;
+}
+
+.businessReviewCount {
+  font-size: 16px;
+  line-height: 22px;
+}

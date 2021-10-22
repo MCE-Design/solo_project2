@@ -12,7 +12,7 @@ class Review(db.Model):
 
     user = db.relationship("User", back_populates="reviews")
     business = db.relationship("Business", back_populates="reviews")
-    images = db.relationship("Image", back_populates="review")
+    # images = db.relationship("Image", back_populates="review")
 
     def to_dict(self):
         return {

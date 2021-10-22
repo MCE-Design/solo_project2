@@ -1,6 +1,5 @@
 from .db import db
 
-
 class Business(db.Model):
     __tablename__ = "businesses"
 
@@ -21,7 +20,7 @@ class Business(db.Model):
 
     user = db.relationship("User", back_populates="businesses")
     reviews = db.relationship("Review", back_populates="business")
-    images = db.relationship("Image", back_populates="business")
+    # images = db.relationship("Image", back_populates="business")
 
     def to_dict(self):
         return {
@@ -29,14 +28,14 @@ class Business(db.Model):
             'name': self.name,
             'ownerId': self.ownerId,
             'address1': self.address1,
-            'address2': self.address1,
-            'address3': self.address1,
+            'address2': self.address2,
+            'address3': self.address3,
             'city': self.city,
             'state': self.state,
             'country': self.country,
             'zipcode': self.zipcode,
-            'lat': self.lat,
-            'lng': self.lng,
+            'lat': float(self.lat),
+            'lng': float(self.lng),
             'phone': self.phone,
             'price': self.price
         }
