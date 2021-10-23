@@ -41,5 +41,9 @@
 }
 
 .businessButton {
-  padding: 10px;
+  padding: 8px 16px;
+}
+
+.businessButton:hover {
+  box-shadow: 1px 4px 0 rgb(0, 0, 0, 0.33);
 }

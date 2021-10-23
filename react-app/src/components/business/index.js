@@ -8,10 +8,12 @@ function Business() {
   const dispatch = useDispatch();
   const { businessId } = useParams();
   const { business } = useSelector((state) => state.business)
+  const sessionUser = useSelector(state => state.session.user);
   useEffect(() => {
     dispatch(getBusiness(businessId));
   }, [dispatch, businessId]);
   console.log(business)
+  console.log("sessionUser", sessionUser)
   return (
     <>
       <div className="businessTop photoContainer container">
@@ -35,9 +37,28 @@ function Business() {
         <div className="businessBottomContent">
           <div className="buttonBox">
             <NavLink to='/writereview' exact={true} className="redButton businessButton button" activeClassName='active'>
-              Write a Review
+              <div className="buttonIcon">
+
+              </div>
+              <div>
+                Write a Review
+              </div>
             </NavLink>
           </div>
+
+        </div>
+        <div>
+          {/* Maps and Hours */}
+        </div>
+        <div className="reviewsContainer">
+          <div>
+            {/* Post Review Component */}
+          </div>
+          <ul>{/* Map Reviews Here in repeated <li>*/}
+            <li>
+
+            </li>
+          </ul>
         </div>
       </div>
     </>
