@@ -6,6 +6,7 @@
 }
 
 .businessTopContent {
+  box-sizing: border-box;
   padding: 40px 65px;
   min-width: 1145px;
   max-width: 1270px;
@@ -32,6 +33,7 @@
 
 .businessBottom {
   margin: 24px 0 48px;
+  padding: 0 40px;
 }
 
 .businessBottomContent {
@@ -41,9 +43,20 @@
 }
 
 .businessButton {
+  display: inline-flex;
   padding: 8px 16px;
 }
 
 .businessButton:hover {
-  box-shadow: 1px 4px 0 rgb(0, 0, 0, 0.33);
+  box-shadow: 0 1px 4px 0 rgb(0, 0, 0, 0.33);
+}
+
+.reviewsContainer {
+  width: 100%;
+  max-width: 1922px;
+  margin: 0 auto;
+}
+
+.reviewsNewReviewContainer {
+  margin-bottom: 48px;
 }

@@ -3,11 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import "./business.css";
 import { getBusiness } from '../../store/business';
 import { useParams, NavLink } from 'react-router-dom';
+import NewReview from '../reviews/newReview';
 
 function Business() {
   const dispatch = useDispatch();
   const { businessId } = useParams();
-  const { business } = useSelector((state) => state.business)
+  const { business } = useSelector((state) => state.business);
   const sessionUser = useSelector(state => state.session.user);
   useEffect(() => {
     dispatch(getBusiness(businessId));
@@ -36,7 +37,7 @@ function Business() {
       <div className="businessBottom">
         <div className="businessBottomContent">
           <div className="buttonBox">
-            <NavLink to='/writereview' exact={true} className="redButton businessButton button" activeClassName='active'>
+            <NavLink to='/writereview' exact={true} className="redButton businessButton bodyButton button" activeClassName='active'>
               <div className="buttonIcon">
 
               </div>
@@ -51,8 +52,8 @@ function Business() {
           {/* Maps and Hours */}
         </div>
         <div className="reviewsContainer">
-          <div>
-            {/* Post Review Component */}
+          <div className="reviewsNewReviewContainer">
+            <NewReview sessionUser = {sessionUser} />
           </div>
           <ul>{/* Map Reviews Here in repeated <li>*/}
             <li>

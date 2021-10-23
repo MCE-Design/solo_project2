@@ -1,3 +1,4 @@
+from typing import NoReturn
 from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
@@ -9,6 +10,8 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     avatar = db.Column(db.String(2000), nullable=True, default='https://i.imgur.com/RBkqFEg.jpg')
     username = db.Column(db.String(40), nullable=False, unique=True)
+    fname = db.Column(db.String(40), nullable=False)
+    lname = db.Column(db.String(40), nullable=False)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
 
@@ -45,6 +48,8 @@ class User(db.Model, UserMixin):
             'id': self.id,
             'avatar': self.avatar,
             'username': self.username,
+            'fname': self.fname,
+            'lname': self.lname,
             'email': self.email,
             'userImage_Business': [business.to_dict() for business in self.businesses],
             'userImage_Review': [review.to_dict() for review in self.reviews],

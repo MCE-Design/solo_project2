@@ -1,0 +1,48 @@
+.newReview {
+  box-sizing: border-box;
+  box-shadow: 0 0 10px #0000001a;
+  padding: 16px;
+  width: 100%;
+}
+
+.newReviewTop {
+  display: flex;
+  margin: 0 0 15px;
+  border-bottom: 1px solid #eeeeef;
+  padding: 0 0 15px;
+}
+
+.newReviewAvatarContainer {
+  display: flex;
+  margin-right: 12px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.newReviewAvatarLink {
+  display: flex;
+}
+
+img.newReviewAvatar {
+  height: 64px;
+  width: 64px;
+  user-select: none;
+}
+
+.newReviewInfoBox {
+  display: flex;
+}
+
+.newReviewText {
+  border: none;
+  height: 110px;
+  width: 100%;
+  resize: none;
+  font-size: 16px;
+  font-weight: normal;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  line-height: 22px;
+}
+.newReviewText:focus-visible {
+  outline: none;
+}
