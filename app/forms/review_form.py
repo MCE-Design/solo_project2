@@ -3,7 +3,8 @@ from wtforms import StringField
 from wtforms.fields.core import IntegerField
 from wtforms.fields.simple import TextAreaField
 from wtforms.validators import DataRequired, Email, ValidationError
-from app.models import User
+from app.models import User, Review
+from colors import *
 
 
 def user_exists(form, field):
@@ -24,9 +25,18 @@ def password_matches(form, field):
     if not user.check_password(password):
         raise ValidationError('Password was incorrect.')
 
+def already_reviewed(form, field):
+    # Checks to see if already reviewed
+    userId = field.data
+    businessId = form.data['businessId']
+    review = Review.query.filter(Review.userId == userId, Review.businessId == businessId).first()
+    print(CGREEN + "\n REVIEW \n", review, "\n" + CEND)
+    if review is not None:
+      raise ValidationError('User already reviewed')
+
 
 class ReviewForm(FlaskForm):
-    userId = IntegerField('userId', validators=[DataRequired()])
+    userId = IntegerField('userId', validators=[DataRequired(), already_reviewed])
     businessId = IntegerField('businessId', validators=[DataRequired()])
     rating = IntegerField('rating', validators=[DataRequired()])
     review = TextAreaField('review', validators=[DataRequired()])
