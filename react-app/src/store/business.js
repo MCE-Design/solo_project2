@@ -1,5 +1,5 @@
-const SET_BUSINESS = 'session/SET_BUSINESS';
-const REMOVE_BUSINESS = 'session/REMOVE_BUSINESS';
+const SET_BUSINESS = 'business/SET_BUSINESS';
+const REMOVE_BUSINESS = 'business/REMOVE_BUSINESS';
 
 const load = (business) => ({
   type: SET_BUSINESS,
@@ -20,7 +20,7 @@ export const getBusiness = (id) => async dispatch => {
   } else return "Thunk Error: Bad Req"
 }
 
-export default function reducer(state = initialState, action) {
+export default function businessReducer(state = initialState, action) {
   switch (action.type) {
     case SET_BUSINESS:
       return { business: action.payload }

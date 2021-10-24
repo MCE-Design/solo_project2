@@ -1,5 +1,5 @@
-const SET_REVIEW = 'session/SET_REVIEW';
-const REMOVE_REVIEW = 'session/REMOVE_REVIEW';
+const SET_REVIEW = 'review/SET_REVIEW';
+const REMOVE_REVIEW = 'review/REMOVE_REVIEW';
 
 const load = (review) => ({
   type: SET_REVIEW,
@@ -18,6 +18,16 @@ export const getReview = (id) => async dispatch => {
     const list = await response.json();
     dispatch(load(list));
   } else return "Thunk Error: Bad Req"
+}
+
+export const getReviewsByBusiness = (id) => async dispatch => {
+  const response = await fetch(`/api/business/${id}/review`)
+  if (response.ok) {
+    const list = await response.json();
+    console.log("GET REVIEWS RESPONSE IS OK")
+    console.log("LIST", list)
+    dispatch(load(list));
+  }else return "Thunk Error: Bad Req: All By Business"
 }
 
 export const newReview = (review) => async dispatch => {
@@ -53,9 +63,10 @@ export const editReview = (review) => async dispatch => {
   } else return "Thunk Error: Review Edit Failed"
 }
 
-export default function reducer(state = initialState, action) {
+export default function reviewReducer(state = initialState, action) {
   switch (action.type) {
     case SET_REVIEW:
+      console.log("HIT REDUCER:SET")
       return { review: action.payload }
     case REMOVE_REVIEW:
       return { review: null }

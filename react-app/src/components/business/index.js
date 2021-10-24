@@ -2,8 +2,10 @@ import React, { useEffect, useState }  from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import "./business.css";
 import { getBusiness } from '../../store/business';
+import { getReviewsByBusiness } from '../../store/review';
 import { useParams, NavLink } from 'react-router-dom';
 import NewReview from '../reviews/newReview';
+import ReviewComponent from '../reviews/reviewComponent'
 
 function Business() {
   const dispatch = useDispatch();
@@ -12,7 +14,9 @@ function Business() {
   const sessionUser = useSelector(state => state.session.user);
   useEffect(() => {
     dispatch(getBusiness(businessId));
+    dispatch(getReviewsByBusiness(businessId));
   }, [dispatch, businessId]);
+
   console.log(business)
   console.log("sessionUser", sessionUser)
   return (
@@ -57,9 +61,11 @@ function Business() {
             <NewReview sessionUser = {sessionUser} businessId = {businessId}/>
           </div>
           <ul>{/* Map Reviews Here in repeated <li>*/}
-            <li>
-
-            </li>
+            {/* {reviews?.map((review) => {
+              <li>
+                <ReviewComponent />
+              </li>
+            })} */}
           </ul>
         </div>
       </div>

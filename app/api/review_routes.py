@@ -40,10 +40,3 @@ def add_review():
 
 # @review_routes.rout('/<int:id>', methods=["PUT"])
 # def review_edit(id):
-
-
-# All Review by Business ID
-# @review_routes.route('/', methods=["GET"])
-# def review():
-#     review = Review.query.get()
-#     return review.to_dict()
