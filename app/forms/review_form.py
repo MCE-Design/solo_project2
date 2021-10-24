@@ -1,5 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField
+from wtforms.fields.core import IntegerField
+from wtforms.fields.simple import TextAreaField
 from wtforms.validators import DataRequired, Email, ValidationError
 from app.models import User
 
@@ -24,5 +26,7 @@ def password_matches(form, field):
 
 
 class ReviewForm(FlaskForm):
-    email = StringField('email', validators=[DataRequired(), user_exists])
-    password = StringField('password', validators=[DataRequired(), password_matches])
+    userId = IntegerField('userId', validators=[DataRequired()])
+    businessId = IntegerField('businessId', validators=[DataRequired()])
+    rating = IntegerField('rating', validators=[DataRequired()])
+    review = TextAreaField('review', validators=[DataRequired()])

@@ -21,15 +21,19 @@ export const getReview = (id) => async dispatch => {
 }
 
 export const newReview = (review) => async dispatch => {
+  console.log(review)
   const response = await fetch(`/api/review/`,
     {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(review)
+      // headers: { "Content-Type": "application/json" },
+      // body: JSON.stringify(review)
+      body: review
     }
   )
   if (response.ok) {
     const data = await response.json()
+    console.log("OK")
+    console.log(data)
     dispatch(load(data))
   } else return "Thunk Error: Review Submit Failed"
 }
