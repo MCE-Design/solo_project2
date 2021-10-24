@@ -13,8 +13,7 @@ function NewReview({sessionUser}) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("HIT")
-
+    console.log("FORM HIT")
 
     if(starRatingVal) {
       const formData = new FormData();
@@ -53,21 +52,27 @@ function NewReview({sessionUser}) {
       <div className="newReviewBottom">
         <form onSubmit={handleSubmit}>
           <div className="">
-            <input type="radio" onChange={(e) => setStarRatingVal(e.target.value)} value="1" name="starRating">
+            <div className="starRatingButtons">
+              <input type="radio" onChange={(e) => setStarRatingVal(e.target.value)} value="1" name="starRating">
 
-            </input>
-            <input type="radio" onChange={(e) => setStarRatingVal(e.target.value)} value="2" name="starRating">
+              </input>
+              <input type="radio" onChange={(e) => setStarRatingVal(e.target.value)} value="2" name="starRating">
 
-            </input>
-            <input type="radio" onChange={(e) => setStarRatingVal(e.target.value)} value="3" name="starRating">
+              </input>
+              <input type="radio" onChange={(e) => setStarRatingVal(e.target.value)} value="3" name="starRating">
 
-            </input>
-            <input type="radio" onChange={(e) => setStarRatingVal(e.target.value)} value="4" name="starRating">
+              </input>
+              <input type="radio" onChange={(e) => setStarRatingVal(e.target.value)} value="4" name="starRating">
 
-            </input>
-            <input type="radio" onChange={(e) => setStarRatingVal(e.target.value)} value="5" name="starRating">
+              </input>
+              <input type="radio" onChange={(e) => setStarRatingVal(e.target.value)} value="5" name="starRating">
 
-            </input>
+              </input>
+            </div>
+            <div className="starRatingDisplay">
+              <div></div>
+              {/* <div className="">{ratingText}</div> */}
+            </div>
           </div>
           <textarea className="newReviewText" onChange={(e) => setReviewText(e.target.value)} placeholder={reviewTextPlaceholder}>
 

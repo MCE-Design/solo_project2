@@ -9,7 +9,8 @@ class Review(db.Model):
     businessId = db.Column(db.Integer(), db.ForeignKey("businesses.id"), nullable=False)
     rating = db.Column(db.Integer(), nullable=False)
     review = db.Column(db.String(length=5000), nullable=False)
-
+    createdAt = db.Column(db.DateTime(timezone=True), server_default=db.func.now(), nullable=False)
+    updatedAt = db.Column(db.DateTime(timezone=True), onupdate=db.func.now(), nullable=False)
     user = db.relationship("User", back_populates="reviews")
     business = db.relationship("Business", back_populates="reviews")
     # images = db.relationship("Image", back_populates="review")
@@ -21,4 +22,6 @@ class Review(db.Model):
             'businessId': self.businessId,
             'rating': self.rating,
             'review': self.review,
+            'createdAt': self.createdAt,
+            'updatedAt': self.updatedAt
         }
