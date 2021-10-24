@@ -1,31 +1,36 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { newReview } from "../../../store/review";
 import "./newReview.css";
 // import { getBusiness } from '../../store/business';
 import { useParams, NavLink } from 'react-router-dom';
 
-function NewReview({sessionUser}) {
+function NewReview({sessionUser, businessId}) {
   const [errors, setErrors] = useState([]);
   const dispatch = useDispatch();
   const [starRatingVal, setStarRatingVal] = useState();
-  const [reveiewText, setReviewText] = useState();
+  const [reviewText, setReviewText] = useState();
   const reviewTextPlaceholder = "Woof woof, arf, aroo!"
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("FORM HIT")
-
-    if(starRatingVal) {
+    console.log("userId", sessionUser.id, "businessId", businessId, "starRating", starRatingVal, "review", reviewText)
+    if(starRatingVal && reviewText) {
       const formData = new FormData();
 
-      // const data = await dispatch(profileEdit(formData));
-      // if (data) {
-      //   setErrors(data);
-      // }
+      formData.append("userId", sessionUser.id);
+      formData.append("businessId", businessId);
+      formData.append("rating", starRatingVal);
+      formData.append("review", reviewText);
+      const data = await dispatch(newReview(formData));
+      if (data) {
+        setErrors(data);
+      }
     }
   }
   console.log(starRatingVal)
-  console.log(reveiewText)
+  console.log(reviewText)
 
   return(
     <div className="newReview">

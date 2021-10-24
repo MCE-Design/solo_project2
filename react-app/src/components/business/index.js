@@ -53,7 +53,8 @@ function Business() {
         </div>
         <div className="reviewsContainer">
           <div className="reviewsNewReviewContainer">
-            <NewReview sessionUser = {sessionUser} />
+            {console.log("BUSINESS ID", businessId)}
+            <NewReview sessionUser = {sessionUser} businessId = {businessId}/>
           </div>
           <ul>{/* Map Reviews Here in repeated <li>*/}
             <li>
