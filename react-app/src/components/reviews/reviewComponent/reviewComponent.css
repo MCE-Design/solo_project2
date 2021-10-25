@@ -1,0 +1,73 @@
+li {
+  list-style: none;
+}
+
+.review {
+  box-sizing: border-box;
+  margin-bottom: 40px;
+  width: 100%;
+}
+
+.reviewTop {
+  display: flex;
+  margin: 0 0 24px;
+}
+
+.reviewAvatarContainer {
+  display: flex;
+  margin-right: 12px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.reviewAvatarLink {
+  display: flex;
+}
+
+img.reviewAvatar {
+  height: 64px;
+  width: 64px;
+  user-select: none;
+}
+
+.reviewInfoBox {
+  display: flex;
+}
+
+.reviewName a {
+  color: #2B273C;
+  text-decoration: none;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 21px;
+}
+
+.reviewName:hover {
+  text-decoration: underline;
+}
+
+.rateAndDate {
+  display: flex;
+  margin: 8px 0 12px -4px;
+}
+
+.ratingInfoItem {
+  margin: 0 4px;
+}
+.starDisplay {
+
+}
+
+.reviewText {
+  margin-bottom: 16px;
+  width: 100%;
+  max-width: 655px;
+  font-size: 14px;
+  font-weight: normal;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  line-height: 20px;
+  color: #2B273C;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}

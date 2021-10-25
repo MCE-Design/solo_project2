@@ -48,7 +48,7 @@ function NewReview({sessionUser, businessId}) {
           ))}
         </div>
         <div className="newReviewInfoBox">
-          <div>
+          <div className="newReviewName">
             {(sessionUser ? (
               <a href="">
                 {sessionUser?.fname} {sessionUser?.lname[0]}.

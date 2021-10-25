@@ -29,33 +29,43 @@ function ReviewComponent({review}) {
     return null
   } else {
     return(
-      <div>
-        {review.id}
-        <div className="review">
-          <div className="reviewTop">
-            <div className="reviewAvatarContainer">
-              <a href="" className="reviewAvatarLink">
-                {/* <img src={user?.avatar} alt="Review Avatar" className="reviewAvatar" draggable="False" /> */}
-                <img src="" alt="Review Avatar" className="reviewAvatar" draggable="False" />
-              </a>
+      <div className="review" reviewId={review?.id}>
+        <div className="reviewTop">
+          <div className="reviewAvatarContainer">
+            <a href={`/user/${userId}`} className="reviewAvatarLink"> {/* Disable later if no profile page */}
+              <img src={user?.avatar} alt="Review Avatar" className="reviewAvatar" draggable="False" />
+            </a>
+          </div>
+          <div className="reviewInfoBox">
+            <div className="reviewName">
+              <NavLink to={`/users/${userId}`}> {/* Disable later if no profile page */}
+                {user?.fname} {user?.lname[0]}.
+              </NavLink>
             </div>
-            <div className="newReviewInfoBox">
-              <div>
-                <a href="">
-                  {user?.fname} {user?.lname[0]}
-                </a>
-              </div>
-              <div>{/* Location */}</div>
-              <div>{/* Badges */}
-                <div>{/* Friends */}</div>
-                <div>{/* Revies */}</div>
-                <div>{/* Images */}</div>
-              </div>
+            <div>{/* Location */}</div>
+            <div>{/* Badges */}
+              <div>{/* Friends */}</div>
+              <div>{/* Revies */}</div>
+              <div>{/* Images */}</div>
             </div>
           </div>
         </div>
+        <div className="reviewBottom">
+          <div className="rateAndDate">
+            <div className="ratingInfoItem">
+              {review.rating}
+            </div>
+            <div className="ratingInfoItem">
+              {review.createdAt}
+            </div>
+          </div>
+          <div className="reviewText">
+            {review.review}
+          </div>
+          <div className="photoBox">
 
-
+          </div>
+        </div>
       </div>
     )
   }

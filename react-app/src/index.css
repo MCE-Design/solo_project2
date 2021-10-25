@@ -11,6 +11,10 @@ body {
   color: #CCCCCC;
 }
 
+a {
+  text-decoration: none;
+}
+
 ul {
   margin: 0;
 }

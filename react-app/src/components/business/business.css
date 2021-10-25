@@ -60,3 +60,7 @@
 .reviewsNewReviewContainer {
   margin-bottom: 48px;
 }
+
+.reviewsContainer ul {
+  padding: 0;
+}
