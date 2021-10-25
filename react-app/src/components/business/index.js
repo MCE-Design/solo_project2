@@ -11,6 +11,7 @@ function Business() {
   const dispatch = useDispatch();
   const { businessId } = useParams();
   const { business } = useSelector((state) => state.business);
+  const { review } = useSelector((state) => state.review);
   const sessionUser = useSelector(state => state.session.user);
   useEffect(() => {
     dispatch(getBusiness(businessId));
@@ -19,6 +20,7 @@ function Business() {
 
   console.log(business)
   console.log("sessionUser", sessionUser)
+  console.log("Reviews", review?.reviews.length)
   return (
     <>
       <div className="businessTop photoContainer container">
@@ -30,7 +32,7 @@ function Business() {
             <div className="businessRating">
               <div className="bussinessRatingImage">
               </div>
-              <div className="businessReviewCount">###### reviews</div>
+              <div className="businessReviewCount">{review?.reviews.length} reviews</div>
             </div>
           </div>
         </div>
@@ -61,11 +63,15 @@ function Business() {
             <NewReview sessionUser = {sessionUser} businessId = {businessId}/>
           </div>
           <ul>{/* Map Reviews Here in repeated <li>*/}
-            {/* {reviews?.map((review) => {
+            {console.log("REVIEW", review?.reviews)}
+            {review?.reviews?.map((review) => {
+              return(
               <li>
-                <ReviewComponent />
+                {console.log("HIT MAP")}
+                <ReviewComponent review={review} />
               </li>
-            })} */}
+              )
+            })}
           </ul>
         </div>
       </div>

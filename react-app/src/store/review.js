@@ -66,7 +66,6 @@ export const editReview = (review) => async dispatch => {
 export default function reviewReducer(state = initialState, action) {
   switch (action.type) {
     case SET_REVIEW:
-      console.log("HIT REDUCER:SET")
       return { review: action.payload }
     case REMOVE_REVIEW:
       return { review: null }

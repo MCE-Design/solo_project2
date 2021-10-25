@@ -17,6 +17,6 @@ def business(id):
 def review_by_business(id):
     businessId = id
     print(CGREEN + "\n BUSINESSID: \n", businessId, "\n" + CEND)
-    reviews = Review.query.get(businessId)
+    reviews = Review.query.filter(Review.businessId == businessId).all()
     print(CGREEN + "\n Reviews: \n", reviews, "\n" + CEND)
-    return reviews.to_dict()
+    return {'reviews': [review.to_dict() for review in reviews]}
