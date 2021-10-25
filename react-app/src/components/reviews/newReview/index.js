@@ -4,6 +4,7 @@ import { newReview } from "../../../store/review";
 import "./newReview.css";
 // import { getBusiness } from '../../store/business';
 import { useParams, NavLink } from 'react-router-dom';
+import defaultAvatar from "../../../images/default_user_avatar_64x64.png"
 
 function NewReview({sessionUser, businessId}) {
   const [errors, setErrors] = useState([]);
@@ -36,15 +37,25 @@ function NewReview({sessionUser, businessId}) {
     <div className="newReview">
       <div className="newReviewTop">
         <div className="newReviewAvatarContainer">
-          <a href="" className="newReviewAvatarLink">
-            <img src={sessionUser?.avatar} alt="New Review Avatar" className="newReviewAvatar" draggable="False" />
-          </a>
+          {(sessionUser ? (
+            <a href="" className="newReviewAvatarLink">
+              <img src={sessionUser?.avatar} alt="New Review Avatar" className="newReviewAvatar" draggable="False" />
+            </a>
+          ) : (
+            <div className="newReviewAvatarLink">
+              <img src={defaultAvatar} alt="New Review Avatar" className="newReviewAvatar" draggable="False" />
+            </div>
+          ))}
         </div>
         <div className="newReviewInfoBox">
           <div>
-            <a href="">
-              {sessionUser?.fname} {sessionUser?.lname[0]}.
-            </a>
+            {(sessionUser ? (
+              <a href="">
+                {sessionUser?.fname} {sessionUser?.lname[0]}.
+              </a>
+            ) : (
+              <>Username</>
+            ))}
           </div>
           <div>{/* Location */}</div>
           <div>{/* Badges */}

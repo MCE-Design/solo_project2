@@ -40,3 +40,11 @@ class ReviewForm(FlaskForm):
     businessId = IntegerField('businessId', validators=[DataRequired()])
     rating = IntegerField('rating', validators=[DataRequired()])
     review = TextAreaField('review', validators=[DataRequired()])
+
+class ReviewEdit(FlaskForm):
+    id = IntegerField('id', validators=[DataRequired()])
+    rating = IntegerField('rating', validators=[DataRequired()])
+    review = TextAreaField('review', validators=[DataRequired()])
+
+class DeleteReview(FlaskForm):
+    id = IntegerField("Id")

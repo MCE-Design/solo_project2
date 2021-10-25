@@ -66,9 +66,9 @@ function Business() {
             {console.log("REVIEW", review?.reviews)}
             {review?.reviews?.map((review) => {
               return(
-              <li>
+              <li key={review.id}>
                 {console.log("HIT MAP")}
-                <ReviewComponent review={review} />
+                <ReviewComponent review={review}/>
               </li>
               )
             })}

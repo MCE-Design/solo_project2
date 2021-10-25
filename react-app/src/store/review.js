@@ -63,6 +63,20 @@ export const editReview = (review) => async dispatch => {
   } else return "Thunk Error: Review Edit Failed"
 }
 
+export const deleteReview = (review) => async dispatch => {
+  const response = await fetch(`/api/review`,
+    {
+      method: "DELETE",
+      body: review
+    }
+  )
+  if (response.ok) {
+    const data  = await response.json()
+    console.log("DELETE OK")
+  } else return "Thunk Error: Review Delete Failed"
+
+}
+
 export default function reviewReducer(state = initialState, action) {
   switch (action.type) {
     case SET_REVIEW:

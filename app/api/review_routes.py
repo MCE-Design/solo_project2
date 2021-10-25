@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
-from app.forms import ReviewForm
+from app.forms import ReviewForm, DeleteReview
 from app.models import db, Review
 from colors import *
 
@@ -32,11 +32,22 @@ def add_review():
         print(CGREEN + "\n data: \n", data, "\n" + CEND)
         db.session.add(new_review)
         db.session.commit()
-        reviews = Review.query.all()
+        reviews = Review.query.filter(Review.businessId == data["businessId"]).all()
         return {"reviews": [review.to_dict() for review in reviews]}
     else:
         return "Bad Data"
 
 
-# @review_routes.rout('/<int:id>', methods=["PUT"])
+# @review_routes.route('/<int:id>', methods=["PUT"])
 # def review_edit(id):
+
+@review_routes.route('/<int:id>', methods=["DELETE"])
+def review_delete(id):
+  form = DeleteReview()
+  data = form.data
+  form['csrf_token'].data = request.cookies['csrf_token']
+
+  print(CGREEN + "\n DATA: \n", data, "\n" + CEND)
+  review_to_delete = Review.query.filter(Review.id == data["reviewId"]).first()
+  db.session.delete(review_to_delete)
+  db.session.commit()

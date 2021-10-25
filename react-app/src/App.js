@@ -30,6 +30,9 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Switch>
+        <Route path='/' exact={true} >
+          <Splash />
+        </Route>
         <Route path='/login' exact={true}>
           <LoginForm />
         </Route>
@@ -42,12 +45,9 @@ function App() {
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute>
-        <ProtectedRoute path='/' exact={true} >
-          <Splash />
-        </ProtectedRoute>
-        <ProtectedRoute path='/business/:businessId'>
+        <Route path='/business/:businessId'>
           <Business />
-        </ProtectedRoute>
+        </Route>
       </Switch>
     </BrowserRouter>
   );

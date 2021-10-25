@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { newReview } from "../../../store/review";
 import "./reviewComponent.css";
@@ -7,12 +7,62 @@ import { useParams, NavLink } from 'react-router-dom';
 
 function ReviewComponent({review}) {
   const dispatch = useDispatch();
+  const [user, setUser] = useState();
+  const userId = review?.userId;
 
-  console.log(review.userId)
+  useEffect(() => {
+    if (!userId) {
+      return;
+    }
+    (async () => {
+      const response = await fetch(`/api/users/${userId}`);
+      const user = await response.json();
+      setUser(user);
+    })();
+  }, [userId]);
+
+  console.log("USER ID FROM REVIEW", userId)
   console.log("COMPONENT HIT")
-  return(
-    null
-  )
+  console.log("USER", user)
+  console.log("USER === {}", user === {})
+  if (!review || !user){
+    return null
+  } else {
+    return(
+      <div>
+        {review.id}
+        <div className="review">
+          <div className="reviewTop">
+            <div className="reviewAvatarContainer">
+              <a href="" className="reviewAvatarLink">
+                {/* <img src={user?.avatar} alt="Review Avatar" className="reviewAvatar" draggable="False" /> */}
+                <img src="" alt="Review Avatar" className="reviewAvatar" draggable="False" />
+              </a>
+            </div>
+            <div className="newReviewInfoBox">
+              <div>
+                <a href="">
+                  {user?.fname} {user?.lname[0]}
+                </a>
+              </div>
+              <div>{/* Location */}</div>
+              <div>{/* Badges */}
+                <div>{/* Friends */}</div>
+                <div>{/* Revies */}</div>
+                <div>{/* Images */}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    )
+  }
+
+
+
+
 //   return(
 //     <div className="newReview">
 //       <div className="newReviewTop">
