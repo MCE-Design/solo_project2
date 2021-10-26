@@ -27,7 +27,7 @@ export const getReviewsByBusiness = (id) => async dispatch => {
     console.log("GET REVIEWS RESPONSE IS OK")
     console.log("LIST", list)
     dispatch(load(list));
-  }else return "Thunk Error: Bad Req: All By Business"
+  }else return "Thunk Error: Bad Req: Get all By Business"
 }
 
 export const newReview = (review) => async dispatch => {

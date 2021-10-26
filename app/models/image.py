@@ -10,6 +10,7 @@ class Image(db.Model):
     imageable_id = db.Column(db.Integer, nullable=False)
     imageable_type = db.Column(ENUM('business', 'review', name='imageable_types'), nullable=False)
     imageUrl = db.Column(db.String(1000))
+    imageCaption = db.Column(db.String(1000), nullable=True)
 
     # user = db.relationship("User", back_populates="images")
     # business = db.relationship("Business", back_populates="images")
