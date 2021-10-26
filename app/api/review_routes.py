@@ -6,6 +6,15 @@ from colors import *
 
 review_routes = Blueprint('review', __name__)
 
+def validation_errors_to_error_messages(validation_errors):
+    """
+    Simple function that turns the WTForms validation errors into a simple list
+    """
+    errorMessages = []
+    for field in validation_errors:
+        for error in validation_errors[field]:
+            errorMessages.append(f'{field} : {error}')
+    return errorMessages
 
 # Reviews by Review ID
 @review_routes.route('/<int:id>', methods=["GET"])
@@ -35,7 +44,7 @@ def add_review():
         reviews = Review.query.filter(Review.businessId == data["businessId"]).all()
         return {"reviews": [review.to_dict() for review in reviews]}
     else:
-        return "Bad Data"
+        return {"errorMessages": validation_errors_to_error_messages(form.errors)}
 
 
 # @review_routes.route('/<int:id>', methods=["PUT"])

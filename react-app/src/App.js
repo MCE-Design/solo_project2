@@ -9,6 +9,7 @@ import UsersList from './components/UsersList';
 import User from './components/User';
 import Splash from './components/splash';
 import Business from './components/business';
+import PhotoUpload from './components/images/photoUpload';
 import { authenticate } from './store/session';
 
 function App() {
@@ -47,6 +48,9 @@ function App() {
         </ProtectedRoute>
         <Route path='/business/:businessId'>
           <Business />
+        </Route>
+        <Route path='/photos'>
+          <PhotoUpload />
         </Route>
       </Switch>
     </BrowserRouter>

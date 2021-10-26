@@ -31,6 +31,8 @@ def upload_image():
     return {"errors": "Image required"}, 400
 
   image = request.files["image"]
+  print(CGREEN + "\n request: \n", request, "\n" + CEND)
+  # imageable_type = request.imagable_type;
 
   if not allowed_file(image.filename):
     return {"errors": "File type not permitted"}, 400
@@ -42,9 +44,16 @@ def upload_image():
   if "url" not in upload: # Basically if it's missing the "url" key there was some kind of error
     return upload, 400
 
+  print(CGREEN + "\n HIT \n", "\n" + CEND)
   url = upload["url"]
 
-  new_image = Image(user=current_user, url=url) # We'll use the current user as the one who uploaded the image
+  new_image = Image(
+    userId=current_user.id,                          # We'll use the current user as the one who uploaded the image
+    imageable_id = request.form["imageable_id"],
+    imageable_type = request.form["imageable_type"],
+    imageUrl=url,
+    imageCaption = request.form["imageCaption"]
+  )
   db.session.add(new_image)
   db.session.commit()
   return {"url": url}
