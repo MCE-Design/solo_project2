@@ -84,7 +84,7 @@ function PhotoUpload({photoType}) {
                     accept="image/*"
                     onChange={updateImage}
                   />
-                  <input onChange={(e) => setImageCaption(e.target.value)}></input>
+                  <textarea onChange={(e) => setImageCaption(e.target.value)}></textarea>
                   <button type="submit" className="redButton photoButton bodyButton button">Submit</button>
                   {(imageLoading)&& <p>Loading...</p>}
               </form>

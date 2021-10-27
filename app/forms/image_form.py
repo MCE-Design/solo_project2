@@ -27,17 +27,18 @@ def password_matches(form, field):
 
 class ImageForm(FlaskForm):
     userId = IntegerField('userId', validators=[DataRequired()])
-    businessId = IntegerField('businessId', validators=[DataRequired()])
-    rating = IntegerField('rating', validators=[DataRequired()])
-    review = TextAreaField('review', validators=[DataRequired()])
+    imageable_id = IntegerField('imageable_id', validators=[DataRequired()])
+    imageable_type = SelectField('imageable_types', choices=['user','business', 'review'], validators=[DataRequired()])
+    imageUrl = StringField('imageUrl', validators=[DataRequired()])
+    imageCaption = TextAreaField('imageCaption', validators=[DataRequired()])
 
 class CaptionEdit(FlaskForm):
     id = IntegerField('id', validators=[DataRequired()])
     userId = IntegerField('userId', validators=[DataRequired()])
     imageable_id = IntegerField('imageable_id', validators=[DataRequired()])
     imageable_type = SelectField('imageable_types', choices=['user','business', 'review'], validators=[DataRequired()])
-    imageUrl = TextAreaField('imageUrl', validators=[DataRequired()])
-    imageCaption = TextAreaField('imageCaptioni', validators=[DataRequired()])
+    imageUrl = StringField('imageUrl', validators=[DataRequired()])
+    imageCaption = TextAreaField('imageCaption', validators=[DataRequired()])
 
-class DeleteReview(FlaskForm):
-    id = IntegerField("Id")
+class DeleteImage(FlaskForm):
+    id = IntegerField("id", validators=[DataRequired()])
