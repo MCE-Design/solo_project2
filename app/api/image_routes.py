@@ -12,17 +12,17 @@ image_routes = Blueprint('image', __name__)
 # Get image By ID
 @image_routes.route('/<int:id>', methods=["GET"])
 def get_images(id):
-    image = Image.query.get(id)
-    print(CGREEN + "\n image: \n", image.to_dict(), "\n" + CEND)
-    return image.to_dict()
+  image = Image.query.get(id)
+  print(CGREEN + "\n image: \n", image.to_dict(), "\n" + CEND)
+  return image.to_dict()
 
 # Get Images By
 @image_routes.route('', methods=["GET"])
 def get_all_images():
-    image = Image.query.all()
-    print(CGREEN + "\n request: \n", request.form, "\n" + CEND)
-    print(CGREEN + "\n image: \n", image, "\n" + CEND)
-    return image
+  image = Image.query.all()
+  print(CGREEN + "\n request: \n", request.form, "\n" + CEND)
+  print(CGREEN + "\n image: \n", image, "\n" + CEND)
+  return image
 # # All Reviews by Business ID
 # @business_routes.route('/<int:id>/review', methods=["GET"])
 # def review_by_business(id):
@@ -71,21 +71,23 @@ def upload_image():
 @login_required
 def edit_caption():
 
-    # data = form.data
-    return
+  # data = form.data
+  db.session.add()
+  db.session.commit()
+  return
 
 # Delete Image
 @image_routes.route("/<int:id>", methods=["DELETE"])
 @login_required
 def delete_image(id):
-    form = DeleteImage()
-    data = form.data
-    form['csrf_token'].data = request.cookies['csrf_token']
+  form = DeleteImage()
+  data = form.data
+  form['csrf_token'].data = request.cookies['csrf_token']
 
-    image_to_delete = Image.query.filter(Image.id == data["id"]).first()
-    db.session.delete(image_to_delete)
-    db.session.commit()
+  image_to_delete = Image.query.filter(Image.id == data["id"]).first()
+  db.session.delete(image_to_delete)
+  db.session.commit()
 
-    # images = Image.query.all()
-    # return {"images": [image.to_dict() for image in images]}
-    return
+  # images = Image.query.all()
+  # return {"images": [image.to_dict() for image in images]}
+  return
