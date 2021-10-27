@@ -1,5 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import current_user, login_required
+from app.forms.image_form import DeleteImage
 from app.models import db, Image
 from app.s3_helpers import (
   upload_file_to_s3, allowed_file, get_unique_filename)
@@ -71,4 +72,20 @@ def upload_image():
 def edit_caption():
 
     # data = form.data
+    return
+
+# Delete Image
+@image_routes.route("/<int:id>", methods=["DELETE"])
+@login_required
+def delete_image(id):
+    form = DeleteImage()
+    data = form.data
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    image_to_delete = Image.query.filter(Image.id == data["id"]).first()
+    db.session.delete(image_to_delete)
+    db.session.commit()
+
+    # images = Image.query.all()
+    # return {"images": [image.to_dict() for image in images]}
     return
