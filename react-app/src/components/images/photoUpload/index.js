@@ -15,18 +15,16 @@ function PhotoUpload({photoType}) {
   const id = useParams();
   const sessionUser = useSelector(state => state.session.user);
   const [image, setImage] = useState(null);
-  const [imageType, setImageType] = useState(null);
   const [imageCaption, setImageCaption] = useState();
   const [imageLoading, setImageLoading] = useState(false);
 
   console.log("PhotoType", photoType)
-  // setImageType("business");
   const handleSubmit = async (e) => {
       e.preventDefault();
       const formData = new FormData();
       formData.append("image", image);
       formData.append("imageable_id", 3);
-      formData.append("imageable_type", "business");
+      formData.append("imageable_type", photoType);
       formData.append("imageCaption", imageCaption);
 
       setImageLoading(true); // Replace with better image loader
@@ -50,49 +48,67 @@ function PhotoUpload({photoType}) {
       const file = e.target.files[0];
       setImage(file);
   }
-
-  return (
-    <div className="photoMain">
-      <div className="contentContainer">
-        <div className="photoStatus">
-          {/* <div className="alert">
-            Put status message here (such as deletion message)
-          </div> */}
-        </div>
-        <div className="photoUploadTop">
-          <ul className="breadcrumb">
-            <li>
-              <NavLink to="/user">{sessionUser?.fname} {sessionUser?.lname[0]}.</NavLink>
-            </li>
-            <li>
-              <span className="chevronRight icon"><img src={chevRight} alt="Breadcrumb divider"/></span>
-              Profile Photos
-            </li>
-          </ul>
-          <h2>Add Photos</h2>
-        </div>
-        <div className="photoUploadBottom">
-          <div className="photoUploadContainer">
-            <div className="photoUploadBody">
-              <h1>Upload your photos here</h1>
-              <div className="hr">
-                <div></div>
+  if( photoType === "business"){
+    console.log("business");
+    return(
+      <h1>Business Photo Uploads Goes here</h1>
+    )
+  } else if( photoType === "review"){
+    console.log("review")
+    return(
+      <h1>Review Photo Uploads Goes here</h1>
+    )
+  } else if( photoType === "user"){
+    return (
+      <div className="photoMain">
+        <div className="contentContainer">
+          <div className="photoStatus">
+            {/* <div className="alert">
+              Put status message here (such as deletion message)
+            </div> */}
+          </div>
+          <div className="photoUploadTop">
+            <ul className="breadcrumb">
+              <li>
+                <NavLink to="/user">{sessionUser?.fname} {sessionUser?.lname[0]}.</NavLink>
+              </li>
+              <li>
+                <span className="chevronRight icon"><img src={chevRight} alt="Breadcrumb divider"/></span>
+                Profile Photos
+              </li>
+            </ul>
+            <h2>Add Photos</h2>
+          </div>
+          <div className="photoUploadBottom">
+            <div className="photoUploadContainer">
+              <div className="photoUploadBody">
+                <h1>Upload your photos here</h1>
+                <div className="hr">
+                  <div className="or"></div>
+                </div>
+                <form onSubmit={handleSubmit}>
+                  <div className="uploadFormRow">
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={updateImage}
+                      className="inputContainer file"
+                    />
+                  </div>
+                  <div className="uploadFormRow">
+                    <textarea onChange={(e) => setImageCaption(e.target.value)} className="inputContainer"></textarea>
+                  </div>
+                  <div>
+                    <button type="submit" className="redButton photoButton bodyButton button">Submit</button>
+                  </div>
+                </form>
+                {(imageLoading)&& <p>Loading...</p>}
               </div>
-              <form onSubmit={handleSubmit}>
-                  <input
-                    type="file"
-                    accept="image/*"
-                    onChange={updateImage}
-                  />
-                  <textarea onChange={(e) => setImageCaption(e.target.value)}></textarea>
-                  <button type="submit" className="redButton photoButton bodyButton button">Submit</button>
-                  {(imageLoading)&& <p>Loading...</p>}
-              </form>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  )
+    )
+  }
 }
 export default PhotoUpload;

@@ -16,13 +16,15 @@ def get_images(id):
   print(CGREEN + "\n image: \n", image.to_dict(), "\n" + CEND)
   return image.to_dict()
 
-# Get Images By
-@image_routes.route('', methods=["GET"])
-def get_all_images():
+# Get Images By User ID
+@image_routes.route('/<int:id>', methods=["GET"])
+def get_all_images_user(userId):
+  image = Image.query.filter(Image.userId == userId).all()
   image = Image.query.all()
   print(CGREEN + "\n request: \n", request.form, "\n" + CEND)
   print(CGREEN + "\n image: \n", image, "\n" + CEND)
   return image
+
 # # All Reviews by Business ID
 # @business_routes.route('/<int:id>/review', methods=["GET"])
 # def review_by_business(id):

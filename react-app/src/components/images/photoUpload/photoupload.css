@@ -44,6 +44,27 @@
   border-top: 1px solid #CCCCCC;
 }
 
-.photoButton {
+.or {
+  height: 17px;
+}
 
+.uploadFormRow {
+  margin-bottom: 20px;
+}
+
+.inputContainer {
+  width: 500px;
+}
+
+textarea.inputContainer {
+  resize: none;
+  height: 100px;
+}
+
+textarea.inputContainer:focus-visible {
+  outline: none;
+}
+
+.photoButton {
+  padding: 8px 18px;
 }
