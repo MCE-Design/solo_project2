@@ -28,6 +28,7 @@ function NewReview({sessionUser, businessId}) {
       if (data) {
         setErrors(data);
       }
+
     }
   }
   console.log(starRatingVal)

@@ -29,7 +29,7 @@ function ReviewComponent({review}) {
     return null
   } else {
     return(
-      <div className="review" reviewId={review?.id}>
+      <div className={`review ${review?.id}`}>
         <div className="reviewTop">
           <div className="reviewAvatarContainer">
             <a href={`/user/${userId}`} className="reviewAvatarLink"> {/* Disable later if no profile page */}

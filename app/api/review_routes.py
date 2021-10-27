@@ -24,7 +24,7 @@ def review(id):
     return review.to_dict()
 
 # New Review
-@review_routes.route('/', methods=["POST"])
+@review_routes.route('', methods=["POST"])
 def add_review():
     form = ReviewForm()
     data = form.data

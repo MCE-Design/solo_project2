@@ -31,7 +31,7 @@ export const getReviewsByBusiness = (id) => async dispatch => {
 }
 
 export const newReview = (review) => async dispatch => {
-  const response = await fetch(`/api/review/`,
+  const response = await fetch(`/api/review`,
     {
       method: "POST",
       // headers: { "Content-Type": "application/json" },
@@ -49,7 +49,7 @@ export const newReview = (review) => async dispatch => {
 
 export const editReview = (review) => async dispatch => {
   console.log(review)
-  const response = await fetch(`/api/review/`,
+  const response = await fetch(`/api/review`,
     {
       method: "PUT",
       body: review

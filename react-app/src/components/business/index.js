@@ -13,14 +13,26 @@ function Business() {
   const { business } = useSelector((state) => state.business);
   const { review } = useSelector((state) => state.review);
   const sessionUser = useSelector(state => state.session.user);
+  const [ userReviewed, setUserReviewed ] = useState(false);
+
   useEffect(() => {
     dispatch(getBusiness(businessId));
     dispatch(getReviewsByBusiness(businessId));
   }, [dispatch, businessId]);
 
+  useEffect(() => {
+    if (review?.reviews?.filter((ele) => ele?.userId === sessionUser?.id).length > 0) {
+      setUserReviewed(true);
+    } else {
+      setUserReviewed(false);
+    }
+  }, [dispatch, review, sessionUser]);
+
+  console.log("user reviewed?", userReviewed);
   console.log(business)
   console.log("sessionUser", sessionUser)
-  console.log("Reviews", review?.reviews.length)
+  console.log("Reviews", review?.reviews?.length)
+  console.log("USER ID", sessionUser?.id)
   return (
     <>
       <div className="businessTop photoContainer container">
@@ -32,7 +44,7 @@ function Business() {
             <div className="businessRating">
               <div className="bussinessRatingImage">
               </div>
-              <div className="businessReviewCount">{review?.reviews.length} reviews</div>
+              <div className="businessReviewCount">{review?.reviews?.length} reviews</div>
             </div>
           </div>
         </div>
@@ -58,10 +70,13 @@ function Business() {
           {/* Maps and Hours */}
         </div>
         <div className="reviewsContainer">
-          <div className="reviewsNewReviewContainer">
-            {console.log("BUSINESS ID", businessId)}
-            <NewReview sessionUser = {sessionUser} businessId = {businessId}/>
-          </div>
+          {userReviewed === false ? (
+            <div className="reviewsNewReviewContainer">
+              <NewReview sessionUser = {sessionUser} businessId = {businessId}/>
+            </div>
+          ) : (
+            <></>
+          )}
           <ul>{/* Map Reviews Here in repeated <li>*/}
             {console.log("REVIEW", review?.reviews)}
             {review?.reviews?.map((review) => {
