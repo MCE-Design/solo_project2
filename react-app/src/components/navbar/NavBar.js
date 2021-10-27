@@ -3,12 +3,13 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
 import { useLocation } from 'react-router';
+import { useSelector } from 'react-redux';
 import "./navbar.css"
 
 const NavBar = () => {
   const currentPage = useLocation();
+  const sessionUser = useSelector(state => state.session.user);
   console.log(currentPage)
-
   if(currentPage.pathname === "/")
   {
     return (
@@ -20,11 +21,16 @@ const NavBar = () => {
                 Write a Review
               </NavLink>
             </li>
-            <li>
-              <NavLink to='/login' exact={true} className="headerLink" activeClassName='active'>
-                Login
-              </NavLink>
-            </li>
+            {!sessionUser ? (
+                <li>
+                  <NavLink to='/login' exact={true} className="headerLink" activeClassName='active'>
+                    Login
+                  </NavLink>
+                </li>
+              ) : (
+                <></>
+              )
+            }
             <li>
               <NavLink to='/sign-up' exact={true} className="headerLink" activeClassName='active'>
                 Sign Up
@@ -52,11 +58,16 @@ const NavBar = () => {
                 Home
               </NavLink>
             </li>
-            <li>
-              <NavLink to='/login' exact={true} activeClassName='active'>
-                Login
-              </NavLink>
-            </li>
+            {!sessionUser ? (
+                <li>
+                  <NavLink to='/login' exact={true} className="headerLink" activeClassName='active'>
+                    Login
+                  </NavLink>
+                </li>
+              ) : (
+                <></>
+              )
+            }
             <li>
               <NavLink to='/sign-up' exact={true} activeClassName='active'>
                 Sign Up

@@ -1,0 +1,49 @@
+.photoMain {
+  min-width: 1022px;
+}
+
+.contentContainer {
+  margin: 0 auto;
+  padding: 15px 15px 36px;
+  width: 960px;
+}
+
+.alert {
+  box-sizing: border-box;
+  position: relative;
+  margin: 0 0 12px;
+  border-radius: 3px;
+  padding: 18px 18px 24px;
+  width: 100%;
+  font-size: 16px;
+  line-height: 1.5em;
+  background-color: #D0ECFB;
+}
+
+.photoUploadTop {
+  border-bottom: 1px solid #E6E6E6;
+  padding-bottom: 18px;
+}
+
+.photoUploadContainer {
+  padding: 27px 12px;
+}
+
+.photoUploadBody {
+  margin: 24px auto;
+  border: 3px dashed #999999;
+  border-radius: 8px;
+  padding: 50px 0;
+  text-align: center;
+}
+
+.hr {
+  display: block;
+  max-width: 80%;
+  margin: 20px auto;
+  border-top: 1px solid #CCCCCC;
+}
+
+.photoButton {
+
+}

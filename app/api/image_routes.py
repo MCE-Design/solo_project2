@@ -8,13 +8,20 @@ from colors import *
 image_routes = Blueprint('image', __name__)
 
 
-# # Get Business By Business ID
-# @business_routes.route('/<int:id>', methods=["GET"])
-# def business(id):
-#     business = Business.query.get(id)
-#     print(CGREEN + "\n business: \n", business.to_dict(), "\n" + CEND)
-#     return business.to_dict()
+# Get image By ID
+@image_routes.route('/<int:id>', methods=["GET"])
+def get_images(id):
+    image = Image.query.get(id)
+    print(CGREEN + "\n image: \n", image.to_dict(), "\n" + CEND)
+    return image.to_dict()
 
+# Get Images By
+@image_routes.route('', methods=["GET"])
+def get_all_images():
+    image = Image.query.all()
+    print(CGREEN + "\n request: \n", request.form, "\n" + CEND)
+    print(CGREEN + "\n image: \n", image, "\n" + CEND)
+    return image
 # # All Reviews by Business ID
 # @business_routes.route('/<int:id>/review', methods=["GET"])
 # def review_by_business(id):
@@ -57,3 +64,11 @@ def upload_image():
   db.session.add(new_image)
   db.session.commit()
   return {"url": url}
+
+# Edit Image Caption
+@image_routes.route("", methods=["PUT"])
+@login_required
+def edit_caption():
+
+    # data = form.data
+    return

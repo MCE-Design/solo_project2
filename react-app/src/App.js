@@ -49,8 +49,11 @@ function App() {
         <Route path='/business/:businessId'>
           <Business />
         </Route>
-        <Route path='/photos'>
-          <PhotoUpload />
+        <Route path='/user_photos'>
+          <PhotoUpload photoType = "user"/>
+        </Route>
+        <Route path='/business_photos/:businessId'>
+          <PhotoUpload photoType = "business"/>
         </Route>
       </Switch>
     </BrowserRouter>
