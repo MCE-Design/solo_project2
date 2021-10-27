@@ -14,7 +14,7 @@ Session = sessionmaker()
 
 # revision identifiers, used by Alembic.
 revision = '892f2a7d342e'
-down_revision = '8cfbd5946498'
+down_revision = None
 branch_labels = None
 depends_on = None
 
