@@ -14,6 +14,35 @@
 }
 .imageTile img {
   object-fit: cover;
+  border-radius: 5px;
   height: 100%;
   width: 100%;
+  user-select: none;
+}
+
+.captionBox {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  box-sizing: border-box;
+  border-radius: 0 0 5px 5px;
+  padding: 6px 11px 6px 12px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #FFFFFF;
+  /* font-family: "Open Sans", Helvetica, Arial, sans-serif; */
+  font-size: 12px;
+  /* letter-spacing: 1px; */
+  font-weight: bold;
+  line-height: 1.5em;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.imageControls {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
 }

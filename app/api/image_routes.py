@@ -16,15 +16,6 @@ def get_images(id):
   print(CGREEN + "\n image: \n", image.to_dict(), "\n" + CEND)
   return image.to_dict()
 
-# Get Images By User ID
-@image_routes.route('/<int:id>', methods=["GET"])
-def get_all_images_user(userId):
-  # image = Image.query.filter(Image.userId == userId).all()
-  image = Image.query.all()
-  print(CGREEN + "\n request: \n", request.form, "\n" + CEND)
-  print(CGREEN + "\n image: \n", image, "\n" + CEND)
-  return image.to_dict()
-
 # # All Reviews by Business ID
 # @business_routes.route('/<int:id>/review', methods=["GET"])
 # def review_by_business(id):
@@ -79,9 +70,9 @@ def edit_caption():
   return
 
 # Delete Image
-@image_routes.route("/<int:id>", methods=["DELETE"])
+@image_routes.route("", methods=["DELETE"])
 @login_required
-def delete_image(id):
+def delete_image():
   form = DeleteImage()
   data = form.data
   form['csrf_token'].data = request.cookies['csrf_token']
@@ -90,6 +81,5 @@ def delete_image(id):
   db.session.delete(image_to_delete)
   db.session.commit()
 
-  # images = Image.query.all()
-  # return {"images": [image.to_dict() for image in images]}
-  return
+  images = Image.query.all()
+  return {"images": [image.to_dict() for image in images]}

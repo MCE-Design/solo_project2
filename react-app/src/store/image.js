@@ -28,6 +28,18 @@ export const getUserImagesUser = (id) => async dispatch => {
   } else return "Thunk Error: Bad Req"
 }
 
+export const deleteImage = (id) => async dispatch => {
+  const response = await fetch(`/api/image`,
+    {
+      method: "DELETE",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({ id: id })
+    }
+  )
+  if (response.ok) {
+    dispatch(removeImage())
+  } else return "Thunk Error: Delete Image"
+}
 
 export default function imageReducer(state = initialState, action) {
   switch (action.type) {
