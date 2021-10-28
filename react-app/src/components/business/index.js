@@ -27,8 +27,6 @@ function Business() {
       setUserReviewed(false);
     }
   }, [dispatch, review, sessionUser]);
-
-  console.log("user reviewed?", userReviewed);
   console.log(business)
   console.log("sessionUser", sessionUser)
   console.log("Reviews", review?.reviews?.length)
