@@ -1,5 +1,6 @@
 import React from 'react';
 import "./splash.css";
+import yap_logo from "../../images/yap_logo.svg"
 
 function Splash() {
 
@@ -8,8 +9,8 @@ function Splash() {
       <div className="landingTop container">
         <div className="landingTopContent">
           <div className="landingTopInner">
-            <div className="landingLogo">
-              <a href="/">YAP LOGO PLACEHOLDER</a>
+            <div className="landingLogo" style={{backgroundImage: `url(${yap_logo})`}}>
+              <a href="/">Yap</a>
             </div>
             <form className="landingSearchBar">
               <input className="searchInputLeft inputField" placeholder="nail salons, plumbers, takeout..."></input>
