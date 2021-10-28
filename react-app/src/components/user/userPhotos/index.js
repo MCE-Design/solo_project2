@@ -16,17 +16,6 @@ function UserPhotos({ profile }) {
 
   console.log("profile", profile)
 
-  useEffect(() => {
-    if (!userId) {
-      return;
-    }
-    (async () => {
-      const response = await fetch(`/api/users/${userId}`);
-      const user = await response.json();
-      setUser(user);
-    })();
-  }, [userId]);
-
   if (sessionUser?.id === +userId) {
     history.push("/user_photos");
   }

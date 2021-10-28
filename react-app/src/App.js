@@ -56,13 +56,13 @@ function App() {
         <Route path='/user_photos/:userId' exact={true} >
           <UserPhotos profile = "other"/>
         </Route>
-        <Route path='/business/:businessId'>
+        <Route path='/business/:businessId' exact={true} >
           <Business />
         </Route>
-        <Route path='/user_photos/add'>
+        <Route path='/user/photos/add' exact={true} >
           <PhotoUpload photoType = "user"/>
         </Route>
-        <Route path='/business_photos/:businessId/add'>
+        <Route path='/business_photos/:businessId/add' exact={true} >
           <PhotoUpload photoType = "business"/>
         </Route>
       </Switch>

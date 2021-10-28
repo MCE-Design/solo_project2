@@ -32,7 +32,7 @@ function ReviewComponent({review}) {
       <div className={`review ${review?.id}`}>
         <div className="reviewTop">
           <div className="reviewAvatarContainer">
-            <a href={`/user/${userId}`} className="reviewAvatarLink"> {/* Disable later if no profile page */}
+            <a href={`/users/${userId}`} className="reviewAvatarLink"> {/* Disable later if no profile page */}
               <img src={user?.avatar} alt="Review Avatar" className="reviewAvatar" draggable="False" />
             </a>
           </div>
