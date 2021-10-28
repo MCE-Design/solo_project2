@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { NavLink, useParams, useHistory } from 'react-router-dom';
+import "./user.css";
 
 function User({ profile }) {
+  const history = useHistory();
   const [user, setUser] = useState({});
   const { userId }  = useParams();
   const sessionUser = useSelector(state => state.session.user);
@@ -19,6 +21,10 @@ function User({ profile }) {
     })();
   }, [userId]);
 
+  if (sessionUser?.id === +userId) {
+    history.push("/user");
+  }
+
   if (!user) {
     return null;
   }
@@ -26,22 +32,24 @@ function User({ profile }) {
     return (
       <div className="userMain">
         <div className="topInfo">
+          <div>
+            <div className="userProfileAvatar">
+              <NavLink to="/user_photos">
+                <img src={sessionUser?.avatar} className="profileAvatarImage"></img>
+              </NavLink>
+            </div>
+            <div className="">
+              <div></div>
+              <div className="profileInfo">
 
+              </div>
+              <div></div>
+            </div>
+          </div>
         </div>
-        <div>
-
+        <div className="mainContainer">
+          <h1>{sessionUser?.fname} {sessionUser?.lname[0]}.</h1>
         </div>
-        <ul>
-          <li>
-            <strong>User Id</strong> {}
-          </li>
-          <li>
-            <strong>Name</strong> {sessionUser?.fname} {sessionUser?.lname[0]}.
-          </li>
-          <li>
-            <strong>Email</strong> {user.email}
-          </li>
-        </ul>
       </div>
     )
   } else {

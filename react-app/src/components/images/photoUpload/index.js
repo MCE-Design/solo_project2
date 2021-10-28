@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { newReview } from "../../../store/review";
 // import "./newReview.css";
@@ -17,13 +17,28 @@ function PhotoUpload({photoType}) {
   const [image, setImage] = useState(null);
   const [imageCaption, setImageCaption] = useState();
   const [imageLoading, setImageLoading] = useState(false);
+  const [imageTypeId, setImageTypeId] = useState();
 
-  console.log("PhotoType", photoType)
+  useEffect(() => {
+    if (photoType === "business") {
+      setImageTypeId(id);
+    } else if (photoType === "review") {
+
+    } else if (photoType === "user") {
+      setImageTypeId(sessionUser?.id);
+    }
+  }, [photoType, id, sessionUser?.id]);
+
+  console.log("businessId", id);
+  console.log("userId", sessionUser?.id);
+  console.log("imageTypeId", imageTypeId);
+  console.log("PhotoType", photoType);
+
   const handleSubmit = async (e) => {
       e.preventDefault();
       const formData = new FormData();
       formData.append("image", image);
-      formData.append("imageable_id", 3);
+      formData.append("imageable_id", imageTypeId);
       formData.append("imageable_type", photoType);
       formData.append("imageCaption", imageCaption);
 
@@ -60,27 +75,27 @@ function PhotoUpload({photoType}) {
     )
   } else if( photoType === "user"){
     return (
-      <div className="photoMain">
+      <div className="photoMain backPageMain">
         <div className="contentContainer">
           <div className="photoStatus">
             {/* <div className="alert">
               Put status message here (such as deletion message)
             </div> */}
           </div>
-          <div className="photoUploadTop">
+          <div className="photoUploadTop backPageTop">
             <ul className="breadcrumb">
               <li>
                 <NavLink to="/user">{sessionUser?.fname} {sessionUser?.lname[0]}.</NavLink>
               </li>
               <li>
                 <span className="chevronRight icon"><img src={chevRight} alt="Breadcrumb divider"/></span>
-                Profile Photos
+                Profile photos
               </li>
             </ul>
-            <h2>Add Photos</h2>
+            <h2>Add photos</h2>
           </div>
           <div className="photoUploadBottom">
-            <div className="photoUploadContainer">
+            <div className="photoUploadContainer backPageLowerContainer">
               <div className="photoUploadBody">
                 <h1>Upload your photos here</h1>
                 <div className="hr">

@@ -1,5 +1,5 @@
 .photoMain {
-  min-width: 1022px;
+
 }
 
 .contentContainer {
@@ -20,13 +20,8 @@
   background-color: #D0ECFB;
 }
 
-.photoUploadTop {
-  border-bottom: 1px solid #E6E6E6;
-  padding-bottom: 18px;
-}
-
 .photoUploadContainer {
-  padding: 27px 12px;
+
 }
 
 .photoUploadBody {

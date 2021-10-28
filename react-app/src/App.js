@@ -6,7 +6,8 @@ import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/navbar/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
-import User from './components/User';
+import User from './components/user/User';
+import UserPhotos from './components/user/userPhotos';
 import Splash from './components/splash';
 import Business from './components/business';
 import PhotoUpload from './components/images/photoUpload';
@@ -49,13 +50,19 @@ function App() {
         <ProtectedRoute path='/user' exact={true} >
           <User profile = "self"/>
         </ProtectedRoute>
+        <ProtectedRoute path='/user_photos' exact={true} >
+          <UserPhotos profile = "self"/>
+        </ProtectedRoute>
+        <Route path='/user_photos/:userId' exact={true} >
+          <UserPhotos profile = "other"/>
+        </Route>
         <Route path='/business/:businessId'>
           <Business />
         </Route>
-        <Route path='/user_photos'>
+        <Route path='/user_photos/add'>
           <PhotoUpload photoType = "user"/>
         </Route>
-        <Route path='/business_photos/:businessId'>
+        <Route path='/business_photos/:businessId/add'>
           <PhotoUpload photoType = "business"/>
         </Route>
       </Switch>

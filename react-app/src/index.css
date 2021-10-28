@@ -88,3 +88,15 @@ ul {
   width: 24px;
   filter: invert(0.72) sepia(0.05) saturate(0.17) hue-rotate(0) brightness(0.85) contrast(87%)
 }
+
+.backPageMain {
+  min-width: 1022px;
+}
+
+.backPageTop {
+  border-bottom: 1px solid #E6E6E6;
+  padding-bottom: 18px;
+}
+.backPageLowerContainer {
+  padding: 27px 12px;
+}

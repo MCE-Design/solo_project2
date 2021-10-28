@@ -19,11 +19,11 @@ def get_images(id):
 # Get Images By User ID
 @image_routes.route('/<int:id>', methods=["GET"])
 def get_all_images_user(userId):
-  image = Image.query.filter(Image.userId == userId).all()
+  # image = Image.query.filter(Image.userId == userId).all()
   image = Image.query.all()
   print(CGREEN + "\n request: \n", request.form, "\n" + CEND)
   print(CGREEN + "\n image: \n", image, "\n" + CEND)
-  return image
+  return image.to_dict()
 
 # # All Reviews by Business ID
 # @business_routes.route('/<int:id>/review', methods=["GET"])

@@ -1,0 +1,19 @@
+.imageTileContainer {
+  width: 150px;
+  margin: 12px 12px 0 0;
+  transition: opacity 0.2s ease-out;
+}
+
+.imageTileContainer:hover {
+  opacity: 0.75;
+}
+
+.imageTile {
+  position: relative;
+  height: 150px;
+}
+.imageTile img {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+}
