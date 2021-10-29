@@ -47,10 +47,10 @@
 
 .lightboxAvatar {
   margin-top: 3px;
-  border-radius: 4px;
   overflow: hidden;
 }
 .lightboxAvatar img {
+  border-radius: 4px;
   height: 30px;
 }
 
@@ -58,14 +58,33 @@
   height: 100%;
 }
 
+.lightboxImageCaptionBox.active {
+  margin-bottom: 15px;
+  border: 1px solid #000000;
+  min-height: 70px;
+  max-height: 150px;
+  overflow-y: scroll;
+}
+
 .modalButton {
   border-radius: 3px;
-  padding: 8px 12px 8px 35px;
-  margin-bottom: 10px;
-  background-color: #FFFFFF;
+  padding: 5px 8px;
   background-repeat: no-repeat;
   background-size: 18px;
   background-position: 8px 8px;
+  font-size: 12px;
+  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  line-height: 1.5em;
+}
+
+.redButton.modalButton:hover {
+  background-color: #DC4F4F;
+}
+
+.cancelButton {
+  margin: 5px 0 0 12px;
+  font-size: 12px;
+  line-height: 1.5em;
 }
 
 .modalButton:last-child {

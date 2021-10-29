@@ -28,9 +28,9 @@ export default function Modal({ open, onClose, children, lightbox }) {
       {lightbox === true ? (
         <>
           <div className="modalOverlay lightbox" style={overlayStyling} onClick={onClose}>
+            <button onClick={onClose} className="closeButton modalButton lightButton button" style={{backgroundImage: `url(${cancelIcon})`}}>Cancel</button>
             <div className="lightboxContainer">
               {children}
-              <button onClick={onClose} className="closeButton modalButton lightButton button" style={{backgroundImage: `url(${cancelIcon})`}}>Cancel</button>
             </div>
           </div>
         </>

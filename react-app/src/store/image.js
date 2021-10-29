@@ -41,6 +41,22 @@ export const deleteImage = (id) => async dispatch => {
   } else return "Thunk Error: Delete Image"
 }
 
+export const editImageCaption = (editedCaption) => async dispatch => {
+  const response = await fetch(`/api/image`,
+    {
+      method: "PUT",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(editedCaption)
+    }
+  )
+  console.log("EDIT HIT")
+  console.log("RESPONSE BODY", response)
+  if (response.ok) {
+    const data = await response.json()
+      dispatch(load(data))
+  } else return "Thunk Error: Edit Caption"
+}
+
 export default function imageReducer(state = initialState, action) {
   switch (action.type) {
     case SET_IMAGE:

@@ -3,18 +3,51 @@ import { useDispatch, useSelector } from 'react-redux';
 import "./phototiler.css";
 import { useParams, NavLink, useHistory } from 'react-router-dom';
 import Modal from "../../modal";
-import { deleteImage } from "../../../store/image";
-import menuDots from '../../../images/menuDots.svg';
-import deleteIcon from '../../../images/delete_black_24dp.svg';
-import editIcon from '../../../images/edit_black_24dp.svg';
+import { deleteImage, editImageCaption } from "../../../store/image";
 
 function PhotoTile({image, user}) {
   const dispatch = useDispatch();
   const history = useHistory();
   const [ modalOpen, setModalOpen ] = useState(false);
+  const [ editPanel, setEditPanel ] = useState(false);
 
   const handleDelete = () => {
     dispatch(deleteImage(image?.id))
+  }
+
+  const handleEditModeOpen = () => {
+    const imageCaptionBox = document.querySelector(".lightboxImageCaptionBox");
+    if( editPanel === false ){
+      imageCaptionBox.setAttribute("contentEditable", "true");
+      imageCaptionBox.classList.add("active");
+      setEditPanel(true);
+    }
+  }
+
+  const handleEditModeClose = () => {
+    const imageCaptionBox = document.querySelector(".lightboxImageCaptionBox");
+    imageCaptionBox.setAttribute("contentEditable", "false");
+    imageCaptionBox.classList.remove("active");
+    setEditPanel(false);
+    imageCaptionBox.textContent = image?.imageCaption;
+  }
+
+  const handleEditSubmit = () => {
+    const imageCaptionBox = document.querySelector(".lightboxImageCaptionBox");
+    if ( imageCaptionBox.textContent !== image?.imageCaption) {
+      console.log("SUBMITTABLE");
+      const editedCaption = {
+        id: image?.id,
+        userId: image?.userId,
+        imageable_id: image?.imageable_id,
+        imageable_type: image?.imageable_type,
+        imageUrl: image?.imageUrl,
+        imageCaption: imageCaptionBox.textContent,
+      }
+      dispatch(editImageCaption(editedCaption));
+      console.log("editedCaption", editedCaption)
+    }
+    handleEditModeClose();
   }
 
   return(
@@ -32,10 +65,10 @@ function PhotoTile({image, user}) {
       </div>
       <Modal open={modalOpen} onClose={
         (event) => {
-          let overlay = document.querySelector(".modalOverlay")
-          let closeButton = document.querySelector(".closeButton")
+          let overlay = document.querySelector(".modalOverlay");
+          let closeButton = document.querySelector(".closeButton");
           if (event.target === overlay || event.target === closeButton) {
-            setModalOpen(false)
+            setModalOpen(false);
           }
         }
         } lightbox={true}>
@@ -54,12 +87,21 @@ function PhotoTile({image, user}) {
                 {user?.fname} {user?.lname[0]}
               </NavLink>
             </div>
-            <button className="modalButton lightButton button" onClick={(e) => history.push(`/images/${image?.id}/edit`)} style={{backgroundImage: `url(${editIcon})`}}>
-              Edit
-            </button>
-            <button className="modalButton lightButton button" onClick={handleDelete} style={{backgroundImage: `url(${deleteIcon})`}}>
-              Delete
-            </button>
+            <div className="lightboxActions">
+              <button className="modalButton lightButton button" onClick={handleEditModeOpen}>
+                Edit
+              </button>
+              <button className="modalButton lightButton button" onClick={handleDelete}>
+                Delete
+              </button>
+            </div>
+            <div className="lightboxImageCaptionBox">
+              {image?.imageCaption}
+            </div>
+            {editPanel && (<div className="lightboxEditPanel">
+              <button onClick={handleEditSubmit} className="redButton modalButton button">Update caption</button>
+              <a onClick={handleEditModeClose} className="cancelButton button">Cancel</a>
+            </div>)}
           </div>
         </div>
 

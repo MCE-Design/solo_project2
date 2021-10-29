@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import current_user, login_required
-from app.forms.image_form import DeleteImage
+from app.forms.image_form import DeleteImage, CaptionEdit
 from app.models import db, Image
 from app.s3_helpers import (
   upload_file_to_s3, allowed_file, get_unique_filename)
@@ -29,14 +29,14 @@ def get_images(id):
 @login_required
 def upload_image():
   if "image" not in request.files:
-    return {"errors": ["Image required"]}, 400
+    return {"errors": "Image required"}, 400
 
   image = request.files["image"]
   print(CGREEN + "\n request: \n", request, "\n" + CEND)
   # imageable_type = request.imagable_type;
 
   if not allowed_file(image.filename):
-    return {"errors": ["File type not permitted"]}, 400
+    return {"errors": "File type not permitted"}, 400
 
   image.filename = get_unique_filename(image.filename)
 
@@ -63,11 +63,18 @@ def upload_image():
 @image_routes.route("", methods=["PUT"])
 @login_required
 def edit_caption():
+  form = CaptionEdit()
+  data = form.data
+  form['csrf_token'].data = request.cookies['csrf_token']
+  if form.validate_on_submit():
+    image = Image.query.filter(Image.id == data["id"]).first()
+    image.imageCaption = data["imageCaption"]
 
-  # data = form.data
-  db.session.add()
-  db.session.commit()
-  return
+    db.session.commit()
+    images = Image.query.all()
+    return {"images": [image.to_dict() for image in images]}
+  else:
+    return "Bad Comment Data"
 
 # Delete Image
 @image_routes.route("", methods=["DELETE"])
@@ -82,4 +89,5 @@ def delete_image():
   db.session.commit()
 
   images = Image.query.all()
+  print(CGREEN + "\n delete images \n", images, "\n" + CEND)
   return {"images": [image.to_dict() for image in images]}

@@ -13,7 +13,7 @@ function PhotoUpload({photoType}) {
   const id = useParams();
   const sessionUser = useSelector(state => state.session.user);
   const [image, setImage] = useState(null);
-  const [imageCaption, setImageCaption] = useState();
+  const [imageCaption, setImageCaption] = useState("");
   const [imageLoading, setImageLoading] = useState(false);
   const [imageTypeId, setImageTypeId] = useState();
 
@@ -40,7 +40,7 @@ function PhotoUpload({photoType}) {
     formData.append("imageable_type", photoType);
     formData.append("imageCaption", imageCaption);
     console.log("caption", imageCaption)
-    if(imageCaption === undefined || imageCaption.length <= 1000){
+    if(imageCaption.length <= 1000){
       setImageLoading(true); // Replace with better image loader
       const res = await fetch('/api/image', {
         method: "POST",
@@ -55,7 +55,7 @@ function PhotoUpload({photoType}) {
         setImageLoading(false);
         const data = await res.json();
         if (data) {
-          setErrors(data)
+          setErrors([data])
         }
         console.log("DATA", data)
       }
