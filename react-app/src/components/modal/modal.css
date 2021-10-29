@@ -14,7 +14,7 @@
 }
 
 .lightboxContainer {
-  position: relative;
+  border-radius: 6px;
   max-width: 1300px;
   min-width: 960px;
   height: 100%;
@@ -23,11 +23,35 @@
   margin: 0 auto;
 }
 
-.lightbox {
+.lightboxBody {
+  margin: 0 auto;
   display: flex;
   flex-direction: row;
   height: 100%;
+  width: 100%;
+}
 
+.lightboxLeft {
+  display: flex;
+  flex-grow: 2;
+  justify-content: center;
+}
+
+.lightboxRight {
+  box-sizing: border-box;
+  border-radius: 0 6px 6px 0;
+  padding: 15px;
+  width: 300px;
+  background-color: #FFFFFF;
+}
+
+.lightboxAvatar {
+  margin-top: 3px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.lightboxAvatar img {
+  height: 30px;
 }
 
 .lightboxImage {

@@ -33,32 +33,36 @@ function PhotoUpload({photoType}) {
   console.log("PhotoType", photoType);
 
   const handleSubmit = async (e) => {
-      e.preventDefault();
-      const formData = new FormData();
-      formData.append("image", image);
-      formData.append("imageable_id", imageTypeId);
-      formData.append("imageable_type", photoType);
-      formData.append("imageCaption", imageCaption);
-
-      if(imageCaption === null || imageCaption.length <= 1000){
-        setImageLoading(true); // Replace with better image loader
-        const res = await fetch('/api/image', {
-            method: "POST",
-            body: formData,
-        });
-        if (res.ok) {
-            await res.json();
-            setImageLoading(false);
-            history.push("/");
-        }
-        else {
-            setImageLoading(false);
-            console.log("error"); // Better error handling needed
-        }
-      } else {
-        console.log("ADD AN ERROR MESSAGE ABOUT CAPTION LENGTH");
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("image", image);
+    formData.append("imageable_id", imageTypeId);
+    formData.append("imageable_type", photoType);
+    formData.append("imageCaption", imageCaption);
+    console.log("caption", imageCaption)
+    if(imageCaption === undefined || imageCaption.length <= 1000){
+      setImageLoading(true); // Replace with better image loader
+      const res = await fetch('/api/image', {
+        method: "POST",
+        body: formData,
+      });
+      if (res.ok) {
+        await res.json();
+        setImageLoading(false);
+        history.push("/");
       }
-
+      else {
+        setImageLoading(false);
+        const data = await res.json();
+        if (data) {
+          setErrors(data)
+        }
+        console.log("DATA", data)
+      }
+    } else {
+      setErrors({"errors": ["Caption must be 1,000 characters."]})
+    }
+    console.log("THE ERRORS", errors)
   }
 
   const updateImage = (e) => {
@@ -80,6 +84,17 @@ function PhotoUpload({photoType}) {
       <div className="photoMain backPageMain">
         <div className="contentContainer">
           <div className="photoStatus">
+            <ul>
+
+              {/* {errors?.map((error) => {
+                  return(
+                  <li key={error} className="">
+                    {console.log("HIT MAP")}
+                    {error}
+                  </li>
+                  )
+                })} */}
+            </ul>
             {/* <div className="alert">
               Put status message here (such as deletion message)
             </div> */}

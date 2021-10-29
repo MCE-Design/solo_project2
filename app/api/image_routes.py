@@ -29,14 +29,14 @@ def get_images(id):
 @login_required
 def upload_image():
   if "image" not in request.files:
-    return {"errors": "Image required"}, 400
+    return {"errors": ["Image required"]}, 400
 
   image = request.files["image"]
   print(CGREEN + "\n request: \n", request, "\n" + CEND)
   # imageable_type = request.imagable_type;
 
   if not allowed_file(image.filename):
-    return {"errors": "File type not permitted"}, 400
+    return {"errors": ["File type not permitted"]}, 400
 
   image.filename = get_unique_filename(image.filename)
 

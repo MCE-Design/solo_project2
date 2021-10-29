@@ -55,7 +55,7 @@ function UserPhotos({ profile }) {
                 return(
                 <li key={image?.id} className="imageTileContainer">
                   {console.log("HIT MAP")}
-                  <PhotoTile image={image}/>
+                  <PhotoTile image={image} user={sessionUser}/>
                 </li>
                 )
               })}

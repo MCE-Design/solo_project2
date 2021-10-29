@@ -26,12 +26,14 @@ export default function Modal({ open, onClose, children, lightbox }) {
   return createPortal(
     <>
       {lightbox === true ? (
-        <div className="modalOverlay lightbox" style={overlayStyling} onClick={onClose}>
-          <div className="lightboxContainer" >
-            {children}
-            <button onClick={onClose} className="modalButton lightButton button" style={{backgroundImage: `url(${cancelIcon})`}}>Cancel</button>
+        <>
+          <div className="modalOverlay lightbox" style={overlayStyling} onClick={onClose}>
+            <div className="lightboxContainer">
+              {children}
+              <button onClick={onClose} className="closeButton modalButton lightButton button" style={{backgroundImage: `url(${cancelIcon})`}}>Cancel</button>
+            </div>
           </div>
-        </div>
+        </>
       ) : (
         <>
           <div style={overlayStyling} onClick={onClose} />
