@@ -40,21 +40,25 @@ function PhotoUpload({photoType}) {
       formData.append("imageable_type", photoType);
       formData.append("imageCaption", imageCaption);
 
-      setImageLoading(true); // Replace with better image loader
+      if(imageCaption === null || imageCaption.length <= 1000){
+        setImageLoading(true); // Replace with better image loader
+        const res = await fetch('/api/image', {
+            method: "POST",
+            body: formData,
+        });
+        if (res.ok) {
+            await res.json();
+            setImageLoading(false);
+            history.push("/");
+        }
+        else {
+            setImageLoading(false);
+            console.log("error"); // Better error handling needed
+        }
+      } else {
+        console.log("ADD AN ERROR MESSAGE ABOUT CAPTION LENGTH");
+      }
 
-      const res = await fetch('/api/image', {
-          method: "POST",
-          body: formData,
-      });
-      if (res.ok) {
-          await res.json();
-          setImageLoading(false);
-          history.push("/");
-      }
-      else {
-          setImageLoading(false);
-          console.log("error"); // Better error handling needed
-      }
   }
 
   const updateImage = (e) => {

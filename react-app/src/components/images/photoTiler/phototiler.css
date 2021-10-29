@@ -12,12 +12,21 @@
   position: relative;
   height: 150px;
 }
+
 .imageTile img {
   object-fit: cover;
   border-radius: 5px;
   height: 100%;
   width: 100%;
   user-select: none;
+}
+
+.lightboxTrigger{
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 }
 
 .captionBox {
@@ -38,11 +47,4 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-}
-
-.imageControls {
-  position: absolute;
-  top: 0;
-  right: 0;
-  left: 0;
 }

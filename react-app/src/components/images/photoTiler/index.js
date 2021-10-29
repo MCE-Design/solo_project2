@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import "./phototiler.css";
 import { useParams, NavLink, useHistory } from 'react-router-dom';
-import menuDots from '../../../images/menuDots.svg'
-import Modal from "../../modal"
-import { deleteImage } from "../../../store/image"
+import Modal from "../../modal";
+import { deleteImage } from "../../../store/image";
+import menuDots from '../../../images/menuDots.svg';
+import deleteIcon from '../../../images/delete_black_24dp.svg';
+import editIcon from '../../../images/edit_black_24dp.svg';
 
 function PhotoTile({image}) {
   const dispatch = useDispatch();
@@ -13,7 +15,6 @@ function PhotoTile({image}) {
 
   const handleDelete = () => {
     dispatch(deleteImage(image?.id))
-    history.push("/")
   }
 
   return(
@@ -26,13 +27,25 @@ function PhotoTile({image}) {
       ) : (
         <></>
       )}
-      <div className="imageControls">
-        <button className='modal' onClick={() => setModalOpen(true)} style={{ opacity: '1' }}><img src={menuDots} alt='options' className="menuDots" /></button>
-        <Modal open={modalOpen} onClose={() => setModalOpen(false)}>
-          <button className='red' onClick={handleDelete}>Delete</button>
-          {/* <button className='red' onClick={(e) => history.push(`/images/${image?.id}/edit`)}>Edit</button> */}
-        </Modal>
+      <div className="lightboxTrigger button" onClick={() => setModalOpen(true)} style={{ opacity: '1' }}>
+
       </div>
+      <Modal open={modalOpen} onClose={() => setModalOpen(false)} lightbox={true}>
+        <div className="lightbox">
+          <div className="lightboxLeft">
+            <img src={image?.imageUrl} className="lightboxImage" alt=""/>
+          </div>
+          <div className="lightboxRight">
+            <button className="modalButton lightButton button" onClick={(e) => history.push(`/images/${image?.id}/edit`)} style={{backgroundImage: `url(${editIcon})`}}>
+              Edit
+            </button>
+            <button className="modalButton lightButton button" onClick={handleDelete} style={{backgroundImage: `url(${deleteIcon})`}}>
+              Delete
+            </button>
+          </div>
+        </div>
+
+      </Modal>
     </div>
   )
 }

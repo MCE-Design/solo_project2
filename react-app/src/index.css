@@ -42,6 +42,8 @@ ul {
   cursor: pointer;
   user-select: none;
   text-decoration: none;
+  transition: all 0.8s;
+  transition-property: background-image,background-color,background-position,background-size,border-color,box-shadow,opacity;
 }
 
 .button.bodyButton {
@@ -55,6 +57,16 @@ ul {
   font-size: 16px;
   font-weight: 500;
   letter-spacing: -0.2px;
+}
+
+.lightButton {
+  border: 1px solid #BBBAC0;
+  font-family: "Poppins", "Roboto", Helvetica, Arial, sans-serif;
+}
+
+.lightButton:hover {
+  background-color: rgba(0, 0, 0, 0.12);
+  color: rgba(43, 39, 60, 1);
 }
 
 .breadcrumb {
@@ -86,7 +98,7 @@ ul {
   display: flex;
   height: 24px;
   width: 24px;
-  filter: invert(0.72) sepia(0.05) saturate(0.17) hue-rotate(0) brightness(0.85) contrast(87%)
+  filter: invert(0.72) sepia(0.05) saturate(0.17) hue-rotate(0) brightness(0.85) contrast(0.87)
 }
 
 .backPageMain {
@@ -97,6 +109,7 @@ ul {
   border-bottom: 1px solid #E6E6E6;
   padding-bottom: 18px;
 }
+
 .backPageLowerContainer {
   padding: 27px 12px;
 }
