@@ -33,21 +33,22 @@ function UserPhotos({ profile }) {
   if (!user) {
     return null;
   }
-  return (
-    <div className="userPhotoMain backPageMain">
-      <div className="contentContainer">
-        <div className="userPhotoTop backPageTop">
-          <ul className="breadcrumb">
-            <li>
-              <NavLink to="/user">{sessionUser?.fname} {sessionUser?.lname[0]}.</NavLink>
-            </li>
-            <li>
-              <span className="chevronRight icon"><img src={chevRight} alt="Breadcrumb divider"/></span>
-              Profile photos
-            </li>
-          </ul>
-          <h2>Your photos</h2>
-        </div>
+  if (profile === "self"){
+    return (
+      <div className="userPhotoMain backPageMain">
+        <div className="contentContainer">
+          <div className="userPhotoTop backPageTop">
+            <ul className="breadcrumb">
+              <li>
+                <NavLink to="/user">{sessionUser?.fname} {sessionUser?.lname[0]}.</NavLink>
+              </li>
+              <li>
+                <span className="chevronRight icon"><img src={chevRight} alt="Breadcrumb divider"/></span>
+                Profile photos
+              </li>
+            </ul>
+            <h2>Your photos</h2>
+          </div>
           <div className="backPageLowerContainer">
             <ul>{/* Map Images Here in repeated <li>*/}
               {console.log("Image", images)}
@@ -61,8 +62,41 @@ function UserPhotos({ profile }) {
               })}
             </ul>
           </div>
+        </div>
       </div>
-    </div>
-  )
+    )
+  } else {
+    return (
+      <div className="userPhotoMain backPageMain">
+        <div className="contentContainer">
+          <div className="userPhotoTop backPageTop">
+            <ul className="breadcrumb">
+              <li>
+                <NavLink to="/user">{user?.fname} {user?.lname[0]}.</NavLink>
+              </li>
+              <li>
+                <span className="chevronRight icon"><img src={chevRight} alt="Breadcrumb divider"/></span>
+                Profile photos
+              </li>
+            </ul>
+            <h2>Your photos</h2>
+          </div>
+          <div className="backPageLowerContainer">
+            <ul>{/* Map Images Here in repeated <li>*/}
+              {console.log("Image", images)}
+              {images?.map((image) => {
+                return(
+                <li key={image?.id} className="imageTileContainer">
+                  {console.log("HIT MAP")}
+                  <PhotoTile image={image} user={sessionUser}/>
+                </li>
+                )
+              })}
+            </ul>
+          </div>
+        </div>
+      </div>
+    )
+  }
 }
 export default UserPhotos;
