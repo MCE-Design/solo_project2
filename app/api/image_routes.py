@@ -93,4 +93,4 @@ def delete_image():
 
   images = Image.query.all()
   print(CGREEN + "\n delete images \n", images, "\n" + CEND)
-  return {"images": [image.to_dict() for image in images]}
+  return {"errors": ["Your photo has been removed. You can upload another below."]}

@@ -78,12 +78,11 @@ function PhotoUpload({photoType}) {
       <div className="photoMain backPageMain">
         <div className="contentContainer">
           <div className="photoStatus">
-            <ul>
+            <ul className={errors.length > 0 ? ("alertBox alert") : ("alertbox")}>
               {console.log("The Errors", errors)}
               {errors?.map((error) => {
                   return(
                   <li key={error} className="">
-                    {console.log("HIT MAP")}
                     {error}
                   </li>
                   )

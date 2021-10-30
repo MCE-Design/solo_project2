@@ -58,6 +58,9 @@ ul {
   font-weight: 500;
   letter-spacing: -0.2px;
 }
+.redButton:hover {
+  background-color: #DC4F4F;
+}
 
 .lightButton {
   border: 1px solid #BBBAC0;

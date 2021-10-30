@@ -13,6 +13,7 @@ function PhotoTile({image, user}) {
 
   const handleDelete = () => {
     dispatch(deleteImage(image?.id))
+    history.push("/user/photos/add");
   }
 
   const handleEditModeOpen = () => {
