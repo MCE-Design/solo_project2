@@ -51,6 +51,7 @@ ul {
 }
 
 .redButton {
+  border: 1px solid #D32323;
   background-color: #F40D15;
   color: #FFFFFF;
   font-family: "Open Sans", "Roboto", Helvetica, Arial, sans-serif;
@@ -64,7 +65,8 @@ ul {
 }
 
 .backPageButton {
-  display: inline-block;
+  display: flex;
+  align-items: center;
   padding: 8px 19px 9px;
   font-size: 14px;
   font-weight: 700;
@@ -72,6 +74,8 @@ ul {
 
 .lightButton {
   border: 1px solid #BBBAC0;
+  color: #2B273C;
+  font-size: 16px;
   font-family: "Poppins", "Roboto", Helvetica, Arial, sans-serif;
 }
 
@@ -80,11 +84,23 @@ ul {
   color: rgba(43, 39, 60, 1);
 }
 
+.transparentButton {
+  border: 1px solid #BBBAC0;
+  color: #FFFFFF;
+  font-family: "Poppins", "Roboto", Helvetica, Arial, sans-serif;
+}
+
+.transparentButton:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
 .buttonIcon {
   display: inline-block;
   height: 24px;
   width: 24px;
+  margin: -12px 8px -12px 0;
 }
+
 .redButton .buttonIcon {
 
 }
@@ -153,4 +169,15 @@ ul {
 .backPageImageContainer {
   display: flex;
   flex-wrap: wrap;
+}
+
+.leftComponentContainer {
+  margin-top: 32px;
+  border-top: 1px solid #EEEEEF;
+  padding-top: 32px;
+}
+
+.contentBottom {
+  margin: 0 auto;
+  max-width: 1144px;
 }

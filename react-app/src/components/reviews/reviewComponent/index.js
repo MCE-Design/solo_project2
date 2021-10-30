@@ -4,8 +4,9 @@ import { newReview } from "../../../store/review";
 import "./reviewComponent.css";
 // import { getBusiness } from '../../store/business';
 import { useParams, NavLink } from 'react-router-dom';
+import menuDots from "../../../images/menuDots.svg";
 
-function ReviewComponent({review}) {
+function ReviewComponent({review, sessionUser}) {
   const dispatch = useDispatch();
   const [user, setUser] = useState();
   const userId = review?.userId;
@@ -31,23 +32,36 @@ function ReviewComponent({review}) {
     return(
       <div className={`review ${review?.id}`}>
         <div className="reviewTop">
-          <div className="reviewAvatarContainer">
-            <a href={`/users/${userId}`} className="reviewAvatarLink"> {/* Disable later if no profile page */}
-              <img src={user?.avatar} alt="Review Avatar" className="reviewAvatar" draggable="False" />
-            </a>
+          <div className="reviewTopLeft">
+            <div className="reviewAvatarContainer">
+              <a href={`/users/${userId}`} className="reviewAvatarLink"> {/* Disable later if no profile page */}
+                <img src={user?.avatar} alt="Review Avatar" className="reviewAvatar" draggable="False" />
+              </a>
+            </div>
+            <div className="reviewInfoBox">
+              <div className="reviewName">
+                <NavLink to={`/users/${userId}`}> {/* Disable later if no profile page */}
+                  {user?.fname} {user?.lname[0]}.
+                </NavLink>
+              </div>
+              <div>{/* Location */}</div>
+              <div>{/* Badges */}
+                <div>{/* Friends */}</div>
+                <div>{/* Revies */}</div>
+                <div>{/* Images */}</div>
+              </div>
+            </div>
           </div>
-          <div className="reviewInfoBox">
-            <div className="reviewName">
-              <NavLink to={`/users/${userId}`}> {/* Disable later if no profile page */}
-                {user?.fname} {user?.lname[0]}.
-              </NavLink>
-            </div>
-            <div>{/* Location */}</div>
-            <div>{/* Badges */}
-              <div>{/* Friends */}</div>
-              <div>{/* Revies */}</div>
-              <div>{/* Images */}</div>
-            </div>
+          <div className="reviewTopRight">
+            {console.log("SessionUser", sessionUser)}
+            {console.log("user", userId)}
+            {console.log("session user and user", sessionUser?.id === userId)}
+            {sessionUser?.id === userId && (
+              <button className="reviewButton button">
+                {console.log("BUTTON CREATED")}
+                <span className="buttonIcon" style={{backgroundImage: `url(${menuDots})`}}></span>
+              </button>
+            )}
           </div>
         </div>
         <div className="reviewBottom">

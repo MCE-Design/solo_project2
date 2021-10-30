@@ -6,11 +6,18 @@
 }
 
 .businessTopContent {
+  display: flex;
   box-sizing: border-box;
+  margin: 0 auto;
   padding: 40px 65px;
   min-width: 1145px;
   max-width: 1270px;
   background-color: #AAAAAA;
+}
+
+.businessTitleBox,
+.businessButtonBox {
+  width: 50%;
 }
 
 .businessTitleBox {
@@ -23,6 +30,12 @@
   font-family: "Poppins", "Roboto", Helvetica, Arial, sans-serif;
 }
 
+.businessButtonBox {
+  display: flex;
+  justify-content: right;
+  align-items: flex-end;
+}
+
 .businessReviewCount {
   font-size: 16px;
   font-weight: 700;
@@ -32,7 +45,7 @@
 }
 
 .businessBottom {
-  margin: 24px 0 48px;
+  margin: 24px auto 48px;
   padding: 0 40px;
 }
 
@@ -42,8 +55,17 @@
   margin: 0 auto;
 }
 
+.businessTopButton {
+  box-sizing: border-box;
+  padding: 12px 32px;
+  height: 48px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
 .businessButton {
   display: inline-flex;
+  margin-right: 8px;
   padding: 8px 16px;
   font-family: "Poppins", "Roboto", Helvetica, Arial, sans-serif;
 }
@@ -55,7 +77,8 @@
 .reviewsContainer {
   width: 100%;
   max-width: 1922px;
-  margin: 0 auto;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .reviewsNewReviewContainer {

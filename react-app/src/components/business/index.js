@@ -45,12 +45,17 @@ function Business() {
               <div className="businessReviewCount">{review?.reviews?.length} reviews</div>
             </div>
           </div>
+          <div className="businessButtonBox">
+            <NavLink to='' className="transparentButton businessTopButton bodyButton button">
+              See Photos
+            </NavLink>
+          </div>
         </div>
         <div className="photoCarousel">
 
         </div>
       </div>
-      <div className="businessBottom">
+      <div className="businessBottom contentBottom">
         <div className="businessBottomContent">
           <div className="buttonBox">
             <NavLink to='/writereview' exact={true} className="redButton businessButton bodyButton button" activeClassName='active'>
@@ -61,13 +66,21 @@ function Business() {
                 Write a Review
               </div>
             </NavLink>
+            <NavLink to='/business_photos/:businessId/add' exact={true} className="lightButton businessButton bodyButton button" activeClassName='active'>
+              <div className="buttonIcon">
+
+              </div>
+              <div>
+                Add Photo
+              </div>
+            </NavLink>
           </div>
 
         </div>
         <div>
           {/* Maps and Hours */}
         </div>
-        <div className="reviewsContainer">
+        <div className="reviewsContainer leftComponentContainer">
           {userReviewed === false ? (
             <div className="reviewsNewReviewContainer">
               <NewReview sessionUser = {sessionUser} businessId = {businessId}/>
@@ -76,12 +89,11 @@ function Business() {
             <></>
           )}
           <ul>{/* Map Reviews Here in repeated <li>*/}
-            {console.log("REVIEW", review?.reviews)}
             {review?.reviews?.map((review) => {
               return(
               <li key={review.id}>
                 {console.log("HIT MAP")}
-                <ReviewComponent review={review}/>
+                <ReviewComponent review={review} sessionUser={sessionUser}/>
               </li>
               )
             })}

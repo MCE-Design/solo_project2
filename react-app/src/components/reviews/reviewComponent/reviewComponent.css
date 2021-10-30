@@ -11,7 +11,20 @@ li {
 .reviewTop {
   display: flex;
   margin: 0 0 24px;
+  max-width: 655px;
 }
+
+.reviewTopLeft,
+.reviewTopRight {
+  display: flex;
+  width: 50%;
+}
+
+.reviewTopRight {
+  display: flex;
+  justify-content: right;
+}
+
 
 .reviewAvatarContainer {
   display: flex;
