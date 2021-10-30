@@ -53,13 +53,21 @@ ul {
 .redButton {
   background-color: #F40D15;
   color: #FFFFFF;
-  font-family: "Poppins", "Roboto", Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", "Roboto", Helvetica, Arial, sans-serif;
   font-size: 16px;
   font-weight: 500;
   letter-spacing: -0.2px;
 }
+
 .redButton:hover {
   background-color: #DC4F4F;
+}
+
+.backPageButton {
+  display: inline-block;
+  padding: 8px 19px 9px;
+  font-size: 14px;
+  font-weight: 700;
 }
 
 .lightButton {
@@ -70,6 +78,15 @@ ul {
 .lightButton:hover {
   background-color: rgba(0, 0, 0, 0.12);
   color: rgba(43, 39, 60, 1);
+}
+
+.buttonIcon {
+  display: inline-block;
+  height: 24px;
+  width: 24px;
+}
+.redButton .buttonIcon {
+
 }
 
 .breadcrumb {
@@ -109,10 +126,31 @@ ul {
 }
 
 .backPageTop {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
   border-bottom: 1px solid #E6E6E6;
   padding-bottom: 18px;
+}
+.backPageLeft,
+.backPageRight {
+  width: 50%;
+}
+
+.backPageLeft {
+
+}
+
+.backPageRight {
+  display: flex;
+  justify-content: right;
 }
 
 .backPageLowerContainer {
   padding: 27px 12px;
+}
+
+.backPageImageContainer {
+  display: flex;
+  flex-wrap: wrap;
 }

@@ -93,16 +93,21 @@ function PhotoUpload({photoType}) {
             </div> */}
           </div>
           <div className="photoUploadTop backPageTop">
-            <ul className="breadcrumb">
-              <li>
-                <NavLink to="/user">{sessionUser?.fname} {sessionUser?.lname[0]}.</NavLink>
-              </li>
-              <li>
-                <span className="chevronRight icon"><img src={chevRight} alt="Breadcrumb divider"/></span>
-                Profile photos
-              </li>
-            </ul>
-            <h2>Add photos</h2>
+            <div className="backPageLeft">
+              <ul className="breadcrumb">
+                <li>
+                  <NavLink to="/user">{sessionUser?.fname} {sessionUser?.lname[0]}.</NavLink>
+                </li>
+                <li>
+                  <span className="chevronRight icon"><img src={chevRight} alt="Breadcrumb divider"/></span>
+                  Profile photos
+                </li>
+              </ul>
+              <h2>Add photos</h2>
+            </div>
+            <div className="backPageRight">
+
+            </div>
           </div>
           <div className="photoUploadBottom">
             <div className="photoUploadContainer backPageLowerContainer">

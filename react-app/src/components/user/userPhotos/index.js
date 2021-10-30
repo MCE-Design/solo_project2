@@ -4,6 +4,7 @@ import { NavLink, useParams, useHistory } from 'react-router-dom';
 import { getUserImagesUser } from "../../../store/image";
 import "./../user.css";
 import chevRight from "../../../images/chevron_right_black_24dp.svg"
+import addPhoto from "../../../images/add_a_photo_white_24dp.svg"
 import PhotoTile from '../../images/photoTiler';
 
 function UserPhotos({ profile }) {
@@ -38,19 +39,27 @@ function UserPhotos({ profile }) {
       <div className="userPhotoMain backPageMain">
         <div className="contentContainer">
           <div className="userPhotoTop backPageTop">
-            <ul className="breadcrumb">
-              <li>
-                <NavLink to="/user">{sessionUser?.fname} {sessionUser?.lname[0]}.</NavLink>
-              </li>
-              <li>
-                <span className="chevronRight icon"><img src={chevRight} alt="Breadcrumb divider"/></span>
-                Profile photos
-              </li>
-            </ul>
-            <h2>Your photos</h2>
+            <div className="userPhotoLeft backPageLeft">
+              <ul className="breadcrumb">
+                <li>
+                  <NavLink to="/user">{sessionUser?.fname} {sessionUser?.lname[0]}.</NavLink>
+                </li>
+                <li>
+                  <span className="chevronRight icon"><img src={chevRight} alt="Breadcrumb divider"/></span>
+                  Profile photos
+                </li>
+              </ul>
+              <h2>Your photos</h2>
+            </div>
+            <div className="userPhotoRight backPageRight">
+              <NavLink to="/user/photos/add" className="redButton backPageButton bodyButton button">
+                <span class="buttonIcon" style={{backgroundImage: `url(${addPhoto})`}}></span>
+                Add photos
+              </NavLink>
+            </div>
           </div>
           <div className="backPageLowerContainer">
-            <ul>{/* Map Images Here in repeated <li>*/}
+            <ul className="backPageImageContainer">
               {console.log("Image", images)}
               {images?.map((image) => {
                 return(
@@ -82,7 +91,7 @@ function UserPhotos({ profile }) {
             <h2>Your photos</h2>
           </div>
           <div className="backPageLowerContainer">
-            <ul>{/* Map Images Here in repeated <li>*/}
+            <ul className="backPageImageContainer">
               {console.log("Image", images)}
               {images?.map((image) => {
                 return(
