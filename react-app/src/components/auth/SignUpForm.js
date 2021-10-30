@@ -48,6 +48,7 @@ const SignUpForm = () => {
         {errors.map((error, ind) => (
           <div key={ind}>{error}</div>
         ))}
+        {console.log(errors)}
       </div>
       <div>
         <label>User Name</label>

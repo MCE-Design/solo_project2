@@ -28,15 +28,18 @@ def get_images(id):
 @image_routes.route("", methods=["POST"])
 @login_required
 def upload_image():
+  print(CGREEN + "\n REQUEST HIT \n", "\n" + CEND)
+  if len(request.form["imageCaption"]) > 1000:
+    return {"errors": ["Your caption should be under 1000 characters"]}, 400
+
   if "image" not in request.files:
-    return {"errors": "Image required"}, 400
+    return {"errors": ["Image required"]}, 400
 
   image = request.files["image"]
-  print(CGREEN + "\n request: \n", request, "\n" + CEND)
-  # imageable_type = request.imagable_type;
+  print(CGREEN + "\n CLEARED IMAGE: \n", "\n" + CEND)
 
   if not allowed_file(image.filename):
-    return {"errors": "File type not permitted"}, 400
+    return {"errors": ["File type not permitted"]}, 400
 
   image.filename = get_unique_filename(image.filename)
 

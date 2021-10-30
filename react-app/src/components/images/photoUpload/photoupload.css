@@ -60,6 +60,18 @@ textarea.inputContainer:focus-visible {
   outline: none;
 }
 
+.charCounter {
+  display: flex;
+  justify-content: right;
+  margin: 0 auto;
+  width: 500px;
+}
+
+.charCounter.overLimit {
+  color: #FF0000;
+  font-weight: bold;
+}
+
 .photoButton {
   padding: 8px 18px;
 }

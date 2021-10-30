@@ -40,29 +40,23 @@ function PhotoUpload({photoType}) {
     formData.append("imageable_type", photoType);
     formData.append("imageCaption", imageCaption);
     console.log("caption", imageCaption)
-    if(imageCaption.length <= 1000){
-      setImageLoading(true); // Replace with better image loader
-      const res = await fetch('/api/image', {
-        method: "POST",
-        body: formData,
-      });
-      if (res.ok) {
-        await res.json();
-        setImageLoading(false);
-        history.push("/");
-      }
-      else {
-        setImageLoading(false);
-        const data = await res.json();
-        if (data) {
-          setErrors([data])
-        }
-        console.log("DATA", data)
-      }
-    } else {
-      setErrors({"errors": ["Caption must be 1,000 characters."]})
+    setImageLoading(true); // Replace with better image loader
+    const res = await fetch('/api/image', {
+      method: "POST",
+      body: formData,
+    });
+    if (res.ok) {
+      await res.json();
+      setImageLoading(false);
+      history.push("/");
     }
-    console.log("THE ERRORS", errors)
+    else {
+      setImageLoading(false);
+      const data = await res.json();
+      if (data) {
+        setErrors(data.errors)
+      }
+    }
   }
 
   const updateImage = (e) => {
@@ -85,15 +79,15 @@ function PhotoUpload({photoType}) {
         <div className="contentContainer">
           <div className="photoStatus">
             <ul>
-
-              {/* {errors?.map((error) => {
+              {console.log("The Errors", errors)}
+              {errors?.map((error) => {
                   return(
                   <li key={error} className="">
                     {console.log("HIT MAP")}
                     {error}
                   </li>
                   )
-                })} */}
+                })}
             </ul>
             {/* <div className="alert">
               Put status message here (such as deletion message)
@@ -129,6 +123,7 @@ function PhotoUpload({photoType}) {
                   </div>
                   <div className="uploadFormRow">
                     <textarea onChange={(e) => setImageCaption(e.target.value)} className="inputContainer"></textarea>
+                    <div className={imageCaption.length > 1000 ? ("charCounter overLimit") : ("charCounter")}>{1000 - imageCaption.length}</div>
                   </div>
                   <div>
                     <button type="submit" className="redButton photoButton bodyButton button">Submit</button>

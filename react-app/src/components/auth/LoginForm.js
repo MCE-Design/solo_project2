@@ -29,7 +29,6 @@ const LoginForm = () => {
   if (user) {
     return <Redirect to='/' />;
   }
-
   return (
     <form onSubmit={onLogin}>
       <div>

@@ -59,9 +59,9 @@ function App() {
         <Route path='/business/:businessId' exact={true} >
           <Business />
         </Route>
-        <Route path='/user/photos/add' exact={true} >
+        <ProtectedRoute path='/user/photos/add' exact={true} >
           <PhotoUpload photoType = "user"/>
-        </Route>
+        </ProtectedRoute>
         <Route path='/business_photos/:businessId/add' exact={true} >
           <PhotoUpload photoType = "business"/>
         </Route>
