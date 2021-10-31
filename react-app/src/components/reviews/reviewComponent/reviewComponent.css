@@ -10,6 +10,7 @@ li {
 
 .reviewTop {
   display: flex;
+  position: relative;
   margin: 0 0 24px;
   max-width: 655px;
 }
@@ -21,7 +22,6 @@ li {
 }
 
 .reviewTopRight {
-  display: flex;
   justify-content: right;
 }
 
@@ -83,4 +83,48 @@ img.reviewAvatar {
   color: #2B273C;
   word-break: break-word;
   overflow-wrap: break-word;
+}
+
+.reviewButton {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  padding: 7px;
+  height: 40px;
+  width: 40px;
+  background-color: transparent;
+  overflow: hidden;
+}
+
+.reviewButton:hover,
+.reviewButton.active {
+  background-color: #E2E2E6;
+}
+
+.reviewButton .buttonIcon {
+  margin: 0;
+}
+
+.reviewDropdownMenu {
+  position: absolute;
+  top: 40px;
+  box-shadow: 0 0 18px rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+  padding: 16px;
+  background-color: #FFFFFF;
+}
+
+.reviewDropdownSelection a {
+  display: block;
+  border-radius: 4px;
+  padding: 8px;
+  color: #2B273C;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  user-select: none;
+}
+
+.reviewDropdownSelection:hover a {
+  background-color: #EEEEEF;
 }

@@ -4,11 +4,13 @@ import { newReview } from "../../../store/review";
 import "./reviewComponent.css";
 // import { getBusiness } from '../../store/business';
 import { useParams, NavLink } from 'react-router-dom';
+import { deleteReview } from "../../../store/review";
 import menuDots_horiz from "../../../images/menuDots_horiz.svg";
 
 function ReviewComponent({review, sessionUser}) {
   const dispatch = useDispatch();
   const [user, setUser] = useState();
+  const [reviewMenu, setReviewMenu] = useState(false);
   const userId = review?.userId;
 
   useEffect(() => {
@@ -21,6 +23,45 @@ function ReviewComponent({review, sessionUser}) {
       setUser(user);
     })();
   }, [userId]);
+
+
+  const handleMenuToggle = (event) => {
+    if(!reviewMenu){
+      setReviewMenu(true);
+    } else {
+      setReviewMenu(false);
+    }
+  }
+
+  const handleDelete  = async () => {
+    const payload = {
+      id: review.id,
+      businessId: review.businessId
+    }
+    const data = await dispatch(deleteReview(payload));
+  }
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      let reviewButton = document.querySelector(".reviewButton");
+      let dropDownMenu = document.querySelector(".reviewDropdownMenu");
+      console.log(event.target)
+      console.log("reviewButton", reviewButton)
+      if(reviewMenu && !dropDownMenu?.contains(event.target)){
+        console.log("HIT")
+        setReviewMenu(false)
+        reviewButton?.classList.remove("active")
+      } else {
+        reviewButton?.classList.add("active")
+      }
+    }
+    document.addEventListener("click", handleClickOutside);
+    return () => {
+      // Unbind the event listener on clean up
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, [reviewMenu])
+
 
   console.log("USER ID FROM REVIEW", userId)
   console.log("COMPONENT HIT")
@@ -57,10 +98,30 @@ function ReviewComponent({review, sessionUser}) {
             {console.log("user", userId)}
             {console.log("session user and user", sessionUser?.id === userId)}
             {sessionUser?.id === userId && (
-              <button className="reviewButton button">
-                {console.log("BUTTON CREATED")}
-                <span className="buttonIcon" style={{backgroundImage: `url(${menuDots_horiz})`}}></span>
-              </button>
+              <>
+                <button className="reviewButton button" onClick={handleMenuToggle}>
+                  <span className="buttonIcon" style={{backgroundImage: `url(${menuDots_horiz})`}}></span>
+                </button>
+                {reviewMenu && (
+                  <div className="reviewDropdownMenu">
+                    <ul>
+                      {/* <li>
+                        Write an update
+                      </li> */}
+                      <li className="reviewDropdownSelection">
+                        <NavLink to="">
+                          Edit review{console.log("EDIT HIT")}
+                        </NavLink>
+                      </li>
+                      <li className="reviewDropdownSelection">
+                        <a onClick={handleDelete}>
+                          Remove review
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                )}
+              </>
             )}
           </div>
         </div>
@@ -83,69 +144,5 @@ function ReviewComponent({review, sessionUser}) {
       </div>
     )
   }
-
-
-
-
-//   return(
-//     <div className="newReview">
-//       <div className="newReviewTop">
-//         <div className="newReviewAvatarContainer">
-//           <a href="" className="newReviewAvatarLink">
-//             <img src={sessionUser?.avatar} alt="New Review Avatar" className="newReviewAvatar" draggable="False" />
-//           </a>
-//         </div>
-//         <div className="newReviewInfoBox">
-//           <div>
-//             <a href="">
-//               {sessionUser?.fname} {sessionUser?.lname[0]}.
-//             </a>
-//           </div>
-//           <div>{/* Location */}</div>
-//           <div>{/* Badges */}
-//             <div>{/* Friends */}</div>
-//             <div>{/* Revies */}</div>
-//             <div>{/* Images */}</div>
-//           </div>
-//         </div>
-//       </div>
-//       <div className="newReviewBottom">
-//         <form onSubmit={handleSubmit}>
-//           <div className="">
-//             <div className="starRatingButtons">
-//               <input type="radio" onChange={(e) => setStarRatingVal(e.target.value)} value="1" name="starRating">
-
-//               </input>
-//               <input type="radio" onChange={(e) => setStarRatingVal(e.target.value)} value="2" name="starRating">
-
-//               </input>
-//               <input type="radio" onChange={(e) => setStarRatingVal(e.target.value)} value="3" name="starRating">
-
-//               </input>
-//               <input type="radio" onChange={(e) => setStarRatingVal(e.target.value)} value="4" name="starRating">
-
-//               </input>
-//               <input type="radio" onChange={(e) => setStarRatingVal(e.target.value)} value="5" name="starRating">
-
-//               </input>
-//             </div>
-//             <div className="starRatingDisplay">
-//               <div></div>
-//               {/* <div className="">{ratingText}</div> */}
-//             </div>
-//           </div>
-//           <textarea className="newReviewText" onChange={(e) => setReviewText(e.target.value)} placeholder={reviewTextPlaceholder}>
-
-//           </textarea>
-//           <div>
-//             {/* Errors go here */}
-//           </div>
-//           <button type="submit" className="redButton businessButton bodyButton button">
-//             Post review
-//           </button>
-//         </form>
-//       </div>
-//     </div>
-//   )
 }
 export default ReviewComponent;

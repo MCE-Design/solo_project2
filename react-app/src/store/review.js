@@ -63,16 +63,17 @@ export const editReview = (review) => async dispatch => {
   } else return "Thunk Error: Review Edit Failed"
 }
 
-export const deleteReview = (review) => async dispatch => {
+export const deleteReview = (payload) => async dispatch => {
   const response = await fetch(`/api/review`,
     {
       method: "DELETE",
-      body: review
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(payload)
     }
   )
   if (response.ok) {
-    const data  = await response.json()
-    console.log("DELETE OK")
+    dispatch(removeReview())
+    console.log("DELETE REVIEW OK")
   } else return "Thunk Error: Review Delete Failed"
 
 }

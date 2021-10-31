@@ -18,7 +18,7 @@ function Business() {
   useEffect(() => {
     dispatch(getBusiness(businessId));
     dispatch(getReviewsByBusiness(businessId));
-  }, [dispatch, businessId]);
+  }, [dispatch, businessId, review?.reviews?.length]);
 
   useEffect(() => {
     if (review?.reviews?.filter((ele) => ele?.userId === sessionUser?.id).length > 0) {

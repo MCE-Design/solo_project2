@@ -40,6 +40,7 @@ function StandAloneReview() {
         setErrors(data);
       }
       history.push(`/business/${businessId}}`);
+      // Notch in image uploading as a separate dispatch that only goes if everything else is O.K.
     } else {
       if(!starRatingVal){
         errorData.push("To submit your review, please select a star rating for this business.");
@@ -114,7 +115,7 @@ function StandAloneReview() {
         </div>
         <div className={reviewText.length > 5000 ? ("charCounter overLimit") : ("charCounter")}>{5000 - reviewText.length}</div>
         <button onClick={handleSubmit} className="redButton businessButton bodyButton button">
-          Post review
+          Post Review
         </button>
       </div>
     </div>

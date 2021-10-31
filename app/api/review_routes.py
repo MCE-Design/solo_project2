@@ -41,7 +41,7 @@ def add_review():
         print(CGREEN + "\n data: \n", data, "\n" + CEND)
         db.session.add(new_review)
         db.session.commit()
-        reviews = Review.query.filter(Review.businessId == data["businessId"]).all()
+        reviews = Review.query.filter(Review.businessId == data["businessId"]).order_by(Review.updatedAt.desc())
         return {"reviews": [review.to_dict() for review in reviews]}
     else:
         return {"errors": validation_errors_to_error_messages(form.errors)}
@@ -50,13 +50,17 @@ def add_review():
 # @review_routes.route('/<int:id>', methods=["PUT"])
 # def review_edit(id):
 
-@review_routes.route('/<int:id>', methods=["DELETE"])
-def review_delete(id):
+@review_routes.route('', methods=["DELETE"])
+def review_delete():
   form = DeleteReview()
   data = form.data
   form['csrf_token'].data = request.cookies['csrf_token']
 
   print(CGREEN + "\n DATA: \n", data, "\n" + CEND)
-  review_to_delete = Review.query.filter(Review.id == data["reviewId"]).first()
+  review_to_delete = Review.query.filter(Review.id == data["id"]).first()
   db.session.delete(review_to_delete)
   db.session.commit()
+
+  reviews = Review.query.filter(Review.businessId == data["businessId"]).order_by(Review.updatedAt.desc())
+  print(CGREEN + "\n delete reviews \n", reviews, "\n" + CEND)
+  return {"reviews": [review.to_dict() for review in reviews]}

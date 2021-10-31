@@ -47,4 +47,5 @@ class ReviewEdit(FlaskForm):
     review = TextAreaField('review', validators=[DataRequired()])
 
 class DeleteReview(FlaskForm):
-    id = IntegerField("Id")
+    id = IntegerField('id')
+    businessId = IntegerField('businessId')
