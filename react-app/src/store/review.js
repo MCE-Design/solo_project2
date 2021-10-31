@@ -42,7 +42,7 @@ export const newReview = (review) => async dispatch => {
   if (response.ok) {
     const data = await response.json()
     console.log("OK")
-    console.log(data)
+    console.log("ERROR", data)
     dispatch(load(data))
   } else return "Thunk Error: Review Submit Failed"
 }

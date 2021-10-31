@@ -11,6 +11,7 @@ import UserPhotos from './components/user/userPhotos';
 import Splash from './components/splash';
 import Business from './components/business';
 import PhotoUpload from './components/images/photoUpload';
+import StandAloneReview from './components/reviews/standAloneReview';
 import { authenticate } from './store/session';
 
 function App() {
@@ -58,6 +59,9 @@ function App() {
         </Route>
         <Route path='/business/:businessId' exact={true} >
           <Business />
+        </Route>
+        <Route path='/business/:businessId/newreview' exact={true} >
+          <StandAloneReview />
         </Route>
         <ProtectedRoute path='/user/photos/add' exact={true} >
           <PhotoUpload photoType = "user"/>

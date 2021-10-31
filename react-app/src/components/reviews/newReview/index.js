@@ -39,9 +39,9 @@ function NewReview({sessionUser, businessId}) {
       <div className="newReviewTop">
         <div className="newReviewAvatarContainer">
           {(sessionUser ? (
-            <a href="" className="newReviewAvatarLink">
+            <NavLink to={`../users/${sessionUser?.id}`} className="newReviewAvatarLink">
               <img src={sessionUser?.avatar} alt="New Review Avatar" className="newReviewAvatar" draggable="False" />
-            </a>
+            </NavLink>
           ) : (
             <div className="newReviewAvatarLink">
               <img src={defaultAvatar} alt="New Review Avatar" className="newReviewAvatar" draggable="False" />
@@ -51,9 +51,9 @@ function NewReview({sessionUser, businessId}) {
         <div className="newReviewInfoBox">
           <div className="newReviewName">
             {(sessionUser ? (
-              <a href="">
+              <NavLink to={`../users/${sessionUser?.id}`}>
                 {sessionUser?.fname} {sessionUser?.lname[0]}.
-              </a>
+              </NavLink>
             ) : (
               <>Username</>
             ))}

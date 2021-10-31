@@ -32,7 +32,7 @@ def already_reviewed(form, field):
     review = Review.query.filter(Review.userId == userId, Review.businessId == businessId).first()
     print(CGREEN + "\n REVIEW \n", review, "\n" + CEND)
     if review is not None:
-      raise ValidationError('User already reviewed')
+      raise ValidationError("You've already reviewed this.")
 
 
 class ReviewForm(FlaskForm):

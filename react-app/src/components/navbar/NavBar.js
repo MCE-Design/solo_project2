@@ -10,6 +10,8 @@ const NavBar = () => {
   const currentPage = useLocation();
   const sessionUser = useSelector(state => state.session.user);
   console.log(currentPage)
+  const path = currentPage.pathname
+  console.log("page match", /\/business\/\d+\/newreview/.test(currentPage.pathname));
   if(currentPage.pathname === "/")
   {
     return (
@@ -48,6 +50,10 @@ const NavBar = () => {
         </nav>
       </div>
     );
+  } else if (/\/business\/\d+\/newreview/.test(currentPage.pathname) || /\/business\/\d+\/editreview/.test(currentPage.pathname)){
+    return (
+      <div>NEW REVIEW NAV</div>
+    )
   } else {
     return (
       <div className="navContainer">

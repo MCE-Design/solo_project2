@@ -1,0 +1,82 @@
+.standAloneReview {
+  margin: 0 auto;
+  padding: 0 15px;
+  max-width: 960px;
+}
+
+.standAloneReviewTop {
+  padding: 36px 0 24px;
+}
+
+.standAloneReview a {
+  color: #2B273C;
+}
+
+.standAloneReview h1 {
+  font-family: "Poppins", "Roboto", Helvetica, Arial, sans-serif;
+  font-weight: 900;
+}
+
+.standAloneReviewContent {
+  max-width: 625px;
+}
+
+.standAloneReviewBottom {
+  border: 1px solid #BBBAC0;
+  border-radius: 4px;
+  min-height: 320px;
+  max-width: 630px;
+  padding: 25px;
+}
+
+.standAloneUpperBox {
+  margin-bottom: 25px;
+}
+
+.standAloneReviewTextContainer {
+  position: relative;
+}
+
+.standAloneReviewText {
+  border: none;
+  width: 100%;
+  min-height: 320px;
+  font-family: "Open Sans", "Roboto", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  resize: none;
+}
+
+.standAloneReviewPlaceholder {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  font-family: "Open Sans", "Roboto", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  color: #BBBAC0;
+}
+
+.standAloneReviewText:focus-visible {
+  outline: none;
+}
+
+.standAloneReview .charCounter {
+  margin-top: 10px;
+  width: 100%;
+}
+
+.reviewStatusMessageBox {
+  margin-top: 15px;
+}
+
+.reviewStatusMessageBox ul {
+  padding: 0;
+}
+
+.reviewSubmitError {
+  font-family: "Open Sans", "Roboto", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  color: #FF0000;
+}

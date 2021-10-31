@@ -4,7 +4,7 @@ import { newReview } from "../../../store/review";
 import "./reviewComponent.css";
 // import { getBusiness } from '../../store/business';
 import { useParams, NavLink } from 'react-router-dom';
-import menuDots from "../../../images/menuDots.svg";
+import menuDots_horiz from "../../../images/menuDots_horiz.svg";
 
 function ReviewComponent({review, sessionUser}) {
   const dispatch = useDispatch();
@@ -59,7 +59,7 @@ function ReviewComponent({review, sessionUser}) {
             {sessionUser?.id === userId && (
               <button className="reviewButton button">
                 {console.log("BUTTON CREATED")}
-                <span className="buttonIcon" style={{backgroundImage: `url(${menuDots})`}}></span>
+                <span className="buttonIcon" style={{backgroundImage: `url(${menuDots_horiz})`}}></span>
               </button>
             )}
           </div>

@@ -58,7 +58,7 @@ function Business() {
       <div className="businessBottom contentBottom">
         <div className="businessBottomContent">
           <div className="buttonBox">
-            <NavLink to='/writereview' exact={true} className="redButton businessButton bodyButton button" activeClassName='active'>
+            <NavLink to={`${businessId}/newreview`} exact={true} className="redButton businessButton bodyButton button" activeClassName='active'>
               <div className="buttonIcon">
 
               </div>

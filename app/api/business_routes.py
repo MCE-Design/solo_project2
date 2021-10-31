@@ -17,6 +17,7 @@ def business(id):
 def review_by_business(id):
     businessId = id
     print(CGREEN + "\n BUSINESSID: \n", businessId, "\n" + CEND)
-    reviews = Review.query.filter(Review.businessId == businessId).all()
+    # This line filters for reviews that match the businessId and the orders them by the updatedAt column in descending order
+    reviews = Review.query.filter(Review.businessId == businessId).order_by(Review.updatedAt.desc())
     print(CGREEN + "\n Reviews: \n", reviews, "\n" + CEND)
     return {'reviews': [review.to_dict() for review in reviews]}
