@@ -42,17 +42,16 @@ export const newReview = (review) => async dispatch => {
   if (response.ok) {
     const data = await response.json()
     console.log("OK")
-    console.log("ERROR", data)
     dispatch(load(data))
   } else return "Thunk Error: Review Submit Failed"
 }
 
 export const editReview = (review) => async dispatch => {
-  console.log(review)
+  console.log("-----------------------EDIT REVIEW HIT---------------------")
   const response = await fetch(`/api/review`,
     {
       method: "PUT",
-      body: review
+      body: review,
     }
   )
   if (response.ok) {

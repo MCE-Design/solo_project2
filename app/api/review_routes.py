@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
-from app.forms import ReviewForm, DeleteReview
+from app.forms import ReviewForm, ReviewEdit, DeleteReview
 from app.models import db, Review
 from colors import *
 
@@ -47,8 +47,28 @@ def add_review():
         return {"errors": validation_errors_to_error_messages(form.errors)}
 
 
-# @review_routes.route('/<int:id>', methods=["PUT"])
-# def review_edit(id):
+@review_routes.route('', methods=["PUT"])
+def edit_review():
+    print(CGREEN + "\n HIT THIS \n", "\n" + CEND)
+    form = ReviewEdit()
+    data = form.data
+    print(CGREEN + "\n EDIT DATA: \n", data, "\n" + CEND)
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        edited_review = Review(
+            userId=data["userId"],
+            businessId=data["businessId"],
+            rating=data["rating"],
+            review=data["review"],
+            updatedAt=db.func.now()
+        )
+        print(CGREEN + "\n data: \n", data, "\n" + CEND)
+        db.session.add(edited_review)
+        db.session.commit()
+        reviews = Review.query.filter(Review.businessId == data["businessId"]).order_by(Review.updatedAt.desc())
+        return {"reviews": [review.to_dict() for review in reviews]}
+    else:
+        return {"errors": validation_errors_to_error_messages(form.errors)}
 
 @review_routes.route('', methods=["DELETE"])
 def review_delete():

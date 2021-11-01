@@ -43,6 +43,8 @@ class ReviewForm(FlaskForm):
 
 class ReviewEdit(FlaskForm):
     id = IntegerField('id', validators=[DataRequired()])
+    userId = IntegerField('userId', validators=[DataRequired()])
+    businessId = IntegerField('businessId', validators=[DataRequired()])
     rating = IntegerField('rating', validators=[DataRequired()])
     review = TextAreaField('review', validators=[DataRequired()])
 

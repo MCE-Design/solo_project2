@@ -67,6 +67,12 @@
   width: 100%;
 }
 
+.standAloneReview .button {
+  box-sizing: border-box;
+  justify-content: center;
+  width: 200px;
+}
+
 .reviewStatusMessageBox {
   margin-top: 15px;
 }

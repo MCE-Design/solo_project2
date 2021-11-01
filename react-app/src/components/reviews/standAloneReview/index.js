@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { newReview, getReview } from "../../../store/review";
+import { newReview, getReview, editReview } from "../../../store/review";
 import "../standAloneReview/standAloneReview.css";
 import { getBusiness } from '../../../store/business';
 import { useParams, NavLink, useHistory } from 'react-router-dom';
@@ -22,21 +22,32 @@ function StandAloneReview({reviewType}) {
 
   useEffect(() => {
     dispatch(getBusiness(businessId));
+    if (reviewType === "edit"){
+      dispatch(getReview(reviewId));
+    }
+  }, [dispatch, businessId, reviewId, reviewType]);
+
+  useEffect(() => {
     setErrors(currentReview?.errors);
-  }, [dispatch, businessId, currentReview?.errors]);
+  }, [currentReview?.errors])
 
-  // useEffect(() => {
-  //   if( reviewType === "edit"){
-  //     dispatch(getReview(reviewId));
-  //     console.log(currentReview?.review)
-  //     const reviewField = document.querySelector(".standAloneReviewText");
-  //     setStarRatingVal(5);
+  useEffect(() => {
+    if( reviewType === "edit"){
+      console.log("SETUP DEFAULTS")
+      setStarRatingVal(currentReview?.rating);
 
-  //     setReviewText(currentReview?.review);
-  //     reviewField.textContent = reviewText;
-  //   }
-  // }, [dispatch, reviewId])
+      setReviewText(currentReview?.review);
+    }
+  }, [currentReview])
 
+  useEffect(() => {
+    const reviewField = document.querySelector(".standAloneReviewText");
+    const starBox = document.querySelector(".starRatingButtons").children;
+
+    starBox.item(starRatingVal - 1).checked = true;
+    reviewField.textContent = reviewText;
+
+  },[reviewText, starRatingVal])
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -46,15 +57,25 @@ function StandAloneReview({reviewType}) {
     if(starRatingVal && reviewText && reviewText.length <= 5000) {
       const formData = new FormData();
 
+      if (reviewType === "edit"){
+        formData.append("id", reviewId);
+      }
       formData.append("userId", sessionUser.id);
       formData.append("businessId", businessId);
       formData.append("rating", starRatingVal);
       formData.append("review", reviewText);
-      const data = await dispatch(newReview(formData));
-      if (data) {
-        setErrors(data);
+      if(reviewType === "new"){
+        const data = await dispatch(newReview(formData));
+        if (data) {
+          setErrors(data);
+        }
+      } else if (reviewType === "edit") {
+        const data = await dispatch(editReview(formData));
+        if (data) {
+          setErrors(data);
+        }
       }
-      history.push(`/business/${businessId}}`);
+      history.push(`/business/${businessId}`);
       // Notch in image uploading as a separate dispatch that only goes if everything else is O.K.
     } else {
       if(!starRatingVal){
@@ -76,6 +97,11 @@ function StandAloneReview({reviewType}) {
   console.log("Review Text", reviewText)
 
   console.log("THE ERRORS", errors)
+
+  const handleRadioChange = (event) => {
+    console.log("RADIO CHANGE", event.target.value)
+    setStarRatingVal(event.target.value)
+  }
   return(
     <div className="standAloneReview">
       <div className="standAloneReviewContent">
@@ -87,20 +113,20 @@ function StandAloneReview({reviewType}) {
         <div className="standAloneReviewBottom">
           <form onSubmit={handleSubmit}>
             <div className="standAloneUpperBox">
-              <div className="starRatingButtons">
-                <input type="radio" onChange={(e) => setStarRatingVal(e.target.value)} value="1" name="starRating">
+              <div className="starRatingButtons" >
+                <input type="radio" onChange={handleRadioChange} value="1" name="starRating">
 
                 </input>
-                <input type="radio" onChange={(e) => setStarRatingVal(e.target.value)} value="2" name="starRating">
+                <input type="radio" onChange={handleRadioChange} value="2" name="starRating">
 
                 </input>
-                <input type="radio" onChange={(e) => setStarRatingVal(e.target.value)} value="3" name="starRating">
+                <input type="radio" onChange={handleRadioChange} value="3" name="starRating">
 
                 </input>
-                <input type="radio" onChange={(e) => setStarRatingVal(e.target.value)} value="4" name="starRating">
+                <input type="radio" onChange={handleRadioChange} value="4" name="starRating">
 
                 </input>
-                <input type="radio" onChange={(e) => setStarRatingVal(e.target.value)} value="5" name="starRating">
+                <input type="radio" onChange={handleRadioChange} value="5" name="starRating">
 
                 </input>
               </div>
