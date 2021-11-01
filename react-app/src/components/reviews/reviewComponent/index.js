@@ -140,8 +140,8 @@ function ReviewComponent({review, sessionUser}) {
         </div>
         <div className="reviewBottom">
           <div className="rateAndDate">
-            <div className="ratingInfoItem">
-              {review.rating}
+            <div className="ratingText ratingInfoItem">
+              {review.rating}/5 Stars
             </div>
             <div className="ratingInfoItem">
               {review.createdAt}

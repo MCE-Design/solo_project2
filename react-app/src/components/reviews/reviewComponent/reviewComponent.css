@@ -68,6 +68,12 @@ img.reviewAvatar {
 .ratingInfoItem {
   margin: 0 4px;
 }
+
+.ratingText {
+  margin-right: 20px;
+  font-size: 20px;
+}
+
 .starDisplay {
 
 }

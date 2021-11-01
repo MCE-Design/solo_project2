@@ -2,6 +2,8 @@
   padding-top: 30px;
   height: 570px;
   background-color: #AAAAAA;
+  background-size: cover;
+  background-position: 50%;
 }
 
 .landingTopContent {

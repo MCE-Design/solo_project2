@@ -6,6 +6,9 @@ import { getReviewsByBusiness } from '../../store/review';
 import { useParams, NavLink } from 'react-router-dom';
 import NewReview from '../reviews/newReview';
 import ReviewComponent from '../reviews/reviewComponent'
+import business1_image from '../../images/business_hero_images/business1/page_image1.jpg';
+import business2_image from '../../images/business_hero_images/business2/page_image1.jpg';
+import business3_image from '../../images/business_hero_images/business3/page_image1.jpg';
 
 function Business() {
   const dispatch = useDispatch();
@@ -48,13 +51,34 @@ function Business() {
             </div>
           </div>
           <div className="businessButtonBox">
-            <NavLink to='' className="transparentButton businessTopButton bodyButton button">
+            {/* Enable Later when display page is 100% */}
+            {/* <NavLink to='' className="transparentButton businessTopButton bodyButton button">
               See Photos
-            </NavLink>
+            </NavLink> */}
           </div>
         </div>
         <div className="photoCarousel">
-
+          {business?.id === 1 && (
+            <>
+              <img src={business1_image}/>
+              <img src={business1_image}/>
+              <img src={business1_image}/>
+            </>
+          )}
+          {business?.id === 2 && (
+            <>
+              <img src={business2_image}/>
+              <img src={business2_image}/>
+              <img src={business2_image}/>
+            </>
+          )}
+          {business?.id === 3 && (
+            <>
+              <img src={business3_image}/>
+              <img src={business3_image}/>
+              <img src={business3_image}/>
+            </>
+          )}
         </div>
       </div>
       <div className="businessBottom contentBottom">

@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { getAllBusinesses } from '../../store/business';
 import "./splash.css";
 import yap_logo from "../../images/yap_logo.svg"
+import image1 from "../../images/splash_images/poodle_massage.jpg"
 
 function Splash() {
   const dispatch = useDispatch();
@@ -15,14 +16,14 @@ function Splash() {
 
   return (
     <>
-      <div className="landingTop container">
+      <div className="landingTop container" style={{backgroundImage: `url(${image1})`}}>
         <div className="landingTopContent">
           <div className="landingTopInner">
             <div className="landingLogo" style={{backgroundImage: `url(${yap_logo})`}}>
               <a href="/">Yap</a>
             </div>
             {/* Put This Back Later */}
-{/*
+            {/*
             <form className="landingSearchBar">
               <input className="searchInputLeft inputField" placeholder="nail salons, plumbers, takeout..."></input>
               <input className="searchInputRight inputField"></input>

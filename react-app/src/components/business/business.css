@@ -3,16 +3,21 @@
   max-width: 1922px;
   margin: 0 auto;
   position: relative;
+  height: 425px;
 }
 
 .businessTopContent {
+  position: relative;
+  z-index: 1;
   display: flex;
+  align-items: flex-end;
   box-sizing: border-box;
   margin: 0 auto;
   padding: 40px 65px;
+  height: 100%;
   min-width: 1145px;
   max-width: 1270px;
-  background-color: #AAAAAA;
+  /* background-color: #AAAAAA; */
 }
 
 .businessTitleBox,
@@ -28,6 +33,21 @@
   font-size: 48px;
   color: #FFFFFF;
   font-family: "Poppins", "Roboto", Helvetica, Arial, sans-serif;
+}
+
+.businessTop.photoContainer .photoCarousel {
+  display: flex;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 425px;
+  overflow:hidden;
+}
+
+.businessTop.photoContainer .photoCarousel img {
+  object-fit: cover;
 }
 
 .businessButtonBox {
