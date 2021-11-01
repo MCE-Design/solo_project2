@@ -41,7 +41,7 @@ function StandAloneReview({reviewType}) {
   useEffect(() => {
     const reviewField = document.querySelector(".standAloneReviewText");
     const starBox = document.querySelector(".starRatingButtons").children;
-    if(starRatingVal - 1 > 0 ){
+    if(starRatingVal > 0 ){
       starBox.item(starRatingVal - 1).checked = true;
     }
     reviewField.textContent = reviewText;
@@ -66,17 +66,15 @@ function StandAloneReview({reviewType}) {
       if(reviewType === "new"){
         const data = await dispatch(newReview(formData));
         if (data) {
-          setErrors(data);
+          return setErrors(data);
         }
       } else if (reviewType === "edit") {
         const data = await dispatch(editReview(formData));
         if (data) {
-          setErrors(data);
+          return setErrors(data);
         }
       }
-      if(errors?.length === 0){
-        history.push(`/business/${businessId}`);
-      }
+      history.push(`/business/${businessId}`);
       // Notch in image uploading as a separate dispatch that only goes if everything else is O.K.
     } else {
       if(!starRatingVal){

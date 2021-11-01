@@ -6,9 +6,9 @@ def seed_reviews():
     review1 = Review(
         userId=1, businessId=2, rating=1, review='Test Data REVIEW', createdAt=datetime.datetime.now(), updatedAt=datetime.datetime.now())
     review2 = Review(
-        userId=2, businessId=3, rating=2,review='THIS IS A REVIEW', createdAt=datetime.datetime.now(), updatedAt=datetime.datetime.now())
+        userId=2, businessId=3, rating=2, review='THIS IS A REVIEW', createdAt=datetime.datetime.now(), updatedAt=datetime.datetime.now())
     review3 = Review(
-        userId=3, businessId=3, rating=5,review='Loremipsum'
+        userId=3, businessId=3, rating=5, review='Loremipsum'
         'dolor sit amet, consectetur adipiscing elit. Integer eget lectus'
         'eget neque aliquam feugiat. Nunc luctus placerat lectus, nec condimentum'
         'purus scelerisque sed. Quisque pulvinar mattis purus non accumsan. Etiam'
