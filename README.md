@@ -33,7 +33,6 @@ I've made use of AWS to facilitate image uploading on the site.  Honestly this w
 This is an early version of the application and there's much to do in the future.  Here's a list of some of these features.
 
 1. Photo uploading in other workflows.
-
       Right now photo uploads only work in a select area of the application.
 
 2. Search businesses by name
@@ -44,3 +43,6 @@ This is an early version of the application and there's much to do in the future
 
 4. Mobile-friendly styling
       Adding this feature would effectively allow more folks to easily view and try out the web application regardless of device.
+
+5. Business creation
+      Right now I've left out business creation to keep scope small enough to tackle.  However, in the futre this would definitely be a feature.
