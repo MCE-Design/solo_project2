@@ -60,22 +60,30 @@ function Business() {
       <div className="businessBottom contentBottom">
         <div className="businessBottomContent">
           <div className="buttonBox">
-            <NavLink to={`${businessId}/newreview`} exact={true} className="redButton businessButton bodyButton button" activeClassName='active'>
-              <div className="buttonIcon">
+            {/* Change this later to do logged-out user workflow */}
+            { sessionUser ? (
+              <>
+                <NavLink to={`${businessId}/newreview`} exact={true} className="redButton businessButton bodyButton button" activeClassName='active'>
+                  <div className="buttonIcon">
 
-              </div>
-              <div>
-                Write a Review
-              </div>
-            </NavLink>
-            <NavLink to='/business_photos/:businessId/add' exact={true} className="lightButton businessButton bodyButton button" activeClassName='active'>
-              <div className="buttonIcon">
+                  </div>
+                  <div>
+                    Write a Review
+                  </div>
+                </NavLink>
+                <NavLink to='/business_photos/:businessId/add' exact={true} className="lightButton businessButton bodyButton button" activeClassName='active'>
+                  <div className="buttonIcon">
 
-              </div>
-              <div>
-                Add Photo
-              </div>
-            </NavLink>
+                  </div>
+                  <div>
+                    Add Photo
+                  </div>
+                </NavLink>
+              </>
+            ) : (
+              <></>
+            )}
+
           </div>
 
         </div>

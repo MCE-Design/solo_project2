@@ -1,134 +1,46 @@
-# Flask React Project
+# Yap
 
-This is the starter for the Flask React project.
+## Introduction
 
-## Getting started
+Yap is a Yelp clone built using React-Redux on the frontend and Flask on the backend.
 
-1. Clone this repository (only this branch)
+Current the application can be viewed online at https://yap-reviews.herokuapp.com/
 
-   ```bash
-   git clone https://github.com/appacademy-starters/python-project-starter.git
-   ```
+# Tecnologies
 
-2. Install dependencies
+## Frontend Technologies
 
-      ```bash
-      pipenv install --dev -r dev-requirements.txt && pipenv install -r requirements.txt
-      ```
+### React
 
-3. Create a **.env** file based on the example with proper settings for your
-   development environment
-4. Setup your PostgreSQL user, password and database and make sure it matches your **.env** file
+Yap is a React application.  However, it most of the work has been done using Redux due to stronger structure and better page render management.  Prop theading is used to help move data between components when it's not entirely necessary to keep the information in state.
 
-5. Get into your pipenv, migrate your database, seed your database, and run your flask app
+### Redux
 
-   ```bash
-   pipenv shell
-   ```
+While React is a powerful frontend framework the Redux and React-Redux libraries make it a better experience.  Data can be kept in state as a way to have rapid access to it.
 
-   ```bash
-   flask db upgrade
-   ```
+## Backend Technologies
 
-   ```bash
-   flask seed all
-   ```
+### Flask
 
-   ```bash
-   flask run
-   ```
+Flask does some heavy lifting on the backend and makes forms and validations easy via Alembic and WTForms.
 
-6. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
+### AWS
 
-***
-*IMPORTANT!*
-   If you add any python dependencies to your pipfiles, you'll need to regenerate your requirements.txt before deployment.
-   You can do this by running:
+I've made use of AWS to facilitate image uploading on the site.  Honestly this was the only choice for uploading and hosting images 3rd party.
 
-   ```bash
-   pipenv lock -r > requirements.txt
-   ```
+# Conclusion
 
-*ALSO IMPORTANT!*
-   psycopg2-binary MUST remain a dev dependency because you can't install it on apline-linux.
-   There is a layer in the Dockerfile that will install psycopg2 (not binary) for us.
-***
+This is an early version of the application and there's much to do in the future.  Here's a list of some of these features.
 
-## Deploy to Heroku
+1. Photo uploading in other workflows.
 
-1. Before you deploy, don't forget to run the following command in order to
-ensure that your production environment has all of your up-to-date
-dependencies. You only have to run this command when you have installed new
-Python packages since your last deployment, but if you aren't sure, it won't
-hurt to run it again.
+      Right now photo uploads only work in a select area of the application.
 
-   ```bash
-   pipenv lock -r > requirements.txt
-   ```
+2. Search businesses by name
+      At this moment you can browse all of the businesses via the popular area on the splash page.
 
-2. Create a new project on Heroku
-3. Under Resources click "Find more add-ons" and add the add on called "Heroku Postgres"
-4. Install the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-command-line)
-5. Run
+3. Maps
+      Honestly this feature can help searching for businesses in a particular area far easier and would be essential for the full application.  However, the Google Maps API provides too few free queries for an application that is actively developed and viewed at least a few hundred times and the Mapbox API would take longer for me to learn than I had time for.
 
-   ```bash
-   heroku login
-   ```
-
-6. Login to the heroku container registry
-
-   ```bash
-   heroku container:login
-   ```
-
-7. Update the `REACT_APP_BASE_URL` variable in the Dockerfile.
-   This should be the full URL of your Heroku app: i.e. "https://flask-react-aa.herokuapp.com"
-8. Push your docker container to heroku from the root directory of your project.
-   (If you are using an M1 mac, follow [these steps below](#for-m1-mac-users) instead, then continue on to step 9.)
-   This will build the Dockerfile and push the image to your heroku container registry.
-
-   ```bash
-   heroku container:push web -a {NAME_OF_HEROKU_APP}
-   ```
-
-9. Release your docker container to heroku
-
-      ```bash
-      heroku container:release web -a {NAME_OF_HEROKU_APP}
-      ```
-
-10. set up your database
-
-      ```bash
-      heroku run -a {NAME_OF_HEROKU_APP} flask db upgrade
-      heroku run -a {NAME_OF_HEROKU_APP} flask seed all
-      ```
-
-11. Under Settings find "Config Vars" and add any additional/secret .env
-variables.
-
-12. profit
-
-### For M1 Mac users
-
-(Replaces **Step 8**)
-
-1. Build image with linux platform for heroku servers. Replace
-{NAME_OF_HEROKU_APP} with your own tag:
-
-   ```bash=
-   docker buildx build --platform linux/amd64 -t {NAME_OF_HEROKU_APP} .
-   ```
-
-2. Tag your app with the url for your apps registry. Make sure to use the name
-of your Heroku app in the url and tag name:
-
-   ```bash=2
-   docker tag {NAME_OF_HEROKU_APP} registry.heroku.com/{NAME_OF_HEROKU_APP}/web
-   ```
-
-3. Use docker to push the image to the Heroku container registry:
-
-   ```bash=3
-   docker push registry.heroku.com/{NAME_OF_HEROKU_APP}/web
-   ```
+4. Mobile-friendly styling
+      Adding this feature would effectively allow more folks to easily view and try out the web application regardless of device.

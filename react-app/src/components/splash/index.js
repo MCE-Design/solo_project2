@@ -21,10 +21,12 @@ function Splash() {
             <div className="landingLogo" style={{backgroundImage: `url(${yap_logo})`}}>
               <a href="/">Yap</a>
             </div>
+            {/* Put This Back Later */}
+{/*
             <form className="landingSearchBar">
               <input className="searchInputLeft inputField" placeholder="nail salons, plumbers, takeout..."></input>
               <input className="searchInputRight inputField"></input>
-            </form>
+            </form> */}
 
           </div>
         </div>
