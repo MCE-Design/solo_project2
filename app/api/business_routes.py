@@ -12,6 +12,11 @@ def business(id):
     print(CGREEN + "\n business: \n", business.to_dict(), "\n" + CEND)
     return business.to_dict()
 
+@business_routes.route('', methods=["GET"])
+def get_all_businesses():
+    businesses = Business.query.all()
+    return {'businesses': [business.to_dict() for business in businesses]}
+
 # All Reviews by Business ID
 @business_routes.route('/<int:id>/review', methods=["GET"])
 def review_by_business(id):

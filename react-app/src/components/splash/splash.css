@@ -21,6 +21,7 @@
   margin: 0 auto 48px;
   background-repeat: no-repeat;
   background-size: 160px 80px;
+  user-select: none;
 }
 
 .landingLogo a {
@@ -52,4 +53,71 @@
 
 .landingTopInner .landingSearchBar .searchInputRight.inputField{
   border-radius: 0 4px 4px 0;
+}
+
+.landingMiddle {
+  min-width: 1020px;
+}
+
+.landingMiddleContent {
+  margin: 0 auto;
+  padding: 0 15px;
+  max-width: 960px;
+}
+
+.mostBarked {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding:36px 0 24px;
+}
+
+.businessTileContainer {
+  table-layout: auto;
+  min-width: 100%;
+}
+
+.businessTile {
+  display: inline-block;
+  box-sizing: border-box;
+  margin: 24px auto 0;
+  padding: 0 12px;
+  width: 50%;
+}
+
+.businessTileBody {
+  display: flex;
+  flex-direction: row;
+  border-radius: 3px;
+  border: 1px solid #E6E6E6;
+}
+
+.businessTileImage {
+  height: 150px;
+  width: 150px;
+  background-color: #CCCCCC;
+}
+
+.businessTileImage img {
+  object-fit: cover;
+}
+
+.businessTileInfo {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin: 6px 0;
+  padding: 0 6px 0 24px;
+}
+
+.businessTileTitle {
+
+}
+
+.businessTileTitle a {
+  display: block;
+  width: calc(100% - 30px);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }

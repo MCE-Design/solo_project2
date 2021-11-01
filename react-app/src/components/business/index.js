@@ -83,7 +83,8 @@ function Business() {
           {/* Maps and Hours */}
         </div>
         <div className="reviewsContainer leftComponentContainer">
-          {userReviewed === false ? (
+          {/* change later to do logged-out user workflow */}
+          {userReviewed === false && sessionUser ? (
             <div className="reviewsNewReviewContainer">
               <NewReview sessionUser = {sessionUser} businessId = {businessId}/>
             </div>

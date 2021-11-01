@@ -5,6 +5,7 @@ import LogoutButton from '../auth/LogoutButton';
 import { useLocation } from 'react-router';
 import { useSelector } from 'react-redux';
 import "./navbar.css"
+import yap_logo from "../../images/yap_logo_dark.svg"
 
 const NavBar = () => {
   const currentPage = useLocation();
@@ -19,37 +20,47 @@ const NavBar = () => {
         <nav>
           <ul>
             <li>
-              <NavLink to='/writereview' exact={true} className="headerLink" activeClassName='active'>
+              {/* <NavLink to='/writereview' exact={true} className="headerLink" activeClassName='active'>
                 Write a Review
-              </NavLink>
+              </NavLink> */}
+            </li>
+            <li className="navSpacer">
+
             </li>
             {!sessionUser ? (
-                <li>
-                  <NavLink to='/login' exact={true} className="headerLink" activeClassName='active'>
-                    Login
-                  </NavLink>
-                </li>
+                <>
+                  <li>
+                    <NavLink to='/login' exact={true} className="headerLink" activeClassName='active'>
+                      Log In
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink to='/signup' exact={true} className="headerLink signUp button" activeClassName='active'>
+                      Sign Up
+                    </NavLink>
+                  </li>
+                </>
               ) : (
                 <></>
               )
             }
             <li>
-              <NavLink to='/sign-up' exact={true} className="headerLink" activeClassName='active'>
-                Sign Up
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to='/users' exact={true} className="headerLink" activeClassName='active'>
-                Users
-              </NavLink>
-            </li>
-            <li>
-              <LogoutButton />
+
             </li>
           </ul>
         </nav>
       </div>
     );
+  } else if (currentPage.pathname ==="/login" || currentPage.pathname ==="/signup"){
+    return (
+      <div className="loginAndSignUp navContainer">
+        <div className="">
+          <div className="loginLogo" style={{backgroundImage: `url(${yap_logo})`}}>
+            <a href="/">Yap</a>
+          </div>
+        </div>
+      </div>
+    )
   } else if (/\/business\/\d+\/newreview/.test(currentPage.pathname) || /\/business\/\d+\/editreview/.test(currentPage.pathname)){
     return (
       <div>NEW REVIEW NAV</div>
@@ -67,7 +78,7 @@ const NavBar = () => {
             {!sessionUser ? (
                 <li>
                   <NavLink to='/login' exact={true} className="headerLink" activeClassName='active'>
-                    Login
+                    Log In
                   </NavLink>
                 </li>
               ) : (
@@ -75,13 +86,8 @@ const NavBar = () => {
               )
             }
             <li>
-              <NavLink to='/sign-up' exact={true} activeClassName='active'>
+              <NavLink to='/signup' exact={true} activeClassName='active'>
                 Sign Up
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to='/users' exact={true} activeClassName='active'>
-                Users
               </NavLink>
             </li>
             <li>

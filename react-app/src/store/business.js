@@ -20,6 +20,15 @@ export const getBusiness = (id) => async dispatch => {
   } else return "Thunk Error: Bad Req"
 }
 
+export const getAllBusinesses = () => async dispatch => {
+  const response = await fetch(`/api/business`);
+  if (response.ok) {
+    const list = await response.json();
+    dispatch(load(list));
+  } else return "Thunk Error: Bad Req"
+}
+
+
 export default function businessReducer(state = initialState, action) {
   switch (action.type) {
     case SET_BUSINESS:

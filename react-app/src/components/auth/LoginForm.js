@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
+import "./auth.css";
 
 const LoginForm = () => {
   const [errors, setErrors] = useState([]);
@@ -18,6 +19,14 @@ const LoginForm = () => {
     }
   };
 
+  const onDemo = async (e) => {
+    e.preventDefault();
+    setEmail("demo@aa.io");
+    setPassword("password");
+
+    const data = await dispatch(login(email, password));
+  };
+
   const updateEmail = (e) => {
     setEmail(e.target.value);
   };
@@ -30,34 +39,53 @@ const LoginForm = () => {
     return <Redirect to='/' />;
   }
   return (
-    <form onSubmit={onLogin}>
-      <div>
-        {errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
-        ))}
+    <div className="loginSignupContainer">
+      <div className="loginSignupLeft leftAndRight">
+        <div className="loginSignupBody">
+          <h2>Login to Yap</h2>
+          <div>New to Yap? <NavLink to="/signup">Sign up</NavLink></div>
+          <button className="button" onClick={onDemo}>
+            Continue With Demo
+          </button>
+          <div><span>OR</span></div>
+          <form onSubmit={onLogin}>
+            <div>
+              {errors.map((error, ind) => (
+                <div key={ind}>{error}</div>
+              ))}
+            </div>
+            <div className="loginSignupInputRow">
+              <input
+                name='email'
+                type='email'
+                placeholder='Email'
+                value={email}
+                onChange={updateEmail}
+                required
+                className="emailField"
+              />
+            </div>
+            <div className="loginSignupInputRow">
+              <input
+                name='password'
+                type='password'
+                placeholder='Password'
+                value={password}
+                onChange={updatePassword}
+                className="passwordField"
+                required
+              />
+              <button type='submit' className="loginSignupbutton redButton button">Log In</button>
+            </div>
+          </form>
+        </div>
       </div>
-      <div>
-        <label htmlFor='email'>Email</label>
-        <input
-          name='email'
-          type='text'
-          placeholder='Email'
-          value={email}
-          onChange={updateEmail}
-        />
+      <div className="loginSignupRight leftAndRight">
+        <div className="loginSignupImageContainer">
+          {/* <img src="" /> */}
+        </div>
       </div>
-      <div>
-        <label htmlFor='password'>Password</label>
-        <input
-          name='password'
-          type='password'
-          placeholder='Password'
-          value={password}
-          onChange={updatePassword}
-        />
-        <button type='submit'>Login</button>
-      </div>
-    </form>
+    </div>
   );
 };
 
