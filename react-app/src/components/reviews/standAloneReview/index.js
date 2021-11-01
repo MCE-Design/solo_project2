@@ -33,9 +33,7 @@ function StandAloneReview({reviewType}) {
 
   useEffect(() => {
     if( reviewType === "edit"){
-      console.log("SETUP DEFAULTS")
       setStarRatingVal(currentReview?.rating);
-
       setReviewText(currentReview?.review);
     }
   }, [currentReview])
@@ -43,8 +41,9 @@ function StandAloneReview({reviewType}) {
   useEffect(() => {
     const reviewField = document.querySelector(".standAloneReviewText");
     const starBox = document.querySelector(".starRatingButtons").children;
-
-    starBox.item(starRatingVal - 1).checked = true;
+    if(starRatingVal - 1 > 0 ){
+      starBox.item(starRatingVal - 1).checked = true;
+    }
     reviewField.textContent = reviewText;
 
   },[reviewText, starRatingVal])
@@ -99,7 +98,6 @@ function StandAloneReview({reviewType}) {
   console.log("THE ERRORS", errors)
 
   const handleRadioChange = (event) => {
-    console.log("RADIO CHANGE", event.target.value)
     setStarRatingVal(event.target.value)
   }
   return(
