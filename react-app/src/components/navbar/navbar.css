@@ -91,3 +91,30 @@
    Navbar - Business Page
 
 ======================================== */
+
+.navGeneral {
+  padding: 30px 0 0;
+  width: 100%;
+}
+.navGeneral nav {
+  max-width: 1270px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+.navGeneral .navSpacer {
+  flex-grow: 1;
+}
+
+.navGeneral nav ul {
+  display: flex;
+  flex-direction: row;
+  padding: 0;
+}
+
+.navGeneral nav ul li {
+  list-style: none;
+}
+
+.navGeneral nav ul li {
+  margin-right: 2px;
+}

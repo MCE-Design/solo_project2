@@ -67,20 +67,22 @@ function App() {
         </Route>
 
         {/* These two use the same componenant with differen values passed in depending on the route*/}
-        <Route path='/business/:businessId/newreview' exact={true} >
+        {/* Change this to UNPROTECTED when logged-out and new-user workflow is built */}
+        <ProtectedRoute path='/business/:businessId/newreview' exact={true} >
           <StandAloneReview reviewType="new"/>
-        </Route>
-        <Route path='/business/:businessId/editreview/:reviewId' exact={true} >
+        </ProtectedRoute>
+        <ProtectedRoute path='/business/:businessId/editreview/:reviewId' exact={true} >
           <StandAloneReview reviewType="edit"/>
-        </Route>
+        </ProtectedRoute>
 
         {/* These two use the same componenant with differen values passed in depending on the route*/}
         <ProtectedRoute path='/user/photos/add' exact={true} >
           <PhotoUpload photoType = "user"/>
         </ProtectedRoute>
-        <Route path='/business_photos/:businessId/add' exact={true} >
+        {/* These two use the same componenant with differen values passed in depending on the route*/}
+        <ProtectedRoute path='/business_photos/:businessId/add' exact={true} >
           <PhotoUpload photoType = "business"/>
-        </Route>
+        </ProtectedRoute>
       </Switch>
     </BrowserRouter>
   );

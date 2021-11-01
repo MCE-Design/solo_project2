@@ -54,19 +54,34 @@ function User({ profile }) {
     )
   } else {
     return (
-      <div>
-        <ul>
-          <li>
-            <strong>User Id</strong> {userId}
-          </li>
-          <li>
-            <strong>Username</strong> {user.username}
-          </li>
-          <li>
-            <strong>Email</strong> {user.email}
-          </li>
-        </ul>
-      </div>
+      <>
+        {user ? (
+          <div className="userMain">
+            <div className="topInfo">
+              <div>
+                <div className="userProfileAvatar">
+                  <NavLink to="/user_photos/1">
+                    <img src={user?.avatar} className="profileAvatarImage"></img>
+                  </NavLink>
+                </div>
+                <div className="">
+                  <div></div>
+                  <div className="profileInfo">
+
+                  </div>
+                  <div></div>
+                </div>
+              </div>
+            </div>
+            <div className="mainContainer">
+              {/* Change to last initial later when bug fixed */}
+              <h1>{user?.fname} {user?.lname}</h1>
+            </div>
+          </div>
+        ) : (
+          null
+        )}
+      </>
     )
   }
 }

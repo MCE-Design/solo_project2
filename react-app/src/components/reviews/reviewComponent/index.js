@@ -75,15 +75,28 @@ function ReviewComponent({review, sessionUser}) {
         <div className="reviewTop">
           <div className="reviewTopLeft">
             <div className="reviewAvatarContainer">
-              <a href={`/users/${userId}`} className="reviewAvatarLink"> {/* Disable later if no profile page */}
-                <img src={user?.avatar} alt="Review Avatar" className="reviewAvatar" draggable="False" />
-              </a>
+              { sessionUser?.id === userId ? (
+                <a href={`/users/${userId}`} className="reviewAvatarLink">
+                  <img src={user?.avatar} alt="Review Avatar" className="reviewAvatar" draggable="False" />
+                </a>
+              ) : (
+                <div className="reviewAvatarLink"> {/* Enable later */}
+                  <img src={user?.avatar} alt="Review Avatar" className="reviewAvatar" draggable="False" />
+                </div>
+              )}
             </div>
             <div className="reviewInfoBox">
+
               <div className="reviewName">
-                <NavLink to={`/users/${userId}`}> {/* Disable later if no profile page */}
-                  {user?.fname} {user?.lname[0]}.
-                </NavLink>
+                { sessionUser?.id === userId ? (
+                  <NavLink to={`/users/${userId}`}>
+                    {user?.fname} {user?.lname[0]}.
+                  </NavLink>
+                ) : (
+                  <a> {/* Enable later */}
+                    {user?.fname} {user?.lname[0]}.
+                  </a>
+                )}
               </div>
               <div>{/* Location */}</div>
               <div>{/* Badges */}

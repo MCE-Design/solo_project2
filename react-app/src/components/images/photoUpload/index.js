@@ -65,8 +65,71 @@ function PhotoUpload({photoType}) {
   }
   if( photoType === "business"){
     console.log("business");
-    return(
-      <h1>Business Photo Uploads Goes here</h1>
+    return (
+      <div className="photoMain backPageMain">
+        <div className="contentContainer">
+          <div className="photoStatus">
+            <ul className={errors.length > 0 ? ("alertBox alert") : ("alertbox")}>
+              {console.log("The Errors", errors)}
+              {errors?.map((error) => {
+                  return(
+                  <li key={error} className="">
+                    {error}
+                  </li>
+                  )
+                })}
+            </ul>
+            {/* <div className="alert">
+              Put status message here (such as deletion message)
+            </div> */}
+          </div>
+          <div className="photoUploadTop backPageTop">
+            <div className="backPageLeft">
+              <ul className="breadcrumb">
+                <li>
+                  <NavLink to="/user">{sessionUser?.fname} {sessionUser?.lname[0]}.</NavLink>
+                </li>
+                <li>
+                  <span className="chevronRight icon"><img src={chevRight} alt="Breadcrumb divider"/></span>
+                  Business photos
+                </li>
+              </ul>
+              <h2>Add photos</h2>
+            </div>
+            <div className="backPageRight">
+
+            </div>
+          </div>
+          <div className="photoUploadBottom">
+            <div className="photoUploadContainer backPageLowerContainer">
+              <div className="photoUploadBody">
+                <h1>Upload your photos here</h1>
+                <div className="hr">
+                  <div className="or"></div>
+                </div>
+                <form onSubmit={handleSubmit}>
+                  <div className="uploadFormRow">
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={updateImage}
+                      className="inputContainer file"
+                    />
+                  </div>
+                  <div className="uploadFormRow">
+                    <textarea onChange={(e) => setImageCaption(e.target.value)} className="inputContainer"></textarea>
+                    <div className={imageCaption.length > 1000 ? ("charCounter overLimit") : ("charCounter")}>{1000 - imageCaption.length}</div>
+                  </div>
+                  <div>
+                    <button type="submit" className="redButton photoButton bodyButton button">Submit</button>
+                  </div>
+                </form>
+                {(imageLoading)&& <p>Loading...</p>}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     )
   } else if( photoType === "review"){
     console.log("review")

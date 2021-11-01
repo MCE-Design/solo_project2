@@ -41,7 +41,7 @@ const NavBar = () => {
                   </li>
                 </>
               ) : (
-                <></>
+                <LogoutButton />
               )
             }
             <li>
@@ -63,10 +63,6 @@ const NavBar = () => {
     )
   } else if (/\/business\/\d+\/newreview/.test(currentPage.pathname) || /\/business\/\d+\/editreview/.test(currentPage.pathname)){
     return (
-      <div>NEW REVIEW NAV</div>
-    )
-  } else {
-    return (
       <div className="navContainer">
         <nav>
           <ul>
@@ -75,24 +71,62 @@ const NavBar = () => {
                 Home
               </NavLink>
             </li>
+            <li className="navSpacer">
+
+            </li>
             {!sessionUser ? (
-                <li>
-                  <NavLink to='/login' exact={true} className="headerLink" activeClassName='active'>
-                    Log In
-                  </NavLink>
-                </li>
+                <>
+                  <li>
+                    <NavLink to='/login' exact={true} className="headerLink" activeClassName='active'>
+                      Log In
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink to='/signup' exact={true} activeClassName='active'>
+                      Sign Up
+                    </NavLink>
+                  </li>
+                </>
               ) : (
-                <></>
+                <>
+                  <LogoutButton />
+                </>
               )
             }
+          </ul>
+        </nav>
+      </div>
+    )
+  } else {
+    return (
+      <div className="navContainer navGeneral">
+        <nav>
+          <ul>
             <li>
-              <NavLink to='/signup' exact={true} activeClassName='active'>
-                Sign Up
+              <NavLink to='/' exact={true} activeClassName='active'>
+                Home
               </NavLink>
             </li>
-            <li>
-              <LogoutButton />
+            <li className="navSpacer">
+
             </li>
+            {!sessionUser ? (
+                <>
+                  <li>
+                    <NavLink to='/login' exact={true} className="headerLink" activeClassName='active'>
+                      Log In
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink to='/signup' exact={true} className="headerLink signUp button" activeClassName='active'>
+                      Sign Up
+                    </NavLink>
+                  </li>
+                </>
+              ) : (
+                <LogoutButton />
+              )
+            }
           </ul>
         </nav>
       </div>
