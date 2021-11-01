@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
 import { useLocation } from 'react-router';
@@ -10,9 +10,24 @@ import yap_logo from "../../images/yap_logo_dark.svg"
 const NavBar = () => {
   const currentPage = useLocation();
   const sessionUser = useSelector(state => state.session.user);
+  const [ menuToggle, setMenuToggle ] = useState(false);
   console.log(currentPage)
   const path = currentPage.pathname
   console.log("page match", /\/business\/\d+\/newreview/.test(currentPage.pathname));
+
+
+
+  const handleMenu = () => {
+    const navDropDown = document.querySelector(".navDropDownMenu")
+    if( !menuToggle ){
+      navDropDown.classList.add("active");
+      setMenuToggle(true);
+    } else {
+      navDropDown.classList.remove("active");
+      setMenuToggle(false);
+    }
+  }
+
   if(currentPage.pathname === "/")
   {
     return (
@@ -41,7 +56,19 @@ const NavBar = () => {
                   </li>
                 </>
               ) : (
-                <LogoutButton />
+                <div className="navDropDown">
+                  <div className="navDropDownButton button" onClick={handleMenu}>
+                    <img src={sessionUser?.avatar} />
+                  </div>
+                  <ul className="navDropDownMenu">
+                    <li className="navItem">
+                      <NavLink to="/user">About Me</NavLink>
+                    </li>
+                    <li className="navItem">
+                      <LogoutButton/>
+                    </li>
+                  </ul>
+                </div>
               )
             }
             <li>
@@ -124,7 +151,19 @@ const NavBar = () => {
                   </li>
                 </>
               ) : (
-                <LogoutButton />
+                <div className="navDropDown">
+                  <div className="navDropDownButton button" onClick={handleMenu}>
+                    <img src={sessionUser?.avatar} />
+                  </div>
+                  <ul className="navDropDownMenu">
+                    <li className="navItem">
+                      <NavLink to="/user">About Me</NavLink>
+                    </li>
+                    <li className="navItem">
+                      <LogoutButton/>
+                    </li>
+                  </ul>
+                </div>
               )
             }
           </ul>
