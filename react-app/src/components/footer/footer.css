@@ -1,0 +1,40 @@
+#footer {
+  box-sizing: border-box;
+  padding: 96px 0 78px;
+  background-color: #EEEEEF;
+}
+
+.footerContent {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  padding: 0 40px;
+  max-width: 1225px;
+  width: 100%;
+  text-align: center;
+}
+
+.footerContent h1 {
+  margin-bottom: 30px;
+}
+.footerLower {
+  display: flex;
+  flex-direction: row;
+}
+
+.footerLinks {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+}
+
+.footerLinks img {
+  margin-right: 10px;
+  height: 36px;
+}
+
+.footerLinks a {
+  display: flex;
+  align-items: center;
+}

@@ -12,7 +12,6 @@ const NavBar = () => {
   const sessionUser = useSelector(state => state.session.user);
   const [ menuToggle, setMenuToggle ] = useState(false);
   console.log(currentPage)
-  const path = currentPage.pathname
   console.log("page match", /\/business\/\d+\/newreview/.test(currentPage.pathname));
 
 
@@ -58,7 +57,7 @@ const NavBar = () => {
               ) : (
                 <div className="navDropDown">
                   <div className="navDropDownButton button" onClick={handleMenu}>
-                    <img src={sessionUser?.avatar} />
+                    <img src={sessionUser?.avatar} alt="User Avatar"/>
                   </div>
                   <ul className="navDropDownMenu">
                     <li className="navItem">
@@ -153,7 +152,7 @@ const NavBar = () => {
               ) : (
                 <div className="navDropDown">
                   <div className="navDropDownButton button" onClick={handleMenu}>
-                    <img src={sessionUser?.avatar} />
+                    <img src={sessionUser?.avatar} alt="User Avatar"/>
                   </div>
                   <ul className="navDropDownMenu">
                     <li className="navItem">

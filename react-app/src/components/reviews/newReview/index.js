@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { newReview } from "../../../store/review";
 import "./newReview.css";
 // import { getBusiness } from '../../store/business';
-import { useParams, NavLink } from 'react-router-dom';
+import {  NavLink } from 'react-router-dom';
 import defaultAvatar from "../../../images/default_user_avatar_64x64.png"
 
 function NewReview({sessionUser, businessId}) {

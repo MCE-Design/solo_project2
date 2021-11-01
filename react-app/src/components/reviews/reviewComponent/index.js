@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { newReview } from "../../../store/review";
+import { useDispatch } from 'react-redux';
 import "./reviewComponent.css";
 // import { getBusiness } from '../../store/business';
-import { useParams, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { deleteReview } from "../../../store/review";
 import menuDots_horiz from "../../../images/menuDots_horiz.svg";
 

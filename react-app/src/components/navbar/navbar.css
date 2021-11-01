@@ -5,6 +5,7 @@
 ======================================== */
 
 .landingContainer {
+  box-sizing: border-box;
   position: absolute;
   padding: 30px 15px 0;
   width: 100%;

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { newReview } from "../../../store/review";
+// import { newReview } from "../../../store/review";
 import { useParams, NavLink, useHistory } from 'react-router-dom';
-import defaultAvatar from "../../../images/default_user_avatar_64x64.png"
+// import defaultAvatar from "../../../images/default_user_avatar_64x64.png"
 import "../photoUpload/photoupload.css"
 import chevRight from "../../../images/chevron_right_black_24dp.svg"
 
@@ -10,7 +10,7 @@ function PhotoUpload({photoType}) {
   const [errors, setErrors] = useState([]);
   const dispatch = useDispatch();
   const history = useHistory();
-  const id = useParams();
+  const { businessId } = useParams();
   const sessionUser = useSelector(state => state.session.user);
   const [image, setImage] = useState(null);
   const [imageCaption, setImageCaption] = useState("");
@@ -19,15 +19,16 @@ function PhotoUpload({photoType}) {
 
   useEffect(() => {
     if (photoType === "business") {
-      setImageTypeId(id);
+      setImageTypeId(businessId);
     } else if (photoType === "review") {
 
     } else if (photoType === "user") {
       setImageTypeId(sessionUser?.id);
     }
-  }, [photoType, id, sessionUser?.id]);
+  }, [photoType, businessId, sessionUser?.id]);
 
-  console.log("businessId", id);
+
+  console.log("businessId", businessId);
   console.log("userId", sessionUser?.id);
   console.log("imageTypeId", imageTypeId);
   console.log("PhotoType", photoType);

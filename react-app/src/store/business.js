@@ -6,9 +6,9 @@ const load = (business) => ({
   payload: business
 });
 
-const removeBusiness = () => ({
-  type: REMOVE_BUSINESS,
-})
+// const removeBusiness = () => ({
+//   type: REMOVE_BUSINESS,
+// })
 
 const initialState = { business: null };
 

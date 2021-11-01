@@ -60,23 +60,23 @@ function Business() {
         <div className="photoCarousel">
           {business?.id === 1 && (
             <>
-              <img src={business1_image}/>
-              <img src={business1_image}/>
-              <img src={business1_image}/>
+              <img src={business1_image} alt="top_placeholder"/>
+              <img src={business1_image} alt="top_placeholder"/>
+              <img src={business1_image} alt="top_placeholder"/>
             </>
           )}
           {business?.id === 2 && (
             <>
-              <img src={business2_image}/>
-              <img src={business2_image}/>
-              <img src={business2_image}/>
+              <img src={business2_image} alt="top_placeholder"/>
+              <img src={business2_image} alt="top_placeholder"/>
+              <img src={business2_image} alt="top_placeholder"/>
             </>
           )}
           {business?.id === 3 && (
             <>
-              <img src={business3_image}/>
-              <img src={business3_image}/>
-              <img src={business3_image}/>
+              <img src={business3_image} alt="top_placeholder"/>
+              <img src={business3_image} alt="top_placeholder"/>
+              <img src={business3_image} alt="top_placeholder"/>
             </>
           )}
         </div>
@@ -95,7 +95,7 @@ function Business() {
                     Write a Review
                   </div>
                 </NavLink>
-                <NavLink to='/business_photos/:businessId/add' exact={true} className="lightButton businessButton bodyButton button" activeClassName='active'>
+                <NavLink to={`/business_photos/${businessId}/add`} exact={true} className="lightButton businessButton bodyButton button" activeClassName='active'>
                   <div className="buttonIcon">
 
                   </div>

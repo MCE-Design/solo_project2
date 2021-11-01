@@ -35,7 +35,7 @@ function User({ profile }) {
           <div>
             <div className="userProfileAvatar">
               <NavLink to="/user_photos">
-                <img src={sessionUser?.avatar} className="profileAvatarImage"></img>
+                <img src={sessionUser?.avatar} className="profileAvatarImage" alt="User Avatar"></img>
               </NavLink>
             </div>
             <div className="">
@@ -61,7 +61,7 @@ function User({ profile }) {
               <div>
                 <div className="userProfileAvatar">
                   <NavLink to="/user_photos/1">
-                    <img src={user?.avatar} className="profileAvatarImage"></img>
+                    <img src={user?.avatar} className="profileAvatarImage" alt="User Avatar"></img>
                   </NavLink>
                 </div>
                 <div className="">

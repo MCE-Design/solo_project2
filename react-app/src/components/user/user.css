@@ -18,3 +18,7 @@
   height: 100%;
   width: 100%;
 }
+
+.userMain .mainContainer {
+  min-height: 700px;
+}

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { getAllBusinesses } from '../../store/business';
@@ -49,17 +49,17 @@ function Splash() {
                         {/* <img src="" /> */}
                         {business?.id === 1 && (
                           <>
-                            <img src={business1_image}/>
+                            <img src={business1_image} alt="placholder1"/>
                           </>
                         )}
                         {business?.id === 2 && (
                           <>
-                            <img src={business2_image}/>
+                            <img src={business2_image} alt="placholder2"/>
                           </>
                         )}
                         {business?.id === 3 && (
                           <>
-                            <img src={business3_image}/>
+                            <img src={business3_image} alt="placholder3"/>
                           </>
                         )}
                       </div>
