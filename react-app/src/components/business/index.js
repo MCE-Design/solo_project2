@@ -15,6 +15,8 @@ function Business() {
   const sessionUser = useSelector(state => state.session.user);
   const [ userReviewed, setUserReviewed ] = useState(false);
 
+  window.document.title = `Yap - ${business?.name}`
+
   useEffect(() => {
     dispatch(getBusiness(businessId));
     dispatch(getReviewsByBusiness(businessId));

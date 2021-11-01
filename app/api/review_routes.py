@@ -44,7 +44,7 @@ def add_review():
         reviews = Review.query.filter(Review.businessId == data["businessId"]).order_by(Review.updatedAt.desc())
         return {"reviews": [review.to_dict() for review in reviews]}
     else:
-        return {"errors": validation_errors_to_error_messages(form.errors)}
+        return {"errors": validation_errors_to_error_messages(form.errors)}, 403
 
 
 @review_routes.route('', methods=["PUT"])

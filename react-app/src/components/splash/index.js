@@ -20,6 +20,9 @@ function Splash() {
           </div>
         </div>
       </div>
+      <div className="landingMiddle container">
+
+      </div>
     </>
   );
 }

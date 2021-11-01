@@ -34,8 +34,6 @@ export const newReview = (review) => async dispatch => {
   const response = await fetch(`/api/review`,
     {
       method: "POST",
-      // headers: { "Content-Type": "application/json" },
-      // body: JSON.stringify(review)
       body: review
     }
   )
@@ -43,11 +41,15 @@ export const newReview = (review) => async dispatch => {
     const data = await response.json()
     console.log("OK")
     dispatch(load(data))
+  } else if (response.status < 500) {
+    const data = await response.json();
+    if (data.errors) {
+      return data.errors;
+    }
   } else return "Thunk Error: Review Submit Failed"
 }
 
 export const editReview = (review) => async dispatch => {
-  console.log("-----------------------EDIT REVIEW HIT---------------------")
   const response = await fetch(`/api/review`,
     {
       method: "PUT",

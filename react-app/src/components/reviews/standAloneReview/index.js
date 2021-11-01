@@ -74,7 +74,9 @@ function StandAloneReview({reviewType}) {
           setErrors(data);
         }
       }
-      history.push(`/business/${businessId}`);
+      if(errors?.length === 0){
+        history.push(`/business/${businessId}`);
+      }
       // Notch in image uploading as a separate dispatch that only goes if everything else is O.K.
     } else {
       if(!starRatingVal){
