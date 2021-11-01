@@ -10,14 +10,15 @@ function NewReview({sessionUser, businessId}) {
   const [errors, setErrors] = useState([]);
   const dispatch = useDispatch();
   const [starRatingVal, setStarRatingVal] = useState();
-  const [reviewText, setReviewText] = useState();
+  const [reviewText, setReviewText] = useState("");
   const reviewTextPlaceholder = "Woof woof, arf, aroo!"
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    let errorData = [];
     console.log("FORM HIT")
     console.log("userId", sessionUser.id, "businessId", businessId, "starRating", starRatingVal, "review", reviewText)
-    if(starRatingVal && reviewText) {
+    if(starRatingVal && reviewText && reviewText.length <= 5000) {
       const formData = new FormData();
 
       formData.append("userId", sessionUser.id);
@@ -28,7 +29,15 @@ function NewReview({sessionUser, businessId}) {
       if (data) {
         setErrors(data);
       }
-
+    }else {
+      if(!starRatingVal){
+        errorData.push("To submit your review, please select a star rating for this business.");
+      } else if(reviewText.length === 0){
+        errorData.push("To submit your review, please explain your rating to others.");
+      } else if(reviewText.length > 5000){
+        errorData.push("To submit your review, please shorten it to be 5,000 characters or less.");
+      }
+      setErrors(errorData);
     }
   }
   console.log(starRatingVal)
@@ -95,7 +104,17 @@ function NewReview({sessionUser, businessId}) {
 
           </textarea>
           <div>
-            {/* Errors go here */}
+            {errors?.length > 0 && (
+              <ul>
+                {errors?.map((error, idx) => {
+                  return(
+                    <li className="reviewSubmitError" key={idx}>
+                      {error}
+                    </li>
+                  )
+                })}
+            </ul>
+            )}
           </div>
           <button type="submit" className="redButton businessButton bodyButton button">
             Post review

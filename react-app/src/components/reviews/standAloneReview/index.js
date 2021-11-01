@@ -82,7 +82,7 @@ function StandAloneReview({reviewType}) {
       } else if(reviewText.length === 0){
         errorData.push("To submit your review, please explain your rating to others.");
       } else if(reviewText.length > 5000){
-        errorData.push("To submit your review, please shorten it to be 5,000 or less.");
+        errorData.push("To submit your review, please shorten it to be 5,000 characters or less.");
       }
       setErrors(errorData);
     }

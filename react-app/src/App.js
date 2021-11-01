@@ -63,6 +63,10 @@ function App() {
           <UserPhotos profile = "other"/>
         </Route>
 
+
+        {/* <Route path='/business_photos/:businessId' exact={true} >
+          <UserPhotos profile = "business"/>
+        </Route> */}
         <Route path='/business/:businessId' exact={true} >
           <Business />
         </Route>
@@ -81,7 +85,7 @@ function App() {
           <PhotoUpload photoType = "user"/>
         </ProtectedRoute>
         {/* These two use the same componenant with differen values passed in depending on the route*/}
-        <ProtectedRoute path='/business_photos/:businessId/add' exact={true} >
+        <ProtectedRoute path='/business_photos/:id/add' exact={true} >
           <PhotoUpload photoType = "business"/>
         </ProtectedRoute>
       </Switch>

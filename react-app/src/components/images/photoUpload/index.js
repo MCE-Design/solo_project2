@@ -10,7 +10,7 @@ function PhotoUpload({photoType}) {
   const [errors, setErrors] = useState([]);
   const dispatch = useDispatch();
   const history = useHistory();
-  const { businessId } = useParams();
+  const { id } = useParams();
   const sessionUser = useSelector(state => state.session.user);
   const [image, setImage] = useState(null);
   const [imageCaption, setImageCaption] = useState("");
@@ -19,16 +19,16 @@ function PhotoUpload({photoType}) {
 
   useEffect(() => {
     if (photoType === "business") {
-      setImageTypeId(businessId);
+      setImageTypeId(id);
     } else if (photoType === "review") {
 
     } else if (photoType === "user") {
       setImageTypeId(sessionUser?.id);
     }
-  }, [photoType, businessId, sessionUser?.id]);
+  }, [photoType, id, sessionUser?.id]);
 
 
-  console.log("businessId", businessId);
+  console.log("businessId", id);
   console.log("userId", sessionUser?.id);
   console.log("imageTypeId", imageTypeId);
   console.log("PhotoType", photoType);
