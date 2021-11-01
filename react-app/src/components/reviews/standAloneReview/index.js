@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { newReview } from "../../../store/review";
+import { newReview, getReview } from "../../../store/review";
 import "../standAloneReview/standAloneReview.css";
 import { getBusiness } from '../../../store/business';
 import { useParams, NavLink, useHistory } from 'react-router-dom';
 
-function StandAloneReview() {
+function StandAloneReview({reviewType}) {
   const [errors, setErrors] = useState([]);
   const dispatch = useDispatch();
   const history = useHistory();
-  const { businessId } = useParams();
+  const { businessId, reviewId } = useParams();
   const sessionUser = useSelector(state => state.session.user);
   const currentReview = useSelector(state => state.review.review);
   const { business } = useSelector((state) => state.business);
@@ -18,10 +18,25 @@ function StandAloneReview() {
   const [reviewText, setReviewText] = useState("");
   const reviewTextPlaceholder = "Woof woof, arf, aroo!"
 
+  console.log("THREADED REVIEW TYPE", reviewType)
+
   useEffect(() => {
     dispatch(getBusiness(businessId));
     setErrors(currentReview?.errors);
-  }, [dispatch, businessId, currentReview]);
+  }, [dispatch, businessId, currentReview?.errors]);
+
+  // useEffect(() => {
+  //   if( reviewType === "edit"){
+  //     dispatch(getReview(reviewId));
+  //     console.log(currentReview?.review)
+  //     const reviewField = document.querySelector(".standAloneReviewText");
+  //     setStarRatingVal(5);
+
+  //     setReviewText(currentReview?.review);
+  //     reviewField.textContent = reviewText;
+  //   }
+  // }, [dispatch, reviewId])
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -57,8 +72,8 @@ function StandAloneReview() {
     console.log("The Element", element)
   }
 
-  console.log(starRatingVal)
-  console.log(reviewText)
+  console.log("Star Rating", starRatingVal)
+  console.log("Review Text", reviewText)
 
   console.log("THE ERRORS", errors)
   return(
@@ -96,7 +111,7 @@ function StandAloneReview() {
             </div>
             <div className="standAloneReviewTextContainer">
               <div contentEditable="true" className="standAloneReviewText" onInput={(e) => setReviewText(e.currentTarget.textContent)}></div>
-              {reviewText.length === 0 && (<div className="standAloneReviewPlaceholder">{reviewTextPlaceholder}</div>)}
+              {reviewText?.length === 0 && (<div className="standAloneReviewPlaceholder">{reviewTextPlaceholder}</div>)}
             </div>
             <div className="reviewStatusMessageBox">
               {errors?.length > 0 && (
@@ -113,7 +128,7 @@ function StandAloneReview() {
             </div>
           </form>
         </div>
-        <div className={reviewText.length > 5000 ? ("charCounter overLimit") : ("charCounter")}>{5000 - reviewText.length}</div>
+        <div className={reviewText?.length > 5000 ? ("charCounter overLimit") : ("charCounter")}>{5000 - reviewText?.length}</div>
         <button onClick={handleSubmit} className="redButton businessButton bodyButton button">
           Post Review
         </button>

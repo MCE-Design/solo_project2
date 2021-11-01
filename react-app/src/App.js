@@ -45,24 +45,36 @@ function App() {
         <ProtectedRoute path='/users' exact={true} >
           <UsersList/>
         </ProtectedRoute>
+
+        {/* These two use the same componenant with differen values passed in depending on the route*/}
         <Route path='/users/:userId' exact={true} >
           <User profile = "other"/>
         </Route>
         <ProtectedRoute path='/user' exact={true} >
           <User profile = "self"/>
         </ProtectedRoute>
+
+        {/* These two use the same componenant with differen values passed in depending on the route*/}
         <ProtectedRoute path='/user_photos' exact={true} >
           <UserPhotos profile = "self"/>
         </ProtectedRoute>
         <Route path='/user_photos/:userId' exact={true} >
           <UserPhotos profile = "other"/>
         </Route>
+
         <Route path='/business/:businessId' exact={true} >
           <Business />
         </Route>
+
+        {/* These two use the same componenant with differen values passed in depending on the route*/}
         <Route path='/business/:businessId/newreview' exact={true} >
-          <StandAloneReview />
+          <StandAloneReview reviewType="new"/>
         </Route>
+        <Route path='/business/:businessId/editreview/:reviewId' exact={true} >
+          <StandAloneReview reviewType="edit"/>
+        </Route>
+
+        {/* These two use the same componenant with differen values passed in depending on the route*/}
         <ProtectedRoute path='/user/photos/add' exact={true} >
           <PhotoUpload photoType = "user"/>
         </ProtectedRoute>

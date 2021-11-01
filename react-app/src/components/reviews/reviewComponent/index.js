@@ -109,14 +109,14 @@ function ReviewComponent({review, sessionUser}) {
                         Write an update
                       </li> */}
                       <li className="reviewDropdownSelection">
-                        <NavLink to="">
-                          Edit review{console.log("EDIT HIT")}
+                        <NavLink to={`/business/${review?.businessId}/editreview/${review?.id}`} className="button">
+                          Edit review
                         </NavLink>
                       </li>
                       <li className="reviewDropdownSelection">
-                        <a onClick={handleDelete}>
+                        <button onClick={handleDelete} className="button">
                           Remove review
-                        </a>
+                        </button>
                       </li>
                     </ul>
                   </div>
