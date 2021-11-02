@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { newReview } from "../../../store/review";
 import "./newReview.css";
@@ -12,6 +12,19 @@ function NewReview({sessionUser, businessId}) {
   const [starRatingVal, setStarRatingVal] = useState();
   const [reviewText, setReviewText] = useState("");
   const reviewTextPlaceholder = "Woof woof, arf, aroo!"
+
+  const animator = (uniqueObjectClass) => {
+    const animatedObj = document.querySelector(uniqueObjectClass);
+    console.log("THE OBJECT", animatedObj)
+    if(animatedObj){
+      requestAnimationFrame(() => {
+        animatedObj.classList.remove("scrollBlinder")
+      })
+    }
+  }
+  useEffect(() => {
+    animator(".reviewSubmitError");
+  })
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -103,19 +116,21 @@ function NewReview({sessionUser, businessId}) {
           <textarea className="newReviewText" onChange={(e) => setReviewText(e.target.value)} placeholder={reviewTextPlaceholder}>
 
           </textarea>
-          {errors?.length > 0 && (
-            <div className="inlineReviewStatusMessageBox">
-                <ul>
-                  {errors?.map((error, idx) => {
-                    return(
-                      <li className="reviewSubmitError" key={idx}>
-                        {error}
-                      </li>
-                    )
-                  })}
-              </ul>
-            </div>
-          )}
+          <div className="inlineReviewStatusMessageBox">
+            {errors?.length > 0 && (
+                  <ul>
+                    {errors?.map((error, idx) => {
+                      return(
+                        <>
+                          <li className="reviewSubmitError animation scrollBlinder" key={idx}>
+                            {error}
+                          </li>
+                        </>
+                      )
+                    })}
+                </ul>
+            )}
+          </div>
           <button type="submit" className="redButton businessButton bodyButton button">
             Post review
           </button>

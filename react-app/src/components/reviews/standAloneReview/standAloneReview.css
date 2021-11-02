@@ -1,5 +1,6 @@
 .standAloneReview {
-  margin: 0 auto;
+  margin-right: auto;
+  margin-left: auto;
   padding: 0 15px;
   max-width: 960px;
 }
@@ -75,6 +76,7 @@
 
 .reviewStatusMessageBox {
   margin-top: 15px;
+  height: 18px;
 }
 
 .reviewStatusMessageBox ul {

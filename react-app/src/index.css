@@ -137,6 +137,10 @@ ul {
   filter: invert(0.72) sepia(0.05) saturate(0.17) hue-rotate(0) brightness(0.85) contrast(0.87)
 }
 
+.container {
+  margin-bottom: 30px;
+}
+
 .backPageMain {
   min-width: 1022px;
 }
@@ -180,4 +184,15 @@ ul {
 .contentBottom {
   margin: 0 auto;
   max-width: 1144px;
+}
+
+
+.animation {
+  transition-property: background-image,background-color,background-position,background-size,border-color,box-shadow,opacity;
+  transition: all 0.2s ease-in-out;
+}
+
+.scrollBlinder {
+  transform: translateY(10px);
+  opacity: 0;
 }

@@ -20,6 +20,20 @@ function StandAloneReview({reviewType}) {
 
   console.log("THREADED REVIEW TYPE", reviewType)
 
+  const animator = (uniqueObjectClass) => {
+    const animatedObj = document.querySelector(uniqueObjectClass);
+    console.log("THE OBJECT", animatedObj)
+    if(animatedObj){
+      requestAnimationFrame(() => {
+        animatedObj.classList.remove("scrollBlinder")
+      })
+    }
+  }
+
+  useEffect(() => {
+    animator(".reviewSubmitError");
+  })
+
   useEffect(() => {
     dispatch(getBusiness(businessId));
     if (reviewType === "edit"){
@@ -101,7 +115,7 @@ function StandAloneReview({reviewType}) {
     setStarRatingVal(event.target.value)
   }
   return(
-    <div className="standAloneReview">
+    <div className="standAloneReview container">
       <div className="standAloneReviewContent">
         <div className="standAloneReviewTop">
           <NavLink to={`/business/${businessId}`}>
@@ -142,7 +156,7 @@ function StandAloneReview({reviewType}) {
                 <ul>
                   {errors?.map((error, idx) => {
                     return(
-                      <li className="reviewSubmitError" key={idx}>
+                      <li className="reviewSubmitError animation scrollBlinder" key={idx}>
                         {error}
                       </li>
                     )
