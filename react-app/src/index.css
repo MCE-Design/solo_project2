@@ -58,6 +58,7 @@ ul {
   font-size: 16px;
   font-weight: 500;
   letter-spacing: -0.2px;
+  line-height: 25px;
 }
 
 .redButton:hover {
@@ -76,6 +77,7 @@ ul {
   border: 1px solid #BBBAC0;
   color: #2B273C;
   font-size: 16px;
+  line-height: 25px;
   font-family: "Poppins", "Roboto", Helvetica, Arial, sans-serif;
 }
 
@@ -102,7 +104,7 @@ ul {
 }
 
 .redButton .buttonIcon {
-  filter: invert(1) sepia(0.00) saturate(0) hue-rotate(0) brightness(1) contrast(1)
+
 }
 
 .breadcrumb {
