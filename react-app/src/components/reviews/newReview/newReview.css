@@ -63,3 +63,7 @@ img.newReviewAvatar {
 .newReviewText:focus-visible {
   outline: none;
 }
+
+.inlineReviewStatusMessageBox {
+  margin: 5px 0 15px;
+}

@@ -103,19 +103,19 @@ function NewReview({sessionUser, businessId}) {
           <textarea className="newReviewText" onChange={(e) => setReviewText(e.target.value)} placeholder={reviewTextPlaceholder}>
 
           </textarea>
-          <div>
-            {errors?.length > 0 && (
-              <ul>
-                {errors?.map((error, idx) => {
-                  return(
-                    <li className="reviewSubmitError" key={idx}>
-                      {error}
-                    </li>
-                  )
-                })}
-            </ul>
-            )}
-          </div>
+          {errors?.length > 0 && (
+            <div className="inlineReviewStatusMessageBox">
+                <ul>
+                  {errors?.map((error, idx) => {
+                    return(
+                      <li className="reviewSubmitError" key={idx}>
+                        {error}
+                      </li>
+                    )
+                  })}
+              </ul>
+            </div>
+          )}
           <button type="submit" className="redButton businessButton bodyButton button">
             Post review
           </button>
