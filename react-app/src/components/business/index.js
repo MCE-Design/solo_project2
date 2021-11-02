@@ -5,7 +5,9 @@ import { getBusiness } from '../../store/business';
 import { getReviewsByBusiness } from '../../store/review';
 import { useParams, NavLink } from 'react-router-dom';
 import NewReview from '../reviews/newReview';
-import ReviewComponent from '../reviews/reviewComponent'
+import ReviewComponent from '../reviews/reviewComponent';
+import write from "../../images/star_outline_black_24dp.svg";
+import addPhoto from "../../images/add_a_photo_black_24dp.svg";
 import business1_image from '../../images/business_hero_images/business1/page_image1.jpg';
 import business2_image from '../../images/business_hero_images/business2/page_image1.jpg';
 import business3_image from '../../images/business_hero_images/business3/page_image1.jpg';
@@ -88,7 +90,7 @@ function Business() {
             { sessionUser ? (
               <>
                 <NavLink to={`${businessId}/newreview`} exact={true} className="redButton businessButton bodyButton button" activeClassName='active'>
-                  <div className="buttonIcon">
+                  <div className="buttonIcon" style={{backgroundImage: `url(${write})`}}>
 
                   </div>
                   <div>
@@ -96,7 +98,7 @@ function Business() {
                   </div>
                 </NavLink>
                 <NavLink to={`/business_photos/${businessId}/add`} exact={true} className="lightButton businessButton bodyButton button" activeClassName='active'>
-                  <div className="buttonIcon">
+                  <div className="buttonIcon" style={{backgroundImage: `url(${addPhoto})`}}>
 
                   </div>
                   <div>
