@@ -53,10 +53,9 @@ function Business() {
             </div>
           </div>
           <div className="businessButtonBox">
-            {/* Enable Later when display page is 100% */}
-            {/* <NavLink to='' className="transparentButton businessTopButton bodyButton button">
+            <NavLink to={`/business_photos/${businessId}`} className="transparentButton businessTopButton bodyButton button">
               See Photos
-            </NavLink> */}
+            </NavLink>
           </div>
         </div>
         <div className="photoCarousel">

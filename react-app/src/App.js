@@ -8,7 +8,7 @@ import Footer from './components/footer';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/user/User';
-import UserPhotos from './components/user/userPhotos';
+import PhotoDisplay from './components/images/photoDisplay';
 import Splash from './components/splash';
 import Business from './components/business';
 import PhotoUpload from './components/images/photoUpload';
@@ -48,7 +48,7 @@ function App() {
         </ProtectedRoute>
 
         {/* These two use the same componenant with differen values passed in depending on the route*/}
-        <Route path='/users/:userId' exact={true} >
+        <Route path='/users/:id' exact={true} >
           <User profile = "other"/>
         </Route>
         <ProtectedRoute path='/user' exact={true} >
@@ -57,16 +57,16 @@ function App() {
 
         {/* These two use the same componenant with differen values passed in depending on the route*/}
         <ProtectedRoute path='/user_photos' exact={true} >
-          <UserPhotos profile = "self"/>
+          <PhotoDisplay profile = "self"/>
         </ProtectedRoute>
-        <Route path='/user_photos/:userId' exact={true} >
-          <UserPhotos profile = "other"/>
+        <Route path='/user_photos/:id' exact={true} >
+          <PhotoDisplay profile = "other"/>
         </Route>
 
 
-        {/* <Route path='/business_photos/:businessId' exact={true} >
-          <UserPhotos profile = "business"/>
-        </Route> */}
+        <Route path='/business_photos/:id' exact={true} >
+          <PhotoDisplay profile = "business"/>
+        </Route>
         <Route path='/business/:businessId' exact={true} >
           <Business />
         </Route>

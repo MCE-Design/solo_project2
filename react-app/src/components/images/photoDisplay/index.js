@@ -2,36 +2,46 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useParams, useHistory } from 'react-router-dom';
 import { getUserImagesUser } from "../../../store/image";
-import "./../user.css";
+import { getBusiness } from '../../../store/business';
+import "./photoDisplay.css";
 import chevRight from "../../../images/chevron_right_black_24dp.svg"
 import addPhoto from "../../../images/add_a_photo_white_24dp.svg"
 import PhotoTile from '../../images/photoTiler';
 
-function UserPhotos({ profile }) {
+function PhotoDisplay({ profile }) {
   const dispatch = useDispatch();
   const history = useHistory();
   const [user, setUser] = useState({});
-  const { userId }  = useParams();
+  const { id }  = useParams();
   const sessionUser = useSelector(state => state.session.user);
-  const images = useSelector(state => state.image?.image?.images)
+  const business = useSelector(state => state.business.business);
+  const images = useSelector(state => state.image?.image?.images);
 
   console.log("profile", profile)
 
-  if (sessionUser?.id === +userId) {
-    history.push("/user_photos");
+  if (sessionUser?.id === +id && (profile === "self" || profile === "other")) {
+    history.replace("/user_photos");
   }
 
   useEffect(() => {
     if( profile === "self") {
       console.log("GET IMAGES OF SELF")
       dispatch(getUserImagesUser(sessionUser?.id));
+    } else if( profile === "business") {
+      console.log("GET IMAGES OF BUSINESS");
     } else {
       console.log("GET IMAGES OF OTHER")
-      dispatch(getUserImagesUser(userId));
+      dispatch(getUserImagesUser(id));
     }
-  }, [dispatch, profile, sessionUser?.id, userId]);
+  }, [dispatch, profile, sessionUser?.id, id]);
 
-  if (!user) {
+  useEffect(() => {
+    if( profile === "business") {
+      dispatch(getBusiness(id));
+    }
+  }, [dispatch])
+
+  if (!user || (sessionUser?.id === +id && profile === "other")) {
     return null;
   }
   if (profile === "self"){
@@ -53,7 +63,7 @@ function UserPhotos({ profile }) {
             </div>
             <div className="userPhotoRight backPageRight">
               <NavLink to="/user/photos/add" className="redButton backPageButton bodyButton button">
-                <span class="buttonIcon" style={{backgroundImage: `url(${addPhoto})`}}></span>
+                <span className="buttonIcon" style={{backgroundImage: `url(${addPhoto})`}}></span>
                 Add photos
               </NavLink>
             </div>
@@ -69,6 +79,29 @@ function UserPhotos({ profile }) {
                 </li>
                 )
               })}
+            </ul>
+          </div>
+        </div>
+      </div>
+    )
+  } else if (profile === "business"){
+    return (
+      <div className="userPhotoMain backPageMain">
+        <div className="contentContainer">
+          <div className="userPhotoTop backPageTop">
+            <h1>Photos for {business?.name}</h1>
+          </div>
+          <div className="backPageLowerContainer">
+            <ul className="backPageImageContainer">
+              {/* {console.log("Image", images)} */}
+              {/* {images?.map((image) => {
+                return(
+                <li key={image?.id} className="imageTileContainer">
+                  {console.log("HIT MAP")}
+                  <PhotoTile image={image} user={sessionUser}/>
+                </li>
+                )
+              })} */}
             </ul>
           </div>
         </div>
@@ -108,4 +141,4 @@ function UserPhotos({ profile }) {
     )
   }
 }
-export default UserPhotos;
+export default PhotoDisplay;
