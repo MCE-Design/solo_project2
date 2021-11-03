@@ -1,10 +1,16 @@
 const SET_IMAGE = 'image/SET_IMAGE';
 const REMOVE_IMAGE = 'image/REMOVE_IMAGE';
+const SET_BUSINESS_IMAGE = 'image/SET_BUSINESS_IMAGE';
 
 const load = (image) => ({
   type: SET_IMAGE,
   payload: image
 });
+
+const businessLoad = (image) => ({
+  type: SET_BUSINESS_IMAGE,
+  payload: image
+})
 
 const removeImage = () => ({
   type: REMOVE_IMAGE,
@@ -26,6 +32,14 @@ export const getUserImagesUser = (id) => async dispatch => {
     const list = await response.json();
     dispatch(load(list));
   } else return "Thunk Error: Bad Req"
+}
+
+export const getBusinessImages = (id) => async dispatch => {
+  const response = await fetch(`/api/business/${id}/images`);
+  if (response.ok) {
+    const list = await response.json();
+    dispatch(businessLoad(list));
+  } else return "Thunk Error: Bad Req";
 }
 
 export const deleteImage = (id) => async dispatch => {
@@ -63,6 +77,8 @@ export default function imageReducer(state = initialState, action) {
       return { image: action.payload }
     case REMOVE_IMAGE:
       return { image: null }
+    case SET_BUSINESS_IMAGE:
+      return { businessImage: action.payload }
     default:
       return state;
   }

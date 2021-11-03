@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useParams, useHistory } from 'react-router-dom';
 import { getUserImagesUser } from "../../../store/image";
+import { getBusinessImages } from "../../../store/image"
 import { getBusiness } from '../../../store/business';
 import "./photoDisplay.css";
 import chevRight from "../../../images/chevron_right_black_24dp.svg"
@@ -16,6 +17,7 @@ function PhotoDisplay({ profile }) {
   const sessionUser = useSelector(state => state.session.user);
   const business = useSelector(state => state.business.business);
   const images = useSelector(state => state.image?.image?.images);
+  const businessImages = useSelector(state => state.image?.businessImage?.images);
 
   console.log("profile", profile)
 
@@ -29,6 +31,7 @@ function PhotoDisplay({ profile }) {
       dispatch(getUserImagesUser(sessionUser?.id));
     } else if( profile === "business") {
       console.log("GET IMAGES OF BUSINESS");
+      dispatch(getBusinessImages(id));
     } else {
       console.log("GET IMAGES OF OTHER")
       dispatch(getUserImagesUser(id));
@@ -40,6 +43,7 @@ function PhotoDisplay({ profile }) {
       dispatch(getBusiness(id));
     }
   }, [dispatch])
+
 
   if (!user || (sessionUser?.id === +id && profile === "other")) {
     return null;
@@ -93,15 +97,15 @@ function PhotoDisplay({ profile }) {
           </div>
           <div className="backPageLowerContainer">
             <ul className="backPageImageContainer">
-              {/* {console.log("Image", images)} */}
-              {/* {images?.map((image) => {
+              {console.log("Business Image", businessImages)}
+              {businessImages?.map((image) => {
                 return(
                 <li key={image?.id} className="imageTileContainer">
                   {console.log("HIT MAP")}
                   <PhotoTile image={image} user={sessionUser}/>
                 </li>
                 )
-              })} */}
+              })}
             </ul>
           </div>
         </div>

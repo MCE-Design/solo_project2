@@ -22,7 +22,7 @@ function User({ profile }) {
   }, [userId]);
 
   if (sessionUser?.id === +userId) {
-    history.push("/user");
+    history.replace("/user");
   }
 
   if (!user) {

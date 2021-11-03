@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import "./phototiler.css";
 import { NavLink, useHistory } from 'react-router-dom';
@@ -8,6 +8,7 @@ import { deleteImage, editImageCaption } from "../../../store/image";
 function PhotoTile({image, user}) {
   const dispatch = useDispatch();
   const history = useHistory();
+  const [ currentImageUser, setCurrentImageUser ] = useState();
   const [ modalOpen, setModalOpen ] = useState(false);
   const [ editPanel, setEditPanel ] = useState(false);
 
@@ -25,7 +26,8 @@ function PhotoTile({image, user}) {
     }
   }
 
-  const handleEditModeClose = () => {
+  const handleEditModeClose = (e) => {
+    e.preventDefault();
     const imageCaptionBox = document.querySelector(".lightboxImageCaptionBox");
     imageCaptionBox.setAttribute("contentEditable", "false");
     imageCaptionBox.classList.remove("active");
@@ -51,6 +53,20 @@ function PhotoTile({image, user}) {
     handleEditModeClose();
   }
 
+  useEffect(() => {
+    if (!image?.userId) {
+      return;
+    }
+    (async () => {
+      const response = await fetch(`/api/users/${image?.userId}`);
+      const currentUser = await response.json();
+      setCurrentImageUser(currentUser);
+    })();
+  }, [image?.userId]);
+
+  console.log("user", user)
+  console.log("currentImageUser", currentImageUser)
+
   return(
     <div className="imageTile">
       <img src={image?.imageUrl} alt="" draggable="false"/>
@@ -72,7 +88,9 @@ function PhotoTile({image, user}) {
             setModalOpen(false);
           }
         }
-        } lightbox={true}>
+        }
+
+        lightbox={true}>
         <div className="lightboxBody">
           <div className="lightboxLeft">
             <img src={image?.imageUrl} className="lightboxImage" alt=""/>
@@ -80,14 +98,15 @@ function PhotoTile({image, user}) {
           <div className="lightboxRight">
             <div>
               <div className="lightboxAvatar">
-                <NavLink to={`/users/${user?.id}`}>
-                  <img src={user?.avatar} alt={`${user?.fname}'s Avatar'`}/>
+                <NavLink to={`/users/${currentImageUser?.id}`}>
+                  <img src={currentImageUser?.avatar} alt={`${currentImageUser?.fname}'s Avatar'`}/>
                 </NavLink>
               </div>
-              <NavLink to={`/users/${user?.id}`}>
-                {user?.fname} {user?.lname[0]}
+              <NavLink to={`/users/${currentImageUser?.id}`}>
+                {currentImageUser?.fname} {currentImageUser?.lname[0]}
               </NavLink>
             </div>
+            {currentImageUser?.id === user?.id && (
             <div className="lightboxActions">
               <button className="modalButton lightButton button" onClick={handleEditModeOpen}>
                 Edit
@@ -96,12 +115,13 @@ function PhotoTile({image, user}) {
                 Delete
               </button>
             </div>
+            )}
             <div className="lightboxImageCaptionBox">
               {image?.imageCaption}
             </div>
             {editPanel && (<div className="lightboxEditPanel">
               <button onClick={handleEditSubmit} className="redButton modalButton button">Update caption</button>
-              <a onClick={handleEditModeClose} className="cancelButton button">Cancel</a>
+              <a href="/" onClick={handleEditModeClose} className="cancelButton button">Cancel</a>
             </div>)}
           </div>
         </div>

@@ -48,7 +48,7 @@ function App() {
         </ProtectedRoute>
 
         {/* These two use the same componenant with differen values passed in depending on the route*/}
-        <Route path='/users/:id' exact={true} >
+        <Route path='/users/:userId' exact={true} >
           <User profile = "other"/>
         </Route>
         <ProtectedRoute path='/user' exact={true} >
@@ -88,6 +88,9 @@ function App() {
         <ProtectedRoute path='/business_photos/:id/add' exact={true} >
           <PhotoUpload photoType = "business"/>
         </ProtectedRoute>
+        {/* <Route path="*">
+            <FourOhFourPage />
+        </Route> */}
       </Switch>
       <Footer />
     </BrowserRouter>
