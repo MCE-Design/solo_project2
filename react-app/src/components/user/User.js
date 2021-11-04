@@ -35,13 +35,13 @@ function User({ profile }) {
           <div>
             <div className="userProfileAvatar">
               <NavLink to="/user_photos/">
-                <img src={sessionUser?.avatar} className="profileAvatarImage" alt="User Avatar"></img>
+                <img src={sessionUser?.avatar} className="profileAvatarImage" alt={`${sessionUser}'s Avatar`}></img>
               </NavLink>
             </div>
             <div className="">
               <div></div>
               <div className="profileInfo">
-
+                TEST
               </div>
               <div></div>
             </div>
@@ -54,34 +54,28 @@ function User({ profile }) {
     )
   } else {
     return (
-      <>
-        {user ? (
-          <div className="userMain">
-            <div className="topInfo">
-              <div>
-                <div className="userProfileAvatar">
-                  <NavLink to={`/user_photos/${userId}`}>
-                    <img src={user?.avatar} className="profileAvatarImage" alt={`${user?.fname}'s Avatar`}></img>
-                  </NavLink>
-                </div>
-                <div className="">
-                  <div></div>
-                  <div className="profileInfo">
-
-                  </div>
-                  <div></div>
-                </div>
-              </div>
+      <div className="userMain">
+        <div className="topInfo">
+          <div>
+            <div className="userProfileAvatar">
+              <NavLink to={`/user_photos/${userId}`}>
+                <img src={user?.avatar} className="profileAvatarImage" alt={`${user?.fname}'s Avatar`}></img>
+              </NavLink>
             </div>
-            <div className="mainContainer">
-              {/* Change to last initial later when bug fixed */}
-              <h1>{user?.fname} {user?.lname}</h1>
+            <div className="">
+              <div></div>
+              <div className="profileInfo">
+
+              </div>
+              <div></div>
             </div>
           </div>
-        ) : (
-          null
-        )}
-      </>
+        </div>
+        <div className="mainContainer">
+          {/* Change to last initial later when bug fixed */}
+          <h1>{user?.fname} {user?.lname?.slice(0,1)}.</h1>
+        </div>
+      </div>
     )
   }
 }
