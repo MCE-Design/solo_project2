@@ -34,7 +34,7 @@ function User({ profile }) {
         <div className="topInfo">
           <div>
             <div className="userProfileAvatar">
-              <NavLink to="/user_photos">
+              <NavLink to="/user_photos/">
                 <img src={sessionUser?.avatar} className="profileAvatarImage" alt="User Avatar"></img>
               </NavLink>
             </div>
@@ -60,8 +60,8 @@ function User({ profile }) {
             <div className="topInfo">
               <div>
                 <div className="userProfileAvatar">
-                  <NavLink to="/user_photos/1">
-                    <img src={user?.avatar} className="profileAvatarImage" alt="User Avatar"></img>
+                  <NavLink to={`/user_photos/${userId}`}>
+                    <img src={user?.avatar} className="profileAvatarImage" alt={`${user?.fname}'s Avatar`}></img>
                   </NavLink>
                 </div>
                 <div className="">
