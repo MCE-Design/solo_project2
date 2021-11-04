@@ -90,7 +90,7 @@ function PhotoDisplay({ profile }) {
     )
   } else if (profile === "business"){
     return (
-      <div className="userPhotoMain backPageMain">
+      <div className="userPhotoMain backPageMain container">
         <div className="contentContainer">
           <div className="userPhotoTop backPageTop">
             <h1>Photos for {business?.name}</h1>

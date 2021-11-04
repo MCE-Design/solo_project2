@@ -89,7 +89,7 @@ const NavBar = () => {
     )
   } else if (/\/business\/\d+\/newreview/.test(currentPage.pathname) || /\/business\/\d+\/editreview/.test(currentPage.pathname)){
     return (
-      <div className="navContainer">
+      <div className="navContainer navGeneral">
         <nav>
           <ul>
             <li>
@@ -108,21 +108,31 @@ const NavBar = () => {
                     </NavLink>
                   </li>
                   <li>
-                    <NavLink to='/signup' exact={true} activeClassName='active'>
+                    <NavLink to='/signup' exact={true} className="headerLink signUp button" activeClassName='active'>
                       Sign Up
                     </NavLink>
                   </li>
                 </>
               ) : (
-                <>
-                  <LogoutButton />
-                </>
+                <div className="navDropDown">
+                  <div className="navDropDownButton button" onClick={handleMenu}>
+                    <img src={sessionUser?.avatar} alt="User Avatar"/>
+                  </div>
+                  <ul className="navDropDownMenu">
+                    <li className="navItem">
+                      <NavLink to="/user">About Me</NavLink>
+                    </li>
+                    <li className="navItem">
+                      <LogoutButton/>
+                    </li>
+                  </ul>
+                </div>
               )
             }
           </ul>
         </nav>
       </div>
-    )
+    );
   } else {
     return (
       <div className="navContainer navGeneral">
