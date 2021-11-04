@@ -5,7 +5,8 @@ import LogoutButton from '../auth/LogoutButton';
 import { useLocation } from 'react-router';
 import { useSelector } from 'react-redux';
 import "./navbar.css"
-import yap_logo from "../../images/yap_logo_dark.svg"
+import yap_logo from "../../images/yap_logo.svg"
+import yap_logo_dark from "../../images/yap_logo_dark.svg"
 
 const NavBar = () => {
   const currentPage = useLocation();
@@ -81,7 +82,7 @@ const NavBar = () => {
     return (
       <div className="loginAndSignUp navContainer">
         <div className="">
-          <div className="loginLogo" style={{backgroundImage: `url(${yap_logo})`}}>
+          <div className="loginLogo" style={{backgroundImage: `url(${yap_logo_dark})`}}>
             <a href="/">Yap</a>
           </div>
         </div>
@@ -93,9 +94,9 @@ const NavBar = () => {
         <nav>
           <ul>
             <li>
-              <NavLink to='/' exact={true} activeClassName='active'>
-                Home
-              </NavLink>
+              <div className="navLogo" style={{backgroundImage: `url(${yap_logo})`}}>
+                <NavLink to="/">Yap</NavLink>
+              </div>
             </li>
             <li className="navSpacer">
 
@@ -139,9 +140,9 @@ const NavBar = () => {
         <nav>
           <ul>
             <li>
-              <NavLink to='/' exact={true} activeClassName='active'>
-                Home
-              </NavLink>
+              <div className="navLogo" style={{backgroundImage: `url(${yap_logo})`}}>
+                <NavLink to="/">Yap</NavLink>
+              </div>
             </li>
             <li className="navSpacer">
 

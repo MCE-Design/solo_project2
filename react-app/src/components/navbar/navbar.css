@@ -156,6 +156,23 @@
   margin: 0 auto;
   padding: 0 15px;
 }
+
+.navLogo {
+  margin: 0 auto;
+  height: 40px;
+  width: 80px;
+  background-repeat: no-repeat;
+  background-size: 80px 40px;
+}
+
+.navLogo a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  color: transparent;
+}
+
+
 .navGeneral .navSpacer {
   flex-grow: 1;
 }
