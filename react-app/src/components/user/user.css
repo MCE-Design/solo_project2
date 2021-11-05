@@ -1,6 +1,6 @@
 
 
-.topInfo {
+.topBox {
   position: relative;
   padding: 15px 0 0;
   width: 100%;
@@ -8,10 +8,23 @@
   border-bottom: 1px solid #E6E6E6;
 }
 
+.topContent {
+  margin: 0 auto;
+  padding: 0 15px;
+  width: 960px;
+}
+
+.profileContentContainer {
+  position: relative;
+  padding: 10px 0 25px;
+}
 
 .userProfileAvatar {
+  position: absolute;
+  border-radius: 4px;
   height: 220px;
   width: 220px;
+  overflow: hidden;
 }
 
 .profileAvatarImage {
@@ -19,6 +32,22 @@
   width: 100%;
 }
 
+.topInfoContainer {
+  display: grid;
+  grid-template-columns: 2fr 3fr 3fr;
+  min-height: 150px;
+}
+
 .userMain .mainContainer {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  margin: 0 auto;
+  padding: 25px 0 35px;
   min-height: 700px;
+  width: 960px;
+}
+
+.profileLeft {
+  margin-top: 30px;
+  padding: 0 15px;
 }

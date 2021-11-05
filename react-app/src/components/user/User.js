@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { NavLink, useParams, useHistory } from 'react-router-dom';
+import { Link, NavLink, useParams, useHistory } from 'react-router-dom';
 import "./user.css";
 
 function User({ profile }) {
@@ -31,49 +31,84 @@ function User({ profile }) {
   if( profile === "self" ){
     return (
       <div className="userMain">
-        <div className="topInfo">
-          <div>
-            <div className="userProfileAvatar">
-              <NavLink to="/user_photos/">
-                <img src={sessionUser?.avatar} className="profileAvatarImage" alt={`${sessionUser}'s Avatar`}></img>
-              </NavLink>
-            </div>
-            <div className="">
-              <div></div>
-              <div className="profileInfo">
-                TEST
+        <div className="topBox">
+          <div className="topContent">
+            <div className="profileContentContainer">
+              <div className="userProfileAvatar">
+                <NavLink to="/user_photos/">
+                  <img src={sessionUser?.avatar} className="profileAvatarImage" alt={`${sessionUser}'s Avatar`}></img>
+                </NavLink>
               </div>
-              <div></div>
+              <div className="topInfoContainer">
+                <div className="profileSpacer"></div>
+                <div className="profileInfo">
+                  INFO GOES HERE
+                  <div>
+                    <h1>{sessionUser?.fname} {sessionUser?.lname[0]}</h1>
+                    <div>STATS GO HERE</div>
+                  </div>
+                </div>
+                <div className="profileActionLinks">
+                  <div>
+                    <Link>Add Profile Photos</Link>
+                  </div>
+                  <div>
+                    <Link>Update Your Profile</Link>
+                  </div>
+                  {/* <div>
+                    <Link>TEST</Link>
+                  </div> */}
+                </div>
+              </div>
             </div>
           </div>
         </div>
         <div className="mainContainer">
-          <h1>{sessionUser?.fname} {sessionUser?.lname[0]}.</h1>
+          <div className="profileLeft">
+            <h3>{sessionUser?.fname}'s Profile</h3>
+
+          </div>
+          <div className="profielRight">
+
+          </div>
         </div>
       </div>
     )
   } else {
     return (
       <div className="userMain">
-        <div className="topInfo">
-          <div>
-            <div className="userProfileAvatar">
-              <NavLink to={`/user_photos/${userId}`}>
-                <img src={user?.avatar} className="profileAvatarImage" alt={`${user?.fname}'s Avatar`}></img>
-              </NavLink>
-            </div>
-            <div className="">
-              <div></div>
-              <div className="profileInfo">
-
+        <div className="topBox">
+          <div className="topContent">
+            <div className="profileContentContainer">
+              <div className="userProfileAvatar">
+                <NavLink to={`/user_photos/${userId}`}>
+                  <img src={user?.avatar} className="profileAvatarImage" alt={`${user?.fname}'s Avatar`}></img>
+                </NavLink>
               </div>
-              <div></div>
+              <div className="topInfoContainer">
+                <div className="profileSpacer"></div>
+                <div className="profileInfo">
+                  INFO GOES HERE
+                  <div>
+                    <h1>{sessionUser?.fname} {sessionUser?.lname[0]}</h1>
+                    <div>STATS GO HERE</div>
+                  </div>
+                </div>
+                <div className="profileActionLinks">
+
+                </div>
+              </div>
             </div>
           </div>
         </div>
         <div className="mainContainer">
-          {/* Change to last initial later when bug fixed */}
-          <h1>{user?.fname} {user?.lname?.slice(0,1)}.</h1>
+          <div className="profileLeft">
+            <h3>{user?.fname} {user?.lname?.slice(0,1)}.</h3>
+
+          </div>
+          <div className="profielRight">
+
+          </div>
         </div>
       </div>
     )
