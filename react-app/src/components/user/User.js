@@ -35,7 +35,7 @@ function User({ profile }) {
           <div className="topContent">
             <div className="profileContentContainer">
               <div className="userProfileAvatar">
-                <NavLink to="/user_photos/">
+                <NavLink to="/user_photos">
                   <img src={sessionUser?.avatar} className="profileAvatarImage" alt={`${sessionUser}'s Avatar`}></img>
                 </NavLink>
               </div>
@@ -50,7 +50,7 @@ function User({ profile }) {
                 </div>
                 <div className="profileActionLinks">
                   <div>
-                    <Link>Add Profile Photos</Link>
+                    <Link to="/user/photos/add">Add Profile Photos</Link>
                   </div>
                   <div>
                     <Link>Update Your Profile</Link>
@@ -66,7 +66,11 @@ function User({ profile }) {
         <div className="mainContainer">
           <div className="profileLeft">
             <h3>{sessionUser?.fname}'s Profile</h3>
-
+            <ul className="profileSidebar">
+              <li className="profileSideItem"><NavLink to="/user" activeClassName="sideBarActive">Profile Overview</NavLink></li>
+              <li className="profileSideItem"><NavLink to="/user/reviews" activeClassName="sideBarActive">Reviews</NavLink></li>
+              <li className="profileSideItem"><NavLink to="/user/businessPhotos" activeClassName="sideBarActive">Business Photos</NavLink></li>
+            </ul>
           </div>
           <div className="profielRight">
 
@@ -104,7 +108,11 @@ function User({ profile }) {
         <div className="mainContainer">
           <div className="profileLeft">
             <h3>{user?.fname} {user?.lname?.slice(0,1)}.</h3>
-
+            <ul className="profileSidebar">
+              <li className="profileSideItem"><NavLink to="/user" activeClassName="sideBarActive">Profile Overview</NavLink></li>
+              <li className="profileSideItem"><NavLink to="/user/reviews" activeClassName="sideBarActive">Reviews</NavLink></li>
+              <li className="profileSideItem"><NavLink to="/user/businessPhotos" activeClassName="sideBarActive">Business Photos</NavLink></li>
+            </ul>
           </div>
           <div className="profielRight">
 
