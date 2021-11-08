@@ -109,9 +109,9 @@ function User({ profile }) {
           <div className="profileLeft">
             <h3>{user?.fname} {user?.lname?.slice(0,1)}.</h3>
             <ul className="profileSidebar">
-              <li className="profileSideItem"><NavLink to="/user" activeClassName="sideBarActive">Profile Overview</NavLink></li>
-              <li className="profileSideItem"><NavLink to="/user/reviews" activeClassName="sideBarActive">Reviews</NavLink></li>
-              <li className="profileSideItem"><NavLink to="/user/businessPhotos" activeClassName="sideBarActive">Business Photos</NavLink></li>
+              <li className="profileSideItem"><NavLink to="/user" activeClassName="sideBarActive"><span></span>Profile Overview</NavLink></li>
+              <li className="profileSideItem"><NavLink to="/user/reviews" activeClassName="sideBarActive"><span></span>Reviews</NavLink></li>
+              <li className="profileSideItem"><NavLink to="/user/businessPhotos" activeClassName="sideBarActive"><span></span>Business Photos</NavLink></li>
             </ul>
           </div>
           <div className="profielRight">
