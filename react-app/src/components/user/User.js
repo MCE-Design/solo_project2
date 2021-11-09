@@ -4,6 +4,7 @@ import { Link, NavLink, useParams, useHistory } from 'react-router-dom';
 import "./user.css";
 import userIcon from "../../images/user_24dp.svg";
 import userPhoto from "../../images/photo_camera_black_24dp.svg";
+import addPhoto from "../../images/add_a_photo_black_24dp.svg";
 import userReview from "../../images/review_black_24dp.svg";
 
 function User({ profile }) {
@@ -52,14 +53,14 @@ function User({ profile }) {
                   </div>
                 </div>
                 <div className="profileActionLinks">
-                  <div>
-                    <Link to="/user/photos/add">Add Profile Photos</Link>
+                  <div className="profileActionLinkItem">
+                    <Link to="/user/photos/add"><span className="buttonIconMini" style={{backgroundImage: `url(${addPhoto})`}}></span>Add Profile Photos</Link>
                   </div>
-                  <div>
+                  <div className="profileActionLinkItem">
                     <Link>Update Your Profile</Link>
                   </div>
                   {/* <div>
-                    <Link>TEST</Link>
+                    <Link></Link>
                   </div> */}
                 </div>
               </div>

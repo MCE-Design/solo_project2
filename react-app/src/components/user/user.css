@@ -38,6 +38,11 @@
   min-height: 150px;
 }
 
+.profileActionLinkItem a {
+  display: flex;
+  align-items: center;
+}
+
 .userMain .mainContainer {
   position: relative;
   left: -15px;
@@ -63,7 +68,8 @@
 }
 
 .profileSideItem a {
-  display: block;
+  display: flex;
+  align-items: center;
   border-top: 1px solid #E6E6E6;
   padding: 10px;
   color: #333333;
