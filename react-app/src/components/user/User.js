@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Link, NavLink, useParams, useHistory } from 'react-router-dom';
 import "./user.css";
+import userIcon from "../../images/user_24dp.svg";
+import userPhoto from "../../images/photo_camera_black_24dp.svg";
+import userReview from "../../images/review_black_24dp.svg";
 
 function User({ profile }) {
   const history = useHistory();
@@ -44,7 +47,7 @@ function User({ profile }) {
                 <div className="profileInfo">
                   INFO GOES HERE
                   <div>
-                    <h1>{sessionUser?.fname} {sessionUser?.lname[0]}</h1>
+                    <h1>{sessionUser?.fname} {sessionUser?.lname[0]}.</h1>
                     <div>STATS GO HERE</div>
                   </div>
                 </div>
@@ -67,9 +70,9 @@ function User({ profile }) {
           <div className="profileLeft">
             <h3>{sessionUser?.fname}'s Profile</h3>
             <ul className="profileSidebar">
-              <li className="profileSideItem"><NavLink to="/user" activeClassName="sideBarActive">Profile Overview</NavLink></li>
-              <li className="profileSideItem"><NavLink to="/user/reviews" activeClassName="sideBarActive">Reviews</NavLink></li>
-              <li className="profileSideItem"><NavLink to="/user/businessPhotos" activeClassName="sideBarActive">Business Photos</NavLink></li>
+              <li className="profileSideItem"><NavLink to="/user" activeClassName="sideBarActive"><span className="buttonIcon" style={{backgroundImage: `url(${userIcon})`}}></span>Profile Overview</NavLink></li>
+              <li className="profileSideItem"><NavLink to="/user/reviews" activeClassName="sideBarActive"><span className="buttonIcon" style={{backgroundImage: `url(${userReview})`}}></span>Reviews</NavLink></li>
+              <li className="profileSideItem"><NavLink to="/user/businessPhotos" activeClassName="sideBarActive"><span className="buttonIcon"style={{backgroundImage: `url(${userPhoto})`}}></span>Business Photos</NavLink></li>
             </ul>
           </div>
           <div className="profielRight">
@@ -109,9 +112,9 @@ function User({ profile }) {
           <div className="profileLeft">
             <h3>{user?.fname} {user?.lname?.slice(0,1)}.</h3>
             <ul className="profileSidebar">
-              <li className="profileSideItem"><NavLink to="/user" activeClassName="sideBarActive"><span></span>Profile Overview</NavLink></li>
-              <li className="profileSideItem"><NavLink to="/user/reviews" activeClassName="sideBarActive"><span></span>Reviews</NavLink></li>
-              <li className="profileSideItem"><NavLink to="/user/businessPhotos" activeClassName="sideBarActive"><span></span>Business Photos</NavLink></li>
+              <li className="profileSideItem"><NavLink to="/user" activeClassName="sideBarActive"><span className="buttonIcon" style={{backgroundImage: `url(${userIcon})`}}></span>Profile Overview</NavLink></li>
+              <li className="profileSideItem"><NavLink to="/user/reviews" activeClassName="sideBarActive"><span className="buttonIcon" style={{backgroundImage: `url(${userReview})`}}></span>Reviews</NavLink></li>
+              <li className="profileSideItem"><NavLink to="/user/businessPhotos" activeClassName="sideBarActive"><span className="buttonIcon"style={{backgroundImage: `url(${userPhoto})`}}></span>Business Photos</NavLink></li>
             </ul>
           </div>
           <div className="profielRight">
