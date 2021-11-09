@@ -97,7 +97,7 @@ function User({ profile }) {
                 <div className="profileInfo">
                   INFO GOES HERE
                   <div>
-                    <h1>{sessionUser?.fname} {sessionUser?.lname[0]}</h1>
+                    <h1>{user?.fname} {user?.lname?.slice(0,1)}.</h1>
                     <div>STATS GO HERE</div>
                   </div>
                 </div>
@@ -112,9 +112,9 @@ function User({ profile }) {
           <div className="profileLeft">
             <h3>{user?.fname} {user?.lname?.slice(0,1)}.</h3>
             <ul className="profileSidebar">
-              <li className="profileSideItem"><NavLink to="/user" activeClassName="sideBarActive"><span className="buttonIcon" style={{backgroundImage: `url(${userIcon})`}}></span>Profile Overview</NavLink></li>
-              <li className="profileSideItem"><NavLink to="/user/reviews" activeClassName="sideBarActive"><span className="buttonIcon" style={{backgroundImage: `url(${userReview})`}}></span>Reviews</NavLink></li>
-              <li className="profileSideItem"><NavLink to="/user/businessPhotos" activeClassName="sideBarActive"><span className="buttonIcon"style={{backgroundImage: `url(${userPhoto})`}}></span>Business Photos</NavLink></li>
+              <li className="profileSideItem"><NavLink to={`/users/${userId}`} activeClassName="sideBarActive"><span className="buttonIcon" style={{backgroundImage: `url(${userIcon})`}}></span>Profile Overview</NavLink></li>
+              <li className="profileSideItem"><NavLink to={`/users/${userId}/reviews`} activeClassName="sideBarActive"><span className="buttonIcon" style={{backgroundImage: `url(${userReview})`}}></span>Reviews</NavLink></li>
+              <li className="profileSideItem"><NavLink to={`/users/${userId}/businessPhotos`} activeClassName="sideBarActive"><span className="buttonIcon"style={{backgroundImage: `url(${userPhoto})`}}></span>Business Photos</NavLink></li>
             </ul>
           </div>
           <div className="profielRight">
