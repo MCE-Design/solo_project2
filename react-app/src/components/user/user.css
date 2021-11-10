@@ -34,8 +34,12 @@
 
 .topInfoContainer {
   display: grid;
-  grid-template-columns: 2fr 3fr 3fr;
+  grid-template-columns: 220px 495px 244px;
   min-height: 150px;
+}
+
+.profileInfo {
+  padding: 30px;
 }
 
 .profileActionLinkItem a {

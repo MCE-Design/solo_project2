@@ -47,7 +47,6 @@ function User({ profile }) {
               <div className="topInfoContainer">
                 <div className="profileSpacer"></div>
                 <div className="profileInfo">
-                  INFO GOES HERE
                   <div>
                     <h1>{sessionUser?.fname} {sessionUser?.lname[0]}.</h1>
                     <div>STATS GO HERE</div>
@@ -97,7 +96,6 @@ function User({ profile }) {
               <div className="topInfoContainer">
                 <div className="profileSpacer"></div>
                 <div className="profileInfo">
-                  INFO GOES HERE
                   <div>
                     <h1>{user?.fname} {user?.lname?.slice(0,1)}.</h1>
                     <div>STATS GO HERE</div>
