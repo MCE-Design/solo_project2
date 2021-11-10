@@ -43,6 +43,15 @@
   align-items: center;
 }
 
+.profileActionLinkItem .buttonIconMini {
+  filter: invert(0.31)
+          sepia(0.7)
+          saturate(12)
+          hue-rotate(177deg)
+          brightness(0.92)
+          contrast(1.05);
+}
+
 .userMain .mainContainer {
   position: relative;
   left: -15px;
