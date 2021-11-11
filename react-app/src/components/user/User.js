@@ -81,7 +81,7 @@ function User({ profile }) {
               <li className="profileSideItem"><NavLink to="/user/businessPhotos" activeClassName="sideBarActive"><span className="buttonIcon"style={{backgroundImage: `url(${userPhoto})`}}></span>Business Photos</NavLink></li>
             </ul>
           </div>
-          <div className="profielRight">
+          <div className="profileRight">
 
           </div>
         </div>
@@ -124,7 +124,7 @@ function User({ profile }) {
               <li className="profileSideItem"><NavLink to={`/users/${userId}/businessPhotos`} activeClassName="sideBarActive"><span className="buttonIcon"style={{backgroundImage: `url(${userPhoto})`}}></span>Business Photos</NavLink></li>
             </ul>
           </div>
-          <div className="profielRight">
+          <div className="profileRight">
 
           </div>
         </div>

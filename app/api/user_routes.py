@@ -17,6 +17,11 @@ def user(id):
     user = User.query.get(id)
     return user.to_dict()
 
+# @user_routes.route('/<ind:id>', methods=["PATCH"])
+# def user(id):
+#   user = User.query.get(id)
+#   return user.to_dict()
+
 # Get All User Images By User ID
 @user_routes.route('/<int:id>/images', methods=["GET"])
 def get_all_images_user(id):
