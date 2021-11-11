@@ -38,6 +38,9 @@ function User({ profile }) {
       <div className="userMain">
         <div className="topBox">
           <div className="topContent">
+            <div className="userAlertBox">
+              {/* <div className="alertSuccess">Your profile has been updated!</div> */}
+            </div>
             <div className="profileContentContainer">
               <div className="userProfileAvatar">
                 <NavLink to="/user_photos">
@@ -49,7 +52,9 @@ function User({ profile }) {
                 <div className="profileInfo">
                   <div>
                     <h1>{sessionUser?.fname} {sessionUser?.lname[0]}.</h1>
+                    <div>FROM GOES HERE</div>
                     <div>STATS GO HERE</div>
+                    <div>TAGLINE GOES HERE</div>
                   </div>
                 </div>
                 <div className="profileActionLinks">
@@ -98,7 +103,9 @@ function User({ profile }) {
                 <div className="profileInfo">
                   <div>
                     <h1>{user?.fname} {user?.lname?.slice(0,1)}.</h1>
+                    <div>FROM GOES HERE</div>
                     <div>STATS GO HERE</div>
+                    <div>TAGLINE GOES HERE</div>
                   </div>
                 </div>
                 <div className="profileActionLinks">

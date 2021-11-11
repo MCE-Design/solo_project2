@@ -1,4 +1,6 @@
-
+h1 {
+  padding: 0;
+}
 
 .topBox {
   position: relative;
@@ -12,6 +14,14 @@
   margin: 0 auto;
   padding: 0 15px;
   width: 960px;
+}
+
+.alertSuccess {
+  margin-bottom: 12px;
+  border-radius: 3px;
+  padding: 18px 18px 18px 24px;
+  background-color: #DAECD2;
+  font-size: 16px;
 }
 
 .profileContentContainer {
@@ -34,17 +44,27 @@
 
 .topInfoContainer {
   display: grid;
+  align-items: end;
   grid-template-columns: 220px 495px 244px;
   min-height: 150px;
 }
 
 .profileInfo {
-  padding: 30px;
+  padding: 0 30px;
+}
+
+.profileActionLinks {
+  padding: 30px 0 6px 15px;
 }
 
 .profileActionLinkItem a {
   display: flex;
   align-items: center;
+  padding: 5px 0;
+  font-weight: bold;
+}
+.profileActionLinkItem a:hover {
+  text-decoration: underline;
 }
 
 .profileActionLinkItem .buttonIconMini {
