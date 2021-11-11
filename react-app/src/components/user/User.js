@@ -62,7 +62,7 @@ function User({ profile }) {
                     <Link to="/user/photos/add"><span className="buttonIconMini" style={{backgroundImage: `url(${addPhoto})`}}></span>Add Profile Photos</Link>
                   </div>
                   <div className="profileActionLinkItem">
-                    <Link><span className="buttonIconMini" style={{backgroundImage: `url(${updateProfile})`}}></span>Update Your Profile</Link>
+                    <Link to="/user/details"><span className="buttonIconMini" style={{backgroundImage: `url(${updateProfile})`}}></span>Update Your Profile</Link>
                   </div>
                   {/* <div>
                     <Link></Link>

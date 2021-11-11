@@ -8,6 +8,7 @@ import Footer from './components/footer';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/user/User';
+import UserEdit from './components/userEdit';
 import PhotoDisplay from './components/images/photoDisplay';
 import Splash from './components/splash';
 import Business from './components/business';
@@ -54,6 +55,10 @@ function App() {
         <ProtectedRoute path='/user' exact={true} >
           <User profile = "self"/>
         </ProtectedRoute>
+        <ProtectedRoute path='/user/details'>
+          <UserEdit />
+        </ProtectedRoute>
+
 
         {/* These two use the same componenant with differen values passed in depending on the route*/}
         <ProtectedRoute path='/user_photos' exact={true} >
