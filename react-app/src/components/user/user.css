@@ -87,9 +87,22 @@ h1 {
   width: 960px;
 }
 
+.profileLeft,
+.profileRight {
+  padding: 0 15px;
+}
+
 .profileLeft {
   margin-top: 30px;
-  padding: 0 15px;
+}
+
+.profileLeftHeader {
+  padding: 12px 12px 12px 0;
+}
+
+.profileRightHeader {
+  margin-bottom: 12px;
+  border-bottom: 1px solid #E6E6E6;
 }
 
 .profileSidebar {
@@ -121,4 +134,42 @@ h1 {
 .profileSideItem a.sideBarActive {
   border-left: 3px solid #d32323;
   padding: 10px 10px 10px 7px;
+}
+
+.userEdit .profileLeft {
+  margin-top: 0;
+}
+
+.userEditForm {
+  max-width: 465px;
+}
+
+.userEditForm label{
+  display: inline-block;
+  font-weight: bold;
+}
+
+.userEditForm .profileEditExplain {
+  display: block;
+  color: #999999;
+  font-size: 12px;
+}
+
+.userEditForm input {
+  box-sizing: border-box;
+  margin-bottom: 18px;
+  border-radius: 3px;
+  border: 1px solid #999999;
+  padding: 5px 9px;
+  width: 100%;
+  font-size: 14px;
+}
+
+.userEditForm input:focus-visible {
+  outline: none;
+}
+
+.userEditForm input:focus {
+  border-color: #0073BB;
+  box-shadow: 0 0 4px rgba(0, 115, 187, 0.3);
 }

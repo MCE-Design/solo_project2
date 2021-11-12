@@ -148,6 +148,7 @@
 ======================================== */
 
 .navGeneral {
+  border-bottom: 1px solid #EBEBEB;
   padding: 30px 0 30px;
   width: 100%;
 }
