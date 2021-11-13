@@ -62,9 +62,9 @@ const NavBar = () => {
                   </div>
                   <ul className="navDropDownMenu">
                     <li className="navItem">
-                      <NavLink to="/user">About Me</NavLink>
+                      <NavLink to="/user" onClick={handleMenu}>About Me</NavLink>
                     </li>
-                    <li className="navItem">
+                    <li className="navItem" onClick={handleMenu}>
                       <LogoutButton/>
                     </li>
                   </ul>
@@ -121,10 +121,10 @@ const NavBar = () => {
                   </div>
                   <ul className="navDropDownMenu">
                     <li className="navItem">
-                      <NavLink to="/user">About Me</NavLink>
+                      <NavLink to="/user" onClick={handleMenu}>About Me</NavLink>
                     </li>
                     <li className="navItem">
-                      <LogoutButton/>
+                      <LogoutButton onClick={handleMenu}/>
                     </li>
                   </ul>
                 </div>
@@ -167,10 +167,10 @@ const NavBar = () => {
                   </div>
                   <ul className="navDropDownMenu">
                     <li className="navItem">
-                      <NavLink to="/user">About Me</NavLink>
+                      <NavLink to="/user" onClick={handleMenu}>About Me</NavLink>
                     </li>
                     <li className="navItem">
-                      <LogoutButton/>
+                      <LogoutButton onClick={handleMenu}/>
                     </li>
                   </ul>
                 </div>
