@@ -47,7 +47,7 @@ ul {
   user-select: none;
   text-decoration: none;
   transition: all 0.8s;
-  transition-property: background-image,background-color,background-position,background-size,border-color,box-shadow,opacity;
+  transition-property: background-image, background-color, background-position, background-size, border-color, box-shadow,opacity;
 }
 
 .button.bodyButton {
@@ -56,7 +56,11 @@ ul {
 
 .redButton {
   border: 1px solid #D32323;
-  background-color: #F40D15;
+  background-color: #D32323;
+  background-image: none;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 15000px 15000px;
   color: #FFFFFF;
   font-family: "Open Sans", "Roboto", Helvetica, Arial, sans-serif;
   font-size: 16px;
@@ -67,6 +71,20 @@ ul {
 
 .redButton:hover {
   background-color: #DC4F4F;
+}
+
+.redButton:focus {
+  background-image: radial-gradient(#BE2020 50%, transparent 50%);
+  background-color: #BE2020;
+  transition: all 2s ease-in;
+}
+
+.redButton:active {
+  transition: all 0s;
+  background-color: #DC4F4F;
+  background-image: radial-gradient(transparent 50%, transparent 50%);
+  background-position: center center;
+  background-size: 50px 50px
 }
 
 .backPageButton {

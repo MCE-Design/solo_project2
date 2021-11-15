@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
 import { useLocation } from 'react-router';
@@ -14,8 +14,6 @@ const NavBar = () => {
   const [ menuToggle, setMenuToggle ] = useState(false);
   console.log(currentPage)
   console.log("page match", /\/business\/\d+\/newreview/.test(currentPage.pathname));
-
-
 
   const handleMenu = () => {
     const navDropDown = document.querySelector(".navDropDownMenu")
