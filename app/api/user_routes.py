@@ -17,7 +17,7 @@ def user(id):
     user = User.query.get(id)
     return user.to_dict()
 
-# @user_routes.route('/<ind:id>', methods=["PATCH"])
+# @user_routes.route('/<ind:id>', methods=["PUT"])
 # def user(id):
 #   user = User.query.get(id)
 #   return user.to_dict()

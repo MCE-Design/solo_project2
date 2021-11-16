@@ -117,7 +117,7 @@ h1 {
   display: flex;
   align-items: center;
   border-top: 1px solid #E6E6E6;
-  padding: 10px;
+  padding: 12px;
   color: #333333;
   transition: background-color 200ms ease-out 50ms;
 }
@@ -133,7 +133,7 @@ h1 {
 
 .profileSideItem a.sideBarActive {
   border-left: 3px solid #d32323;
-  padding: 10px 10px 10px 7px;
+  padding: 12px 12px 12px 9px;
 }
 
 .userEdit .profileLeft {
@@ -153,6 +153,7 @@ h1 {
   display: block;
   color: #999999;
   font-size: 12px;
+  margin-bottom: 3px;
 }
 
 .userEditForm input {
@@ -172,4 +173,8 @@ h1 {
 .userEditForm input:focus {
   border-color: #0073BB;
   box-shadow: 0 0 4px rgba(0, 115, 187, 0.3);
+}
+
+.userEditForm .redButton {
+  margin-right: 15px;
 }
