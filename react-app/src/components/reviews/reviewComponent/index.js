@@ -50,7 +50,7 @@ function ReviewComponent({review, sessionUser}) {
         console.log("HIT")
         setReviewMenu(false)
         reviewButton?.classList.remove("active")
-      } else {
+      } else if(!reviewMenu && reviewButton?.contains(event.target)) {
         reviewButton?.classList.add("active")
       }
     }

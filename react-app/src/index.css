@@ -88,11 +88,12 @@ ul {
 }
 
 .backPageButton {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   padding: 8px 19px 9px;
   font-size: 14px;
   font-weight: 700;
+  line-height: 17px;
 }
 
 .lightButton {

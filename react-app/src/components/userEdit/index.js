@@ -56,7 +56,7 @@ function UserEdit() {
             <label>E-Mail</label>
             <span className="profileEditExplain"></span>
             <input type="email"></input>
-            <button type="submit" className="bodyButton redButton button">Save Changes</button><Link to="/user">Cancel</Link>
+            <button type="submit" className="backPageButton bodyButton redButton button">Save Changes</button><Link to="/user">Cancel</Link>
           </form>
         </div>
       </div>
