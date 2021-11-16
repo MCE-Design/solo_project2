@@ -14,7 +14,17 @@ function UserEdit() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // const data = await dispatch(signUp(username, firstname, lastname, email, password));
+    const formData = new FormData();
+    formData.append("userId", sessionUser.id);
+    formData.append("avatar", sessionUser.avatar);
+    formData.append("fname", firstName);
+    formData.append("lname", lastName);
+    formData.append("nickname", nickName);
+    formData.append("headline", headline);
+    formData.append("findme", findme);
+    formData.append("email", email);
+
+    // const data = await dispatch(profileEdit(firstName, lastName, nickName, headline, findme, email));
     console.log("SUBMIT");
   }
 

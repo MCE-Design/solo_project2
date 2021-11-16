@@ -99,6 +99,25 @@ export const signUp = (username, firstname, lastname, email, password) => async 
   }
 }
 
+export const profileEdit = (profileData) => async (dispatch) => {
+  const response = await fetch('/api/auth/signup', {
+    method: 'PUT',
+    body: profileData
+  });
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(setUser(data))
+    return null;
+  } else if (response.status < 500) {
+    const data = await response.json();
+    if (data.errors) {
+      return data.errors;
+    }
+  } else {
+    return ['An error occurred. Please try again.']
+  }
+}
+
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case SET_USER:
