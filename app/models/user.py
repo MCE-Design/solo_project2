@@ -12,6 +12,9 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(40), nullable=False, unique=True)
     fname = db.Column(db.String(40), nullable=False)
     lname = db.Column(db.String(40), nullable=False)
+    nickname = db.Column(db.String(50), nullable=True)
+    headline = db.Column(db.String(100), nullable=True)
+    findme = db.Column(db.String(80), nullable=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
 
@@ -50,6 +53,9 @@ class User(db.Model, UserMixin):
             'username': self.username,
             'fname': self.fname,
             'lname': self.lname,
+            'nickname': self.nickname,
+            'headline': self.headline,
+            'findme': self.findme,
             'email': self.email,
             'userImage_Business': [business.to_dict() for business in self.businesses],
             'userImage_Review': [review.to_dict() for review in self.reviews],
