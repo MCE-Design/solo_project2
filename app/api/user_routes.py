@@ -28,18 +28,24 @@ def user(id):
     user = User.query.get(id)
     return user.to_dict()
 
-@user_routes.route('', methods=['PATCH'])
+@user_routes.route('/useredit', methods=['PATCH'])
 def userEdit():
     form = UserEditForm()
+    data = form.data
     form['csrf_token'].data = request.cookies['csrf_token']
+    user = User.query.filter(User.id == data["id"]).first()
+
+    print(CGREEN + "\n data id: \n", data["id"], "\n" + CEND)
+    print(CGREEN + "\n user: \n", user, "\n" + CEND)
+    print(CGREEN + "\n editForm Data: \n", form.data, "\n" + CEND)
+
     if form.validate_on_submit():
-        user = User(
-            username=form.data['username'],
-            lname=form.data['fname'],
-            fname=form.data['lname'],
-            email=form.data['email'],
-            password=form.data['password']
-        )
+        user.fname=form.data['fname'],
+        user.lname=form.data['lname'],
+        user.nickname=form.data['nickname'],
+        user.headline=form.data['headline'],
+        user.findme=form.data['findme']
+
         db.session.add(user)
         db.session.commit()
         return user.to_dict()

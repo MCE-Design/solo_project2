@@ -1,20 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link, NavLink, useParams, useHistory } from 'react-router-dom';
+import { profileEdit } from '../../store/session';
 import "../user/user.css";
 
 function UserEdit() {
+  const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
+  const [errors, setErrors] = useState([]);
   const [firstName, setFirstname] = useState(sessionUser?.fname);
   const [lastName, setLastname] = useState(sessionUser?.lname);
-  const [nickName, setNickName] = useState(sessionUser?.nickname);
-  const [headline, setHeadline] = useState(sessionUser?.headline);
-  const [findme, setFindme] = useState(sessionUser?.findme);
+  const [nickName, setNickName] = useState(sessionUser?.nickname ? sessionUser?.nickname: "");
+  const [headline, setHeadline] = useState(sessionUser?.headline ? sessionUser?.nickname: "");
+  const [findme, setFindme] = useState(sessionUser?.findme ? sessionUser?.nickname: "");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append("userId", sessionUser.id);
+    formData.append("id", sessionUser.id);
     // formData.append("avatar", sessionUser.avatar);
     formData.append("fname", firstName);
     formData.append("lname", lastName);
@@ -22,7 +25,10 @@ function UserEdit() {
     formData.append("headline", headline);
     formData.append("findme", findme);
 
-    // const data = await dispatch(profileEdit(firstName, lastName, nickName, headline, findme, email));
+    const data = await dispatch(profileEdit(formData));
+    if (data) {
+      return setErrors(data);
+    }
     console.log("SUBMIT");
   }
 

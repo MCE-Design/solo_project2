@@ -100,7 +100,7 @@ export const signUp = (username, firstname, lastname, email, password) => async 
 }
 
 export const profileEdit = (profileData) => async (dispatch) => {
-  const response = await fetch('/api/auth/signup', {
+  const response = await fetch('/api/users/useredit', {
     method: 'PATCH',
     body: profileData
   });
