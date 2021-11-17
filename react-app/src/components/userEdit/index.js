@@ -10,19 +10,17 @@ function UserEdit() {
   const [nickName, setNickName] = useState(sessionUser?.nickname);
   const [headline, setHeadline] = useState(sessionUser?.headline);
   const [findme, setFindme] = useState(sessionUser?.findme);
-  const [email, setEmail] = useState(sessionUser?.email);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
     formData.append("userId", sessionUser.id);
-    formData.append("avatar", sessionUser.avatar);
+    // formData.append("avatar", sessionUser.avatar);
     formData.append("fname", firstName);
     formData.append("lname", lastName);
     formData.append("nickname", nickName);
     formData.append("headline", headline);
     formData.append("findme", findme);
-    formData.append("email", email);
 
     // const data = await dispatch(profileEdit(firstName, lastName, nickName, headline, findme, email));
     console.log("SUBMIT");
@@ -46,10 +44,6 @@ function UserEdit() {
 
   const updateFindme = (e) => {
     setFindme(e.target.value);
-  };
-
-  const updateEmail = (e) => {
-    setEmail(e.target.value);
   };
 
 
@@ -109,14 +103,6 @@ function UserEdit() {
               name="findme"
               value={findme}
               onChange={updateFindme}
-            ></input>
-            <label>E-Mail</label>
-            <span className="profileEditExplain"></span>
-            <input
-              type="email"
-              name="email"
-              value={email}
-              onChange={updateEmail}
             ></input>
             <button type="submit" className="backPageButton bodyButton redButton button">Save Changes</button><Link to="/user">Cancel</Link>
           </form>
