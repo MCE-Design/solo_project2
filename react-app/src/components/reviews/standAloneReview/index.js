@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { newReview, getReview, editReview } from "../../../store/review";
+import { newReviewStandAlone, getReview, editReview } from "../../../store/review";
 import "../standAloneReview/standAloneReview.css";
 import { getBusiness } from '../../../store/business';
 import { useParams, NavLink, useHistory } from 'react-router-dom';
@@ -73,6 +73,32 @@ function StandAloneReview({ reviewType }) {
     setImage(file);
   }
 
+  const handleImageUpload = async () => {
+    const formData = new FormData();
+    formData.append("image", image);
+    formData.append("imageable_id", imageTypeId);
+    formData.append("imageable_type", "review");
+    formData.append("imageCaption", imageCaption);
+    console.log("caption", imageCaption)
+    setImageLoading(true); // Replace with better image loader
+    const res = await fetch('/api/image', {
+      method: "POST",
+      body: formData,
+    });
+    if (res.ok) {
+      await res.json();
+      setImageLoading(false);
+      history.push("/");
+    }
+    else {
+      setImageLoading(false);
+      const data = await res.json();
+      if (data) {
+        setErrors(data.errors)
+      }
+    }
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     let errorData = [];
@@ -89,18 +115,20 @@ function StandAloneReview({ reviewType }) {
       formData.append("rating", starRatingVal);
       formData.append("review", reviewText);
       if (reviewType === "new") {
-        const data = await dispatch(newReview(formData));
+        const data = await dispatch(newReviewStandAlone(formData));
         if (data) {
           return setErrors(data);
         }
+        // handleImageUpload();
       } else if (reviewType === "edit") {
         const data = await dispatch(editReview(formData));
         if (data) {
           return setErrors(data);
         }
+        console.log("CURRENT REVIEW", currentReview)
       }
       // Notch in image uploading as a separate dispatch that only goes if everything else is O.K.
-      history.push(`/business/${businessId}`);
+      // history.push(`/business/${businessId}`);
     } else {
       if (!starRatingVal) {
         errorData.push("To submit your review, please select a star rating for this business.");
@@ -112,7 +140,6 @@ function StandAloneReview({ reviewType }) {
       setErrors(errorData);
     }
   }
-
   const hoverStars = (element) => {
     console.log("The Element", element)
   }

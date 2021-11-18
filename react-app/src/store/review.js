@@ -49,6 +49,25 @@ export const newReview = (review) => async dispatch => {
   } else return "Thunk Error: Review Submit Failed"
 }
 
+export const newReviewStandAlone = (review) => async dispatch => {
+  const response = await fetch(`/api/review/standalone`,
+    {
+      method: "POST",
+      body: review
+    }
+  )
+  if (response.ok) {
+    const data = await response.json()
+    console.log("OK")
+    dispatch(load(data))
+  } else if (response.status < 500) {
+    const data = await response.json();
+    if (data.errors) {
+      return data.errors;
+    }
+  } else return "Thunk Error: Review Submit Failed"
+}
+
 export const editReview = (review) => async dispatch => {
   const response = await fetch(`/api/review`,
     {

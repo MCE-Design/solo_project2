@@ -46,6 +46,30 @@ def add_review():
     else:
         return {"errors": validation_errors_to_error_messages(form.errors)}, 403
 
+# New Review (Stand Alone)
+@review_routes.route('/standalone', methods=["POST"])
+def add_review_standalone():
+    form = ReviewForm()
+    data = form.data
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        new_review = Review(
+            userId=data["userId"],
+            businessId=data["businessId"],
+            rating=data["rating"],
+            review=data["review"],
+            createdAt=db.func.now(),
+            updatedAt=db.func.now()
+        )
+        print(CGREEN + "\n StandAlone Data: \n", data, "\n" + CEND)
+        db.session.add(new_review)
+        db.session.commit()
+        print(CGREEN + "\n New Review ID: \n", new_review.id, "\n" + CEND)
+        reviews = Review.query.filter(Review.businessId == data["businessId"]).order_by(Review.updatedAt.desc())
+        return {"reviews": [review.to_dict() for review in reviews]}
+    else:
+        return {"errors": validation_errors_to_error_messages(form.errors)}, 403
+
 
 @review_routes.route('', methods=["PUT"])
 def edit_review():
