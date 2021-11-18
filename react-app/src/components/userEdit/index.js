@@ -29,7 +29,8 @@ function UserEdit() {
     if (data) {
       return setErrors(data);
     }
-    console.log("SUBMIT");
+    console.log("SUBMITTED");
+
   }
 
   const updateFirstname = (e) => {
@@ -77,6 +78,7 @@ function UserEdit() {
               name="firstname"
               value={firstName}
               onChange={updateFirstname}
+              maxLength="40"
             ></input>
             <label>Last Name</label>
             <span className="profileEditExplain">This field is required. Only your last initial will show on your profile.</span>
@@ -85,6 +87,7 @@ function UserEdit() {
               name="lastname"
               value={lastName}
               onChange={updateLastname}
+              maxLength="40"
             ></input>
             <label>Nickname</label>
             <span className="profileEditExplain">The Big Dog, Cool Cat, The Party Animal</span>
@@ -93,6 +96,7 @@ function UserEdit() {
               name="nickname"
               value={nickName}
               onChange={updateNickname}
+              maxLength="50"
             ></input>
             <label>Your Headline</label>
             <span className="profileEditExplain">Taco Tuesday Aficionado, The Globetrotting Reviewer</span>
@@ -101,6 +105,7 @@ function UserEdit() {
               name="headline"
               value={headline}
               onChange={updateHeadline}
+              maxLength="100"
             ></input>
             <label>Find Me In</label>
             <span className="profileEditExplain">Pawston, the newest brunch spot, a vest</span>
@@ -109,6 +114,7 @@ function UserEdit() {
               name="findme"
               value={findme}
               onChange={updateFindme}
+              maxLength="80"
             ></input>
             <button type="submit" className="backPageButton bodyButton redButton button">Save Changes</button><Link to="/user">Cancel</Link>
           </form>
