@@ -51,10 +51,10 @@ function User({ profile }) {
                 <div className="profileSpacer"></div>
                 <div className="profileInfo">
                   <div>
-                    <h1>{sessionUser?.fname} {sessionUser?.lname[0]}.</h1>
-                    <div>FROM GOES HERE</div>
+                    <h1>{sessionUser?.fname} {sessionUser?.nickname && (`"${sessionUser?.nickname}"`)} {sessionUser?.lname[0]}.</h1>
+                    {sessionUser?.findme && <div>{sessionUser?.findme}</div>}
                     <div>STATS GO HERE</div>
-                    <div>TAGLINE GOES HERE</div>
+                    {sessionUser?.headline && <div>{sessionUser?.headline}</div>}
                   </div>
                 </div>
                 <div className="profileActionLinks">
@@ -104,10 +104,10 @@ function User({ profile }) {
                 <div className="profileSpacer"></div>
                 <div className="profileInfo">
                   <div>
-                    <h1>{user?.fname} {user?.lname?.slice(0,1)}.</h1>
-                    <div>FROM GOES HERE</div>
+                    <h1>{user?.fname} {user?.nickname && (`"${user?.nickname}"`)} {user?.lname?.slice(0,1)}.</h1>
+                    {user?.findme && <div>{user?.findme}</div>}
                     <div>STATS GO HERE</div>
-                    <div>TAGLINE GOES HERE</div>
+                    {user?.headline && <div>{user?.headline}</div>}
                   </div>
                 </div>
                 <div className="profileActionLinks">

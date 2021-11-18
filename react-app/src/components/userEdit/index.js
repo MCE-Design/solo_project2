@@ -11,8 +11,8 @@ function UserEdit() {
   const [firstName, setFirstname] = useState(sessionUser?.fname);
   const [lastName, setLastname] = useState(sessionUser?.lname);
   const [nickName, setNickName] = useState(sessionUser?.nickname ? sessionUser?.nickname: "");
-  const [headline, setHeadline] = useState(sessionUser?.headline ? sessionUser?.nickname: "");
-  const [findme, setFindme] = useState(sessionUser?.findme ? sessionUser?.nickname: "");
+  const [headline, setHeadline] = useState(sessionUser?.headline ? sessionUser?.headline: "");
+  const [findme, setFindme] = useState(sessionUser?.findme ? sessionUser?.findme: "");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
