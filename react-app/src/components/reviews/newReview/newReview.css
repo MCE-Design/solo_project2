@@ -69,12 +69,3 @@ img.newReviewAvatar {
   height: 18px;
   margin: 5px 0 15px;
 }
-
-.reviewSubmitError {
-  transition-property: background-image,background-color,background-position,background-size,border-color,box-shadow,opacity;
-  transition: all 0.2s ease-in-out;
-}
-.blinder {
-  transform: translateY(10px);
-  opacity: 0;
-}

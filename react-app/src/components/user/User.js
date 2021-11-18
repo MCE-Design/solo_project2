@@ -52,9 +52,9 @@ function User({ profile }) {
                 <div className="profileInfo">
                   <div>
                     <h1>{sessionUser?.fname} {sessionUser?.nickname && (`"${sessionUser?.nickname}"`)} {sessionUser?.lname[0]}.</h1>
-                    {sessionUser?.findme && <div>{sessionUser?.findme}</div>}
+                    {sessionUser?.findme && <div>From {sessionUser?.findme}</div>}
                     <div>STATS GO HERE</div>
-                    {sessionUser?.headline && <div>{sessionUser?.headline}</div>}
+                    {sessionUser?.headline && <div>"{sessionUser?.headline}"</div>}
                   </div>
                 </div>
                 <div className="profileActionLinks">
@@ -105,9 +105,9 @@ function User({ profile }) {
                 <div className="profileInfo">
                   <div>
                     <h1>{user?.fname} {user?.nickname && (`"${user?.nickname}"`)} {user?.lname?.slice(0,1)}.</h1>
-                    {user?.findme && <div>{user?.findme}</div>}
+                    {user?.findme && <div>From {user?.findme}</div>}
                     <div>STATS GO HERE</div>
-                    {user?.headline && <div>{user?.headline}</div>}
+                    {user?.headline && <div>"{user?.headline}"</div>}
                   </div>
                 </div>
                 <div className="profileActionLinks">
