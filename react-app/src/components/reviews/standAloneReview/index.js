@@ -115,11 +115,18 @@ function StandAloneReview({ reviewType }) {
       formData.append("rating", starRatingVal);
       formData.append("review", reviewText);
       if (reviewType === "new") {
+        if(image){
+          console.log("IMAGE TRUE HIT")
+          formData.append("image", image);
+          formData.append("imageable_type", "review");
+          formData.append("imageCaption", imageCaption);
+          console.log("caption", imageCaption)
+          setImageLoading(true);
+        }
         const data = await dispatch(newReviewStandAlone(formData));
         if (data) {
           return setErrors(data);
         }
-        // handleImageUpload();
       } else if (reviewType === "edit") {
         const data = await dispatch(editReview(formData));
         if (data) {
@@ -127,8 +134,7 @@ function StandAloneReview({ reviewType }) {
         }
         console.log("CURRENT REVIEW", currentReview)
       }
-      // Notch in image uploading as a separate dispatch that only goes if everything else is O.K.
-      // history.push(`/business/${businessId}`);
+      history.push(`/business/${businessId}`);
     } else {
       if (!starRatingVal) {
         errorData.push("To submit your review, please select a star rating for this business.");
@@ -213,11 +219,13 @@ function StandAloneReview({ reviewType }) {
             onChange={updateImage}
             className="inputContainer file"
           />
-          <div contentEditable="true" onInput={(e) => setImageCaption(e.currentTarget.textContent)} className="">
-
-          </div>
-          <div className={imageCaption.length > 1000 ? ("charCounter overLimit") : ("charCounter")}>{1000 - imageCaption.length}</div>
+          {image &&
+          <>
+            <div contentEditable="true" onInput={(e) => setImageCaption(e.currentTarget.textContent)} className=""></div>
+            <div className={imageCaption.length > 1000 ? ("charCounter overLimit") : ("charCounter")}>{1000 - imageCaption.length}</div>
+          </>}
         </div>
+        {(imageLoading)&& <p>Loading...</p>}
         <button onClick={handleSubmit} className="redButton businessButton bodyButton button">
           Post Review
         </button>

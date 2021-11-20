@@ -2,7 +2,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField
 from wtforms.fields.core import IntegerField
 from wtforms.fields.simple import TextAreaField
-from wtforms.validators import DataRequired, Email, ValidationError
+from wtforms.validators import DataRequired, Email, ValidationError, Length
 from app.models import User, Review
 from colors import *
 
@@ -40,6 +40,14 @@ class ReviewForm(FlaskForm):
     businessId = IntegerField('businessId', validators=[DataRequired()])
     rating = IntegerField('rating', validators=[DataRequired()])
     review = TextAreaField('review', validators=[DataRequired()])
+
+class ReviewFormStandAlone(FlaskForm):
+    userId = IntegerField('userId', validators=[DataRequired(), already_reviewed])
+    businessId = IntegerField('businessId', validators=[DataRequired()])
+    rating = IntegerField('rating', validators=[DataRequired()])
+    review = TextAreaField('review', validators=[DataRequired()])
+    imageCaption = StringField('imageCaption', validators=[Length(max=1000)])
+
 
 class ReviewEdit(FlaskForm):
     id = IntegerField('id', validators=[DataRequired()])

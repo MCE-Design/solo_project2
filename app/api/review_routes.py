@@ -1,7 +1,9 @@
 from flask import Blueprint, jsonify, request
-from flask_login import login_required
-from app.forms import ReviewForm, ReviewEdit, DeleteReview
-from app.models import db, Review
+from flask_login import current_user, login_required
+from app.forms import ReviewForm, ReviewFormStandAlone, ReviewEdit, DeleteReview
+from app.models import db, Review, Image
+from app.s3_helpers import (
+  upload_file_to_s3, allowed_file, get_unique_filename)
 from colors import *
 
 review_routes = Blueprint('review', __name__)
@@ -48,27 +50,58 @@ def add_review():
 
 # New Review (Stand Alone)
 @review_routes.route('/standalone', methods=["POST"])
+@login_required
 def add_review_standalone():
-    form = ReviewForm()
-    data = form.data
-    form['csrf_token'].data = request.cookies['csrf_token']
-    if form.validate_on_submit():
-        new_review = Review(
-            userId=data["userId"],
-            businessId=data["businessId"],
-            rating=data["rating"],
-            review=data["review"],
-            createdAt=db.func.now(),
-            updatedAt=db.func.now()
-        )
-        print(CGREEN + "\n StandAlone Data: \n", data, "\n" + CEND)
-        db.session.add(new_review)
-        db.session.commit()
-        print(CGREEN + "\n New Review ID: \n", new_review.id, "\n" + CEND)
-        reviews = Review.query.filter(Review.businessId == data["businessId"]).order_by(Review.updatedAt.desc())
-        return {"reviews": [review.to_dict() for review in reviews]}
-    else:
-        return {"errors": validation_errors_to_error_messages(form.errors)}, 403
+  form = ReviewFormStandAlone()
+  data = form.data
+  form['csrf_token'].data = request.cookies['csrf_token']
+
+  if "image" in request.files:
+    image = request.files["image"]
+    if len(request.form["imageCaption"]) > 1000:
+      return {"errors": ["Your caption should be under 1000 characters"]}, 400
+
+    if not allowed_file(image.filename):
+      return {"errors": ["File type not permitted"]}, 400
+
+  if form.validate_on_submit():
+    new_review = Review(
+      userId=data["userId"],
+      businessId=data["businessId"],
+      rating=data["rating"],
+      review=data["review"],
+      createdAt=db.func.now(),
+      updatedAt=db.func.now()
+    )
+    print(CGREEN + "\n StandAlone Data: \n", data, "\n" + CEND)
+    db.session.add(new_review)
+    db.session.commit()
+    if "image" in request.files:
+      upload = upload_file_to_s3(image)
+      print(CGREEN + "\n Image In Req Files \n","\n" + CEND)
+      print(CGREEN + "\n New Review ID: \n", new_review.id, "\n" + CEND)
+      print(CGREEN + "\n imageable_type \n", request.form["imageable_type"],"\n" + CEND)
+      print(CGREEN + "\n imageCaption \n", request.form["imageCaption"],"\n" + CEND)
+      if "url" not in upload: # Basically if it's missing the "url" key there was some kind of error
+        print(CGREEN + "\n upload error \n", upload,"\n" + CEND)
+        return upload, 400
+
+      print(CGREEN + "\n HIT \n", "\n" + CEND)
+      url = upload["url"]
+
+      new_image = Image(
+        userId=current_user.id,                          # We'll use the current user as the one who uploaded the image
+        imageable_id = new_review.id,
+        imageable_type = request.form["imageable_type"],
+        imageUrl=url,
+        imageCaption = request.form["imageCaption"]
+      )
+      db.session.add(new_image)
+      db.session.commit()
+    reviews = Review.query.filter(Review.businessId == data["businessId"]).order_by(Review.updatedAt.desc())
+    return {"reviews": [review.to_dict() for review in reviews]}
+  else:
+    return {"errors": validation_errors_to_error_messages(form.errors)}, 403
 
 
 @review_routes.route('', methods=["PUT"])
