@@ -30,6 +30,10 @@ def review_by_business(id):
 @business_routes.route('/<int:id>/images', methods=["GET"])
 def get_all_images_business(id):
   images = Image.query.filter(Image.imageable_id == id, Image.imageable_type == "business").all()
+  print(CGREEN + "\n Reviews \n", Review.query.filter(Review.businessId == id).all(), "\n" + CEND)
+  # Review.query.filter(Review.businessId == id).all()
+
+  # Image.imageable_id == , Image.imageable_type == "review"
   # images = Image.query.all()
   print(CGREEN + "\n image: \n", images, "\n" + CEND)
   return {'images': [image.to_dict() for image in images]}

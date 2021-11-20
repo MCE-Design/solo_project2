@@ -84,7 +84,7 @@ def add_review_standalone():
       print(CGREEN + "\n imageCaption \n", request.form["imageCaption"],"\n" + CEND)
       if "url" not in upload: # Basically if it's missing the "url" key there was some kind of error
         print(CGREEN + "\n upload error \n", upload,"\n" + CEND)
-        return upload, 400
+        return {"errors":["AWS Uploaded Failed"]}, 400
 
       print(CGREEN + "\n HIT \n", "\n" + CEND)
       url = upload["url"]

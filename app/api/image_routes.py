@@ -46,7 +46,8 @@ def upload_image():
   upload = upload_file_to_s3(image)
 
   if "url" not in upload: # Basically if it's missing the "url" key there was some kind of error
-    return upload, 400
+    print(CGREEN + "\n upload error \n", upload,"\n" + CEND)
+    return {"errors":["AWS Uploaded Failed"]}, 400
 
   print(CGREEN + "\n HIT \n", "\n" + CEND)
   url = upload["url"]
