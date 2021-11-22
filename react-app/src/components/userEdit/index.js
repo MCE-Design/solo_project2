@@ -6,6 +6,7 @@ import "../user/user.css";
 
 function UserEdit() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const sessionUser = useSelector(state => state.session.user);
   const [errors, setErrors] = useState([]);
   const [firstName, setFirstname] = useState(sessionUser?.fname);
@@ -30,7 +31,7 @@ function UserEdit() {
       return setErrors(data);
     }
     console.log("SUBMITTED");
-
+    history.push("/user");
   }
 
   const updateFirstname = (e) => {
