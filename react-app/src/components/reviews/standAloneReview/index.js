@@ -31,13 +31,21 @@ function StandAloneReview({ reviewType }) {
     console.log("THE OBJECT", animatedObj)
     if (animatedObj) {
       requestAnimationFrame(() => {
-        animatedObj.classList.remove("scrollBlinder")
+        if(animatedObj.classList.contains("scrollBlinder")){
+          animatedObj.classList.remove("scrollBlinder");
+        } else if(animatedObj.classList.contains("heightBlinder")) {
+          animatedObj.classList.add("heightAnimation");
+        }
       })
     }
   }
 
   useEffect(() => {
     animator(".reviewSubmitError");
+  })
+
+  useEffect(() => {
+    animator(".standAloneImageCaptionBox");
   })
 
   useEffect(() => {
@@ -76,7 +84,7 @@ function StandAloneReview({ reviewType }) {
   const handleImageUpload = async () => {
     const formData = new FormData();
     formData.append("image", image);
-    formData.append("imageable_id", imageTypeId);
+    formData.append("imageable_id", reviewId);
     formData.append("imageable_type", "review");
     formData.append("imageCaption", imageCaption);
     console.log("caption", imageCaption)
@@ -131,6 +139,12 @@ function StandAloneReview({ reviewType }) {
         const data = await dispatch(editReview(formData));
         if (data) {
           return setErrors(data);
+        }
+        if(image){
+          const data2 = handleImageUpload();
+          if (data2) {
+            return setErrors(data2);
+          }
         }
         console.log("CURRENT REVIEW", currentReview)
       }
@@ -212,18 +226,18 @@ function StandAloneReview({ reviewType }) {
         </form>
         <div className={reviewText?.length > 5000 ? ("charCounter overLimit") : ("charCounter")}>{5000 - reviewText?.length}</div>
         <h4>Attach Photo</h4>
-        <div>
+        <div className="imageUploadBox">
           <input
             type="file"
             accept="image/*"
             onChange={updateImage}
-            className="inputContainer file"
+            className="standAloneFile file"
           />
           {image &&
-          <>
-            <div contentEditable="true" onInput={(e) => setImageCaption(e.currentTarget.textContent)} className=""></div>
+          <div className="standAloneImageCaptionBox">
+            <div contentEditable="true" onInput={(e) => setImageCaption(e.currentTarget.textContent)} className="standAloneCaption"></div>
             <div className={imageCaption.length > 1000 ? ("charCounter overLimit") : ("charCounter")}>{1000 - imageCaption.length}</div>
-          </>}
+          </div>}
         </div>
         {(imageLoading)&& <p>Loading...</p>}
         <button onClick={handleSubmit} className="redButton businessButton bodyButton button">

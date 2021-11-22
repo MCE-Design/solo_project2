@@ -225,11 +225,32 @@ ul {
 
 
 .animation {
-  transition-property: background-image,background-color,background-position,background-size,border-color,box-shadow,opacity;
+  transition-property: background-image,background-color,background-position,background-size,border-color,box-shadow,opacity,transform;
   transition: all 0.2s ease-in-out;
+}
+
+.animationSlower {
+  transition: all 0.5s ease-in-out;
+}
+
+.animationVerySlow {
+  transition: all 1s ease-in-out;
 }
 
 .scrollBlinder {
   transform: translateY(10px);
   opacity: 0;
+}
+
+.heightAnimation {
+  animation: slide-up 1s ease forwards;
+}
+
+@keyframes slide-up {
+  0% {
+    min-height: 0;
+  }
+  100% {
+    min-height: 100px;
+  }
 }
