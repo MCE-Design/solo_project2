@@ -32,8 +32,8 @@ I've made use of AWS to facilitate image uploading on the site.  Honestly this w
 
 This is an early version of the application and there's much to do in the future.  Here's a list of some of these features.
 
-1. Photo uploading in other workflows.
-      Right now photo uploads only work in a select area of the application.
+1. Inline Photo display of associated photos on each review as well as in user profiles
+      Right now all photos for each business (either uploaded normally or via a review) can only be seen on the business photo page.
 
 2. Search businesses by name
       At this moment you can browse all of the businesses via the popular area on the splash page.
