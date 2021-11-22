@@ -1,6 +1,7 @@
-import { createPortal } from 'react-dom'
-import "./modal.css"
-import cancelIcon from '../../images/cancel_black_24dp.svg'
+import { createPortal } from 'react-dom';
+import "./modal.css";
+import cancelIcon from '../../images/cancel_black_24dp.svg';
+
 
 const modalStyling = {
     position: 'fixed',

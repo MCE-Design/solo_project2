@@ -4,8 +4,10 @@ import "./phototiler.css";
 import { NavLink, useHistory } from 'react-router-dom';
 import Modal from "../../modal";
 import { deleteImage, editImageCaption } from "../../../store/image";
+import editIcon from '../../../images/edit_black_24dp.svg';
+import deleteIcon from '../../../images/delete_black_24dp.svg';
 
-function PhotoTile({image, user}) {
+function PhotoTile({image, user, isBusiness}) {
   const dispatch = useDispatch();
   const history = useHistory();
   const [ currentImageUser, setCurrentImageUser ] = useState();
@@ -13,8 +15,12 @@ function PhotoTile({image, user}) {
   const [ editPanel, setEditPanel ] = useState(false);
 
   const handleDelete = () => {
-    dispatch(deleteImage(image?.id))
-    history.push("/user/photos/add");
+    dispatch(deleteImage(image?.id));
+    if(isBusiness){
+      history.push("/business/photos");
+    } else {
+      history.push("/user/photos/add");
+    }
   }
 
   const handleEditModeOpen = () => {
@@ -96,22 +102,22 @@ function PhotoTile({image, user}) {
             <img src={image?.imageUrl} className="lightboxImage" alt=""/>
           </div>
           <div className="lightboxRight">
-            <div>
+            <div className="lightboxInfo">
               <div className="lightboxAvatar">
                 <NavLink to={`/users/${currentImageUser?.id}`}>
                   <img src={currentImageUser?.avatar} alt={`${currentImageUser?.fname}'s Avatar'`}/>
                 </NavLink>
               </div>
-              <NavLink to={`/users/${currentImageUser?.id}`}>
-                {currentImageUser?.fname} {currentImageUser?.lname[0]}
+              <NavLink to={`/users/${currentImageUser?.id}`} className="lightboxUserName">
+                {currentImageUser?.fname} {currentImageUser?.lname[0]}.
               </NavLink>
             </div>
             {currentImageUser?.id === user?.id && (
             <div className="lightboxActions">
-              <button className="modalButton lightButton button" onClick={handleEditModeOpen}>
+              <button className="modalButton button" onClick={handleEditModeOpen} style={{backgroundImage: `url(${editIcon})`}}>
                 Edit
               </button>
-              <button className="modalButton lightButton button" onClick={handleDelete}>
+              <button className="modalButton button" onClick={handleDelete} style={{backgroundImage: `url(${deleteIcon})`}}>
                 Delete
               </button>
             </div>

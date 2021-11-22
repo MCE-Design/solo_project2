@@ -27,15 +27,9 @@ def review_by_business(id):
     print(CGREEN + "\n Reviews: \n", reviews, "\n" + CEND)
     return {'reviews': [review.to_dict() for review in reviews]}
 
+# Gets All Images Associated With A Business (Including Those Tagged As Associated With Reviews)
 @business_routes.route('/<int:id>/images', methods=["GET"])
 def get_all_images_business(id):
   images = Image.query.filter(Image.imageable_id == id, Image.imageable_type == "business").all() + Image.query.join(Review, Image.imageable_id == Review.id).filter(Image.imageable_type == "review", Review.businessId == id).all()
-  print(CGREEN + "\n Reviews \n", Review.query.filter(Review.businessId == id).all(), "\n" + CEND)
-  print(CGREEN + "\n Image with type review \n", Image.query.filter(Image.imageable_type == "review").all(), "\n" + CEND)
-  print(CGREEN + "\n Test Query \n", Image.query.join(Review, Image.imageable_id == Review.id).filter(Image.imageable_type == "review", Review.businessId == id).all(), "\n" + CEND)
-  # Review.query.filter(Review.businessId == id).all()
-  #
-  # Image.imageable_id == , Image.imageable_type == "review"
-  # images = Image.query.all()
   print(CGREEN + "\n image: \n", images, "\n" + CEND)
   return {'images': [image.to_dict() for image in images]}

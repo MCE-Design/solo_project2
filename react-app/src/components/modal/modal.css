@@ -47,13 +47,27 @@
   background-color: #FFFFFF;
 }
 
+.lightboxInfo {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
 .lightboxAvatar {
+  display: inline-block;
   margin-top: 3px;
+  margin-right: 10px;
   overflow: hidden;
 }
+
 .lightboxAvatar img {
   border-radius: 4px;
   height: 30px;
+}
+
+.lightboxUserName {
+  display: inline-block;
+  font-size: 14px;
+  font-weight: bold;
 }
 
 .lightboxImage {
@@ -68,15 +82,22 @@
   overflow-y: scroll;
 }
 
+.lightboxActions {
+  margin-bottom: 10px;
+}
+
 .modalButton {
   border-radius: 3px;
   padding: 5px 8px;
   background-repeat: no-repeat;
-  background-size: 18px;
   background-position: 8px 8px;
   font-size: 12px;
   font-family: "Roboto", Helvetica, Arial, sans-serif;
   line-height: 1.5em;
+}
+
+.redButton.modalButton {
+
 }
 
 .redButton.modalButton:hover {
