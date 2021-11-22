@@ -30,7 +30,10 @@ export default function Modal({ open, onClose, children, lightbox }) {
         <>
           <div className="modalOverlay lightbox" style={overlayStyling} onClick={onClose}>
             <div className="lightboxContainer">
-              <button onClick={onClose} className="closeButton modalButton button" style={{backgroundImage: `url(${cancelIcon})`}}>Close</button>
+              <button onClick={onClose} className="closeButton modalButton button">
+                Close
+                <div className="buttonIconRight buttonIcon" style={{backgroundImage: `url(${cancelIcon})`}}></div>
+              </button>
               {children}
             </div>
           </div>
@@ -40,7 +43,10 @@ export default function Modal({ open, onClose, children, lightbox }) {
           <div style={overlayStyling} onClick={onClose} />
           <div className="modalContainer" style={modalStyling}>
             {children}
-            <button onClick={onClose} className="modalButton lightButton button" style={{backgroundImage: `url(${cancelIcon})`}}>Cancel</button>
+            <button onClick={onClose} className="closeButton modalButton button">
+              Close
+              <div className="buttonIconRight buttonIcon" style={{backgroundImage: `url(${cancelIcon})`}}></div>
+            </button>
           </div>
         </>
       )}

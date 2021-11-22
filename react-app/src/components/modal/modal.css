@@ -15,21 +15,23 @@
 
 .lightboxContainer {
   position: relative;
+  margin: 0 auto;
   border-radius: 6px;
   max-width: 1300px;
   min-width: 960px;
   height: 100%;
   min-height: 400px;
   background-color: #000000;
-  margin: 0 auto;
 }
 
 .lightboxBody {
   margin: 0 auto;
   display: flex;
   flex-direction: row;
+  border-radius: 6px 0 0 6px;
   height: 100%;
   width: 100%;
+  overflow: hidden;
 }
 
 .lightboxLeft {
@@ -43,6 +45,7 @@
   box-sizing: border-box;
   border-radius: 0 6px 6px 0;
   padding: 15px;
+  min-width: 300px;
   width: 300px;
   background-color: #FFFFFF;
 }
@@ -87,23 +90,47 @@
 }
 
 .lightboxActionButton {
-  display: block;
+  display: grid;
+  grid-template-columns: 1fr 9fr;
   background-color: transparent;
-  background-repeat: no-repeat;
-  background-position: 8px 0px;
-  background-size: 18px;
+  padding: 0;
   width: 100%;
+  color: #0073BB;
+  font-size: 12px;
+  font-weight: bold;
 }
 
 .lightboxActionButton:hover {
   text-decoration: underline;
 }
 
+.lighboxButtonIcon {
+  display: inline-block;
+  background-repeat: no-repeat;
+  background-position: 0 2px;
+  background-size: 18px;
+  padding: 3px 10px 3px 0;
+  height: 18px;
+  width: 18px;
+  filter: invert(27%) sepia(95%) saturate(1201%) hue-rotate(179deg) brightness(100%) contrast(101%);
+}
+
+.lightboxButtonText {
+  display: flex;
+  padding: 3px 0;
+  line-height: 18px;
+  justify-content: left;
+}
+
+.lightboxActionButton:first-child .lightboxButtonText {
+  border-bottom: 1px solid #E6E6E6;
+}
+
 .modalButton {
   border-radius: 3px;
   padding: 5px 8px;
   background-repeat: no-repeat;
-  background-position: 8px 8px;
+  background-position: 50px 3px;
   font-size: 12px;
   font-family: "Roboto", Helvetica, Arial, sans-serif;
   line-height: 1.5em;
@@ -123,13 +150,38 @@
   line-height: 1.5em;
 }
 
-.modalButton:last-child {
-  margin-bottom: 0;
+.lightboxImageCaptionBox {
+  word-wrap: break-word;
 }
 
 .closeButton {
   position: absolute;
-  top: -20px;
+  top: -30px;
   right: 0;
-  padding: 5px 5px 5px 20px;
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  background-color: transparent;
+  color: #999999;
+  font-size: 15px;
+  font-weight: bold;
+  transition: color 0.2s ease-in-out;
+}
+
+.closeButton:hover {
+  color: #FFFFFF;
+}
+
+.closeButton .buttonIcon {
+  filter: invert(1) contrast(0.1525);
+          transition:         filter 0.2s ease-in-out;
+  -webkit-transition: -webkit-filter 0.2s ease-in-out;
+}
+
+.closeButton .buttonIcon.buttonIconRight {
+  margin: 0 0 0 7px;
+}
+
+.closeButton:hover .buttonIcon {
+  filter: invert(1);
 }

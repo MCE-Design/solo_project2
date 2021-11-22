@@ -90,7 +90,8 @@ function PhotoTile({image, user, isBusiness}) {
         (event) => {
           let overlay = document.querySelector(".modalOverlay");
           let closeButton = document.querySelector(".closeButton");
-          if (event.target === overlay || event.target === closeButton) {
+          let closeButtonIcon = document.querySelector(".closeButton .buttonIcon");
+          if (event.target === overlay || event.target === closeButton || event.target === closeButtonIcon) {
             setModalOpen(false);
           }
         }
@@ -114,11 +115,11 @@ function PhotoTile({image, user, isBusiness}) {
             </div>
             {currentImageUser?.id === user?.id && (
             <div className="lightboxActions">
-              <button className="lightboxActionButton button" onClick={handleEditModeOpen} style={{backgroundImage: `url(${editIcon})`}}>
-                Edit photo caption
+              <button className="lightboxActionButton button" onClick={handleEditModeOpen}>
+                <div className="lighboxButtonIcon" style={{backgroundImage: `url(${editIcon})`}}></div><div className="lightboxButtonText">Edit photo caption</div>
               </button>
-              <button className="lightboxActionButton button" onClick={handleDelete} style={{backgroundImage: `url(${deleteIcon})`}}>
-                Delete photo
+              <button className="lightboxActionButton button" onClick={handleDelete}>
+                <div className="lighboxButtonIcon" style={{backgroundImage: `url(${deleteIcon})`}}></div><div className="lightboxButtonText">Delete photo</div>
               </button>
             </div>
             )}

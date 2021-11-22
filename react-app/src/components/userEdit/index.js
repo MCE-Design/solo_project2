@@ -63,7 +63,7 @@ function UserEdit() {
           </div>
           <ul className="profileSidebar">
             <li className="profileSideItem"><NavLink to="/user" activeClassName="sideBarActive">Profile</NavLink></li>
-            <li className="profileSideItem"><NavLink to="/user/reviews" activeClassName="sideBarActive">Password</NavLink></li>
+            {/* <li className="profileSideItem"><NavLink to="/user/reviews" activeClassName="sideBarActive">Password</NavLink></li> */}
           </ul>
         </div>
         <div className="profileRight">

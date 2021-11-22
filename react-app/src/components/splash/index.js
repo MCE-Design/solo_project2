@@ -44,7 +44,7 @@ function Splash() {
               {businesses?.businesses?.map((business) => {
                 return(
                   <div className="businessTile" key={business?.id}>
-                    <div className="businessTileBody">
+                    <a className="businessTileBody" href={`/business/${business?.id}`}>
                       <div className="businessTileImage">
                         {/* <img src="" /> */}
                         {business?.id === 1 && (
@@ -66,13 +66,11 @@ function Splash() {
                       <div className = "businessTileInfo">
                         <div className = "businessTileTitle">
                           <h3>
-                            <NavLink to={`/business/${business?.id}`}>
-                              {business?.name}
-                            </NavLink>
+                            {business?.name}
                           </h3>
                         </div>
                       </div>
-                    </div>
+                    </a>
                   </div>
                 );
               })}

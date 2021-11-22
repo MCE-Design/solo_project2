@@ -112,16 +112,21 @@
   flex: 1;
   margin: 6px 0;
   padding: 0 6px 0 24px;
+  overflow: hidden;
 }
 
 .businessTileTitle {
 
 }
 
-.businessTileTitle a {
+.businessTileTitle h3 {
   display: block;
   width: calc(100% - 30px);
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+}
+
+.businessTileTitle h3:hover {
+  text-decoration: underline;
 }
