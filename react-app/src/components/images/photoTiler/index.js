@@ -114,11 +114,11 @@ function PhotoTile({image, user, isBusiness}) {
             </div>
             {currentImageUser?.id === user?.id && (
             <div className="lightboxActions">
-              <button className="modalButton button" onClick={handleEditModeOpen} style={{backgroundImage: `url(${editIcon})`}}>
-                Edit
+              <button className="lightboxActionButton button" onClick={handleEditModeOpen} style={{backgroundImage: `url(${editIcon})`}}>
+                Edit photo caption
               </button>
-              <button className="modalButton button" onClick={handleDelete} style={{backgroundImage: `url(${deleteIcon})`}}>
-                Delete
+              <button className="lightboxActionButton button" onClick={handleDelete} style={{backgroundImage: `url(${deleteIcon})`}}>
+                Delete photo
               </button>
             </div>
             )}

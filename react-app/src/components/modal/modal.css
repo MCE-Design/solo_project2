@@ -86,6 +86,19 @@
   margin-bottom: 10px;
 }
 
+.lightboxActionButton {
+  display: block;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: 8px 0px;
+  background-size: 18px;
+  width: 100%;
+}
+
+.lightboxActionButton:hover {
+  text-decoration: underline;
+}
+
 .modalButton {
   border-radius: 3px;
   padding: 5px 8px;
