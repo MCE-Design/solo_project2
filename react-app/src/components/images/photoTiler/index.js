@@ -47,8 +47,12 @@ function PhotoTile({image, user, isBusiness, businessId}) {
 
   const handleEditSubmit = () => {
     const imageCaptionBox = document.querySelector(".lightboxImageCaptionBox");
-    if ( imageCaptionBox.textContent !== image?.imageCaption) {
+    if ( imageCaptionBox.textContent !== image?.imageCaption || imageCaptionBox.textContent === "") {
       console.log("SUBMITTABLE");
+      console.log("EDIT CAPTION CONTENT", imageCaptionBox.textContent === "")
+      if(imageCaptionBox.textContent === "") {
+
+      }
       if(isBusiness){
         const editedCaption = {
           id: image?.id,

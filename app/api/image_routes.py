@@ -78,7 +78,7 @@ def edit_caption():
     images = Image.query.filter(Image.userId == current_user.id, Image.imageable_type == "user").all()
     return {"images": [image.to_dict() for image in images]}
   else:
-    return "Bad Comment Data"
+    return {"Bad Comment Data"}
 
 # Edit Image Business and Review Caption
 @image_routes.route("/edit_business", methods=["PUT"])
@@ -99,7 +99,7 @@ def edit_business_and_review_caption():
     print(CGREEN + "\n BUSINESS OR REVIEW IMAGES \n", images, "\n" + CEND)
     return {"images": [image.to_dict() for image in images]}
   else:
-    return "Bad Comment Data"
+    return {"Bad Comment Data"}
 
 # Delete Image
 @image_routes.route("", methods=["DELETE"])
