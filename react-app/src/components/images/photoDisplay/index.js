@@ -79,7 +79,7 @@ function PhotoDisplay({ profile }) {
                 return(
                 <li key={image?.id} className="imageTileContainer">
                   {console.log("HIT MAP")}
-                  <PhotoTile image={image} user={sessionUser} isBusiness={false}/>
+                  <PhotoTile image={image} user={sessionUser} isBusiness={false} businessId={business?.id}/>
                 </li>
                 )
               })}
@@ -102,7 +102,7 @@ function PhotoDisplay({ profile }) {
                 return(
                 <li key={image?.id} className="imageTileContainer">
                   {console.log("HIT MAP")}
-                  <PhotoTile image={image} user={sessionUser} isBusiness={true}/>
+                  <PhotoTile image={image} user={sessionUser} isBusiness={true} businessId={business?.id}/>
                 </li>
                 )
               })}

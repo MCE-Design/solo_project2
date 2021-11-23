@@ -3,11 +3,11 @@ import { useDispatch } from 'react-redux';
 import "./phototiler.css";
 import { NavLink, useHistory } from 'react-router-dom';
 import Modal from "../../modal";
-import { deleteImage, editImageCaption } from "../../../store/image";
+import { deleteImage, deleteBusinessImage, editImageCaption, editBusinessAndReviewImageCaption } from "../../../store/image";
 import editIcon from '../../../images/edit_black_24dp.svg';
 import deleteIcon from '../../../images/delete_black_24dp.svg';
 
-function PhotoTile({image, user, isBusiness}) {
+function PhotoTile({image, user, isBusiness, businessId}) {
   const dispatch = useDispatch();
   const history = useHistory();
   const [ currentImageUser, setCurrentImageUser ] = useState();
@@ -15,10 +15,12 @@ function PhotoTile({image, user, isBusiness}) {
   const [ editPanel, setEditPanel ] = useState(false);
 
   const handleDelete = () => {
-    dispatch(deleteImage(image?.id));
     if(isBusiness){
-      history.push("/business/photos");
+      console.log("DELETE BUSINESS PHOTO ID", businessId)
+      dispatch(deleteBusinessImage(image?.id, businessId));
+      history.push(`/business_photos/${businessId}`);
     } else {
+      dispatch(deleteImage(image?.id));
       history.push("/user/photos/add");
     }
   }
@@ -33,7 +35,9 @@ function PhotoTile({image, user, isBusiness}) {
   }
 
   const handleEditModeClose = (e) => {
-    e.preventDefault();
+    if(e){
+      e.preventDefault();
+    }
     const imageCaptionBox = document.querySelector(".lightboxImageCaptionBox");
     imageCaptionBox.setAttribute("contentEditable", "false");
     imageCaptionBox.classList.remove("active");
@@ -45,16 +49,30 @@ function PhotoTile({image, user, isBusiness}) {
     const imageCaptionBox = document.querySelector(".lightboxImageCaptionBox");
     if ( imageCaptionBox.textContent !== image?.imageCaption) {
       console.log("SUBMITTABLE");
-      const editedCaption = {
-        id: image?.id,
-        userId: image?.userId,
-        imageable_id: image?.imageable_id,
-        imageable_type: image?.imageable_type,
-        imageUrl: image?.imageUrl,
-        imageCaption: imageCaptionBox.textContent,
+      if(isBusiness){
+        const editedCaption = {
+          id: image?.id,
+          userId: image?.userId,
+          imageable_id: image?.imageable_id,
+          imageable_type: image?.imageable_type,
+          imageUrl: image?.imageUrl,
+          imageCaption: imageCaptionBox.textContent,
+          businessId: businessId,
+        }
+        dispatch(editBusinessAndReviewImageCaption(editedCaption));
+        console.log("editedCaption", editedCaption);
+      } else {
+        const editedCaption = {
+          id: image?.id,
+          userId: image?.userId,
+          imageable_id: image?.imageable_id,
+          imageable_type: image?.imageable_type,
+          imageUrl: image?.imageUrl,
+          imageCaption: imageCaptionBox.textContent,
+        }
+        dispatch(editImageCaption(editedCaption));
+        console.log("editedCaption", editedCaption);
       }
-      dispatch(editImageCaption(editedCaption));
-      console.log("editedCaption", editedCaption)
     }
     handleEditModeClose();
   }

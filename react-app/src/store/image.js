@@ -1,6 +1,7 @@
 const SET_IMAGE = 'image/SET_IMAGE';
 const REMOVE_IMAGE = 'image/REMOVE_IMAGE';
 const SET_BUSINESS_IMAGE = 'image/SET_BUSINESS_IMAGE';
+const REMOVE_BUSINESS_IMAGE = 'image/REMOVE_BUSINESS_IMAGE';
 
 const load = (image) => ({
   type: SET_IMAGE,
@@ -14,6 +15,11 @@ const businessLoad = (image) => ({
 
 const removeImage = () => ({
   type: REMOVE_IMAGE,
+})
+
+const removeBusinessImage = (image) => ({
+  type: REMOVE_BUSINESS_IMAGE,
+  payload: image
 })
 
 const initialState = { image: null };
@@ -55,6 +61,23 @@ export const deleteImage = (id) => async dispatch => {
   } else return "Thunk Error: Delete Image"
 }
 
+export const deleteBusinessImage = (id, businessId) => async dispatch => {
+  const response = await fetch(`/api/image/deleteBusinessImage`,
+    {
+      method: "DELETE",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({
+        id: id,
+        businessId: businessId,
+      })
+    }
+  )
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(removeBusinessImage(data));
+  } else return "Thunk Error: Delete Image"
+}
+
 export const editImageCaption = (editedCaption) => async dispatch => {
   const response = await fetch(`/api/image`,
     {
@@ -71,6 +94,22 @@ export const editImageCaption = (editedCaption) => async dispatch => {
   } else return "Thunk Error: Edit Caption"
 }
 
+export const editBusinessAndReviewImageCaption = (editedCaption) => async dispatch => {
+  const response = await fetch(`/api/image/edit_business`,
+    {
+      method: "PUT",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(editedCaption)
+    }
+  )
+  console.log("EDIT HIT")
+  console.log("RESPONSE BODY", response)
+  if (response.ok) {
+    const data = await response.json()
+      dispatch(businessLoad(data))
+  } else return "Thunk Error: Edit Caption"
+}
+
 export default function imageReducer(state = initialState, action) {
   switch (action.type) {
     case SET_IMAGE:
@@ -78,6 +117,8 @@ export default function imageReducer(state = initialState, action) {
     case REMOVE_IMAGE:
       return { image: null }
     case SET_BUSINESS_IMAGE:
+      return { businessImage: action.payload }
+    case REMOVE_BUSINESS_IMAGE:
       return { businessImage: action.payload }
     default:
       return state;

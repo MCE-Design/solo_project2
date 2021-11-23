@@ -39,6 +39,8 @@ class CaptionEdit(FlaskForm):
     imageable_type = SelectField('imageable_types', choices=['user','business', 'review'], validators=[DataRequired()])
     imageUrl = StringField('imageUrl', validators=[DataRequired()])
     imageCaption = TextAreaField('imageCaption', validators=[DataRequired()])
+    businessId = IntegerField('businessId')
 
 class DeleteImage(FlaskForm):
     id = IntegerField("id", validators=[DataRequired()])
+    businessId = IntegerField("businessId")

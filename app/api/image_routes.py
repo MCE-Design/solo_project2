@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask_login import current_user, login_required
 from app.forms.image_form import DeleteImage, CaptionEdit
-from app.models import db, Image
+from app.models import db, Image, Review
 from app.s3_helpers import (
   upload_file_to_s3, allowed_file, get_unique_filename)
 from colors import *
@@ -75,7 +75,28 @@ def edit_caption():
     image.imageCaption = data["imageCaption"]
 
     db.session.commit()
-    images = Image.query.all()
+    images = Image.query.filter(Image.userId == current_user.id, Image.imageable_type == "user").all()
+    return {"images": [image.to_dict() for image in images]}
+  else:
+    return "Bad Comment Data"
+
+# Edit Image Business and Review Caption
+@image_routes.route("/edit_business", methods=["PUT"])
+@login_required
+def edit_business_and_review_caption():
+  form = CaptionEdit()
+  data = form.data
+  form['csrf_token'].data = request.cookies['csrf_token']
+  if form.validate_on_submit():
+    image = Image.query.filter(Image.id == data["id"]).first()
+    image.imageCaption = data["imageCaption"]
+
+    db.session.commit()
+    print(CGREEN + "\n DATA\n", data, "\n" + CEND)
+    print(CGREEN + "\n IMAGEABLE TYPE\n", data["imageable_type"], "\n" + CEND)
+    print(CGREEN + "\n BUSINESS ID\n", data["businessId"], "\n" + CEND)
+    images = Image.query.filter(Image.imageable_id == data["businessId"], Image.imageable_type == "business").all() + Image.query.join(Review, Image.imageable_id == Review.id).filter(Image.imageable_type == "review", Review.businessId == data["businessId"]).all()
+    print(CGREEN + "\n BUSINESS OR REVIEW IMAGES \n", images, "\n" + CEND)
     return {"images": [image.to_dict() for image in images]}
   else:
     return "Bad Comment Data"
@@ -95,3 +116,19 @@ def delete_image():
   images = Image.query.all()
   print(CGREEN + "\n delete images \n", images, "\n" + CEND)
   return {"errors": ["Your photo has been removed. You can upload another below."]}
+
+# Delete Business and Review Image
+@image_routes.route("/deleteBusinessImage", methods=["DELETE"])
+@login_required
+def delete_business_and_review_image():
+  form = DeleteImage()
+  data = form.data
+  form['csrf_token'].data = request.cookies['csrf_token']
+
+  image_to_delete = Image.query.filter(Image.id == data["id"]).first()
+  db.session.delete(image_to_delete)
+  db.session.commit()
+  print(CGREEN + "\n formData \n", data, "\n" + CEND)
+  images = Image.query.filter(Image.imageable_id == data["businessId"], Image.imageable_type == "business").all() + Image.query.join(Review, Image.imageable_id == Review.id).filter(Image.imageable_type == "review", Review.businessId == data["businessId"]).all()
+  print(CGREEN + "\n delete images \n", images, "\n" + CEND)
+  return {"images": [image.to_dict() for image in images]}
