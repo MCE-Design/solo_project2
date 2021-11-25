@@ -9,7 +9,7 @@ const LogoutButton = () => {
     await dispatch(logout());
   };
 
-  return <button onClick={onLogout} className="button"><div className="buttonIcon" style={{backgroundImage: `url(${logoutIcon})`}}></div>Logout</button>;
+  return <button onClick={onLogout} className="navItemContent button"><div className="buttonIcon" style={{backgroundImage: `url(${logoutIcon})`}}></div>Logout</button>;
 };
 
 export default LogoutButton;

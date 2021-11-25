@@ -7,7 +7,8 @@ import { useSelector } from 'react-redux';
 import "./navbar.css";
 import yap_logo from "../../images/yap_logo.svg";
 import yap_logo_dark from "../../images/yap_logo_dark.svg";
-import aboutMe from "../../images/account_circle_black_24dp.svg"
+import aboutMeIcon from "../../images/account_circle_black_24dp.svg";
+import settingsIcon from "../../images/settings_black_24dp.svg";
 
 const NavBar = () => {
   const currentPage = useLocation();
@@ -61,10 +62,13 @@ const NavBar = () => {
                   </div>
                   <ul className="navDropDownMenu">
                     <li className="navItem">
-                      <NavLink to="/user" onClick={handleMenu}>About Me</NavLink>
+                      <NavLink to="/user" onClick={handleMenu} className="navItemContent"><div className="buttonIcon" style={{backgroundImage: `url(${aboutMeIcon})`}}></div>About Me</NavLink>
                     </li>
-                    <li className="navItem" onClick={handleMenu}>
-                      <LogoutButton/>
+                    <li className="navItem">
+                      <NavLink to="/user/details" onClick={handleMenu} className="navItemContent"><div className="buttonIcon" style={{backgroundImage: `url(${settingsIcon})`}}></div>Account Settings</NavLink>
+                    </li>
+                    <li className="navItem">
+                      <LogoutButton onClick={handleMenu}/>
                     </li>
                   </ul>
                 </div>
@@ -120,7 +124,10 @@ const NavBar = () => {
                   </div>
                   <ul className="navDropDownMenu">
                     <li className="navItem">
-                      <NavLink to="/user" onClick={handleMenu}><div style={{backgroundImage: `url(${aboutMe})`}}></div>About Me</NavLink>
+                      <NavLink to="/user" onClick={handleMenu} className="navItemContent"><div className="buttonIcon" style={{backgroundImage: `url(${aboutMeIcon})`}}></div>About Me</NavLink>
+                    </li>
+                    <li className="navItem">
+                      <NavLink to="/user/details" onClick={handleMenu} className="navItemContent"><div className="buttonIcon" style={{backgroundImage: `url(${settingsIcon})`}}></div>Account Settings</NavLink>
                     </li>
                     <li className="navItem">
                       <LogoutButton onClick={handleMenu}/>
@@ -166,7 +173,10 @@ const NavBar = () => {
                   </div>
                   <ul className="navDropDownMenu">
                     <li className="navItem">
-                      <NavLink to="/user" onClick={handleMenu}><div className="buttonIcon" style={{backgroundImage: `url(${aboutMe})`}}></div>About Me</NavLink>
+                      <NavLink to="/user" onClick={handleMenu} className="navItemContent"><div className="buttonIcon" style={{backgroundImage: `url(${aboutMeIcon})`}}></div>About Me</NavLink>
+                    </li>
+                    <li className="navItem">
+                      <NavLink to="/user/details" onClick={handleMenu} className="navItemContent"><div className="buttonIcon" style={{backgroundImage: `url(${settingsIcon})`}}></div>Account Settings</NavLink>
                     </li>
                     <li className="navItem">
                       <LogoutButton onClick={handleMenu}/>

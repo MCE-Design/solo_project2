@@ -1,3 +1,8 @@
+.navContainer .buttonIcon {
+
+}
+
+
 /* ========================================
 
    Navbar - Landing Page
@@ -91,10 +96,14 @@
   white-space: nowrap;
 }
 
-.navItem a,
-.navItem button {
+.navItem:last-child {
+  border-top: 1px solid #EEEEEF;
+}
+
+.navItemContent {
   box-sizing: border-box;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   padding: 8px 8px;
   width: 100%;
   background-color: #FFFFFF;
