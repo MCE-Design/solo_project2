@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 // import { newReview } from "../../../store/review";
 import { useParams, NavLink, useHistory } from 'react-router-dom';
+import { getBusiness } from '../../../store/business';
 // import defaultAvatar from "../../../images/default_user_avatar_64x64.png"
 import "../photoUpload/photoupload.css"
 import chevRight from "../../../images/chevron_right_black_24dp.svg"
@@ -12,6 +13,7 @@ function PhotoUpload({photoType}) {
   const history = useHistory();
   const { id } = useParams();
   const sessionUser = useSelector(state => state.session.user);
+  const business = useSelector(state => state.business.business);
   const [image, setImage] = useState(null);
   const [imageCaption, setImageCaption] = useState("");
   const [imageLoading, setImageLoading] = useState(false);
@@ -20,6 +22,7 @@ function PhotoUpload({photoType}) {
   useEffect(() => {
     if (photoType === "business") {
       setImageTypeId(id);
+      dispatch(getBusiness(id));
     } else if (photoType === "review") {
 
     } else if (photoType === "user") {
@@ -88,14 +91,12 @@ function PhotoUpload({photoType}) {
             <div className="backPageLeft">
               <ul className="breadcrumb">
                 <li>
-                  <NavLink to="/user">{sessionUser?.fname} {sessionUser?.lname[0]}.</NavLink>
+                  <h1><NavLink to={`/business/${business?.id}`}>{business?.name}</NavLink>: Add Photos</h1>
                 </li>
                 <li>
-                  <span className="chevronRight icon"><img src={chevRight} alt="Breadcrumb divider"/></span>
-                  Business photos
+                  <NavLink to={`/business_photos/${business?.id}`}>View All Photos</NavLink>
                 </li>
               </ul>
-              <h2>Add photos</h2>
             </div>
             <div className="backPageRight">
 

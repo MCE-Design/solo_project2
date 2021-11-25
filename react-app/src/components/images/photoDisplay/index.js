@@ -90,10 +90,21 @@ function PhotoDisplay({ profile }) {
     )
   } else if (profile === "business"){
     return (
-      <div className="userPhotoMain backPageMain container">
+      <div className="businessPhotoMain backPageMain container">
         <div className="contentContainer">
-          <div className="userPhotoTop backPageTop">
-            <h1>Photos for {business?.name}</h1>
+          <div className="businessPhotoTop backPageTop">
+            <div className="businessPhotoLeft backPageLeft">
+              <h1>Photos for {business?.name}</h1>
+              <div>
+                {/* Business avatar and ratings goes here */}
+              </div>
+            </div>
+            <div className="userPhotoRight backPageRight">
+              <NavLink to={`/business_photos/${business?.id}/add`} className="redButton backPageButton bodyButton button">
+                <span className="buttonIcon" style={{backgroundImage: `url(${addPhoto})`}}></span>
+                Add photos
+              </NavLink>
+            </div>
           </div>
           <div className="backPageLowerContainer">
             <ul className="backPageImageContainer">

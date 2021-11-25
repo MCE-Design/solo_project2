@@ -84,7 +84,7 @@
   right: 0;
   display: flex;
   flex-direction: column;
-  z-index: 900;
+  z-index: -1;
   border-radius: 3px;
   padding: 15px;
   opacity: 0;
@@ -120,6 +120,7 @@
 
 .navDropDownMenu.active {
   opacity: 1;
+  z-index: 900;
 }
 
 /* ========================================
