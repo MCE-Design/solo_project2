@@ -81,3 +81,16 @@ textarea.inputContainer:focus-visible {
 .photoButton {
   padding: 8px 18px;
 }
+
+.photoUploadBusinessInfo h1 {
+  font-family: "Open Sans", "Roboto", Helvetica, Arial, sans-serif;
+  font-weight: 600;
+}
+
+.photoUploadBusinessInfo a {
+  color: #00838F;
+}
+
+.photoUploadBusinessInfo a:hover {
+  text-decoration: underline;
+}

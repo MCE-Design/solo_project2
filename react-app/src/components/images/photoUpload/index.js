@@ -89,9 +89,9 @@ function PhotoUpload({photoType}) {
           </div>
           <div className="photoUploadTop backPageTop">
             <div className="backPageLeft">
-              <ul className="breadcrumb">
+              <ul className="photoUploadBusinessInfo">
                 <li>
-                  <h1><NavLink to={`/business/${business?.id}`}>{business?.name}</NavLink>: Add Photos</h1>
+                  <h1><NavLink to={`/business/${business?.id}`}>{business?.name}</NavLink><span>:</span> Add Photos</h1>
                 </li>
                 <li>
                   <NavLink to={`/business_photos/${business?.id}`}>View All Photos</NavLink>
