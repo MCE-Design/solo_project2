@@ -83,12 +83,15 @@ textarea.inputContainer:focus-visible {
 }
 
 .photoUploadBusinessInfo h1 {
-  font-family: "Open Sans", "Roboto", Helvetica, Arial, sans-serif;
-  font-weight: 600;
+  font-family: "Poppins", "Roboto", Helvetica, Arial, sans-serif;
+  font-weight: 900;
 }
 
+.photoUploadBusinessInfo h1 span,
 .photoUploadBusinessInfo a {
   color: #00838F;
+  font-weight: 600;
+  font-family: "Open Sans", "Roboto", Helvetica, Arial, sans-serif;
 }
 
 .photoUploadBusinessInfo a:hover {
