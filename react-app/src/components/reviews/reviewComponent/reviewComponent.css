@@ -63,6 +63,7 @@ img.reviewAvatar {
 .rateAndDate {
   display: flex;
   margin: 8px 0 12px -4px;
+  align-items: baseline;
 }
 
 .ratingInfoItem {
