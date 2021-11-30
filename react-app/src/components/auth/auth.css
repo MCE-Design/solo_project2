@@ -65,17 +65,17 @@
   margin-bottom: 10px;
 }
 
-.alreadyOn {
+.alreadyOnSignUp {
   display: flex;
   justify-content: right;
   color: #999999;
   font-size: 12px;
 }
 
-.alreadyOn a {
+.alreadyOnSignUp a {
   margin-left: 5px;
 }
 
-.alreadyOn a:hover {
+.alreadyOnSignUp a:hover {
   text-decoration: underline;
 }

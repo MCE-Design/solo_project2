@@ -130,7 +130,7 @@ const SignUpForm = () => {
             </div>
             <button type='submit' className="loginSignupbutton redButton button">Sign Up</button>
           </form>
-          <div className="alreadyOn">
+          <div className="alreadyOnSignUp">
             Already on Yap?<a href="/login">Log in</a>
           </div>
         </div>

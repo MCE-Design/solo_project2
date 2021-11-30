@@ -77,7 +77,9 @@ const LoginForm = () => {
               />
             </div>
             <button type='submit' className="loginSignupbutton redButton button">Log In</button>
-            <div>New to Yap? <a href="/signup">Sign up</a></div>
+            <div className="alreadyOnSignUp">
+              New to Yap? <a href="/signup">Sign up</a>
+            </div>
           </form>
         </div>
       </div>
