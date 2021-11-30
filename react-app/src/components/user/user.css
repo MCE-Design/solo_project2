@@ -146,6 +146,7 @@ h1 {
 
 .userEditForm label{
   display: inline-block;
+  font-size: 14px;
   font-weight: bold;
 }
 

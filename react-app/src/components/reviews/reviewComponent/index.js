@@ -79,20 +79,20 @@ function ReviewComponent({review, sessionUser}) {
                   <img src={user?.avatar} alt="Review Avatar" className="reviewAvatar" draggable="False" />
                 </a>
               ) : (
-                <div className="reviewAvatarLink"> {/* Enable later */}
+                <a href={`/users/${userId}`} className="reviewAvatarLink">
                   <img src={user?.avatar} alt="Review Avatar" className="reviewAvatar" draggable="False" />
-                </div>
+                </a>
               )}
             </div>
             <div className="reviewInfoBox">
 
               <div className="reviewName">
                 { sessionUser?.id === userId ? (
-                  <NavLink to={`/users/${userId}`}>
+                  <a href={`/users/${userId}`}>
                     {user?.fname} {user?.lname[0]}.
-                  </NavLink>
+                  </a>
                 ) : (
-                  <a> {/* Enable later */}
+                  <a href={`/users/${userId}`}>
                     {user?.fname} {user?.lname[0]}.
                   </a>
                 )}

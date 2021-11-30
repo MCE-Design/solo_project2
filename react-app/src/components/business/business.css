@@ -17,7 +17,7 @@
   height: 100%;
   min-width: 1145px;
   max-width: 1270px;
-  background: linear-gradient(180deg,rgba(0,0,0,.0001) 31.42%,#000000);
+  /* background: linear-gradient(180deg,rgba(0,0,0,.0001) 31.42%,#000000); */
 }
 
 .businessTitleBox,

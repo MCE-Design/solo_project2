@@ -156,12 +156,12 @@ const NavBar = () => {
             {!sessionUser ? (
                 <>
                   <li>
-                    <NavLink to='/login' exact={true} className="headerLink" activeClassName='active'>
+                    <NavLink to='/login' exact={true} className="headerLink backPageHeaderButton lightButton button" activeClassName='active'>
                       Log In
                     </NavLink>
                   </li>
                   <li>
-                    <NavLink to='/signup' exact={true} className="headerLink signUp button" activeClassName='active'>
+                    <NavLink to='/signup' exact={true} className="headerLink backPageHeaderButton redButton button" activeClassName='active'>
                       Sign Up
                     </NavLink>
                   </li>
