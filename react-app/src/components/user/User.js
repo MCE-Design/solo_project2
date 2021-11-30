@@ -43,9 +43,9 @@ function User({ profile }) {
             </div>
             <div className="profileContentContainer">
               <div className="userProfileAvatar">
-                <NavLink to="/user_photos">
+                <a href="/user_photos">
                   <img src={sessionUser?.avatar} className="profileAvatarImage" alt={`${sessionUser}'s Avatar`}></img>
-                </NavLink>
+                </a>
               </div>
               <div className="topInfoContainer">
                 <div className="profileSpacer"></div>
@@ -59,10 +59,10 @@ function User({ profile }) {
                 </div>
                 <div className="profileActionLinks">
                   <div className="profileActionLinkItem">
-                    <Link to="/user/photos/add"><span className="buttonIconMini" style={{backgroundImage: `url(${addPhoto})`}}></span>Add Profile Photos</Link>
+                    <a href="/user/photos/add"><span className="buttonIconMini" style={{backgroundImage: `url(${addPhoto})`}}></span>Add Profile Photos</a>
                   </div>
                   <div className="profileActionLinkItem">
-                    <Link to="/user/details"><span className="buttonIconMini" style={{backgroundImage: `url(${updateProfile})`}}></span>Update Your Profile</Link>
+                    <a href="/user/details"><span className="buttonIconMini" style={{backgroundImage: `url(${updateProfile})`}}></span>Update Your Profile</a>
                   </div>
                   {/* <div>
                     <Link></Link>
@@ -78,7 +78,7 @@ function User({ profile }) {
               <h3>{sessionUser?.fname}'s Profile</h3>
             </div>
             <ul className="profileSidebar">
-              <li className="profileSideItem"><NavLink to="/user" activeClassName="sideBarActive"><span className="buttonIcon" style={{backgroundImage: `url(${userIcon})`}}></span>Profile Overview</NavLink></li>
+              <li className="profileSideItem"><a href="/user" activeClassName="sideBarActive"><span className="buttonIcon" style={{backgroundImage: `url(${userIcon})`}}></span>Profile Overview</a></li>
               {/* <li className="profileSideItem"><NavLink to="/user/reviews" activeClassName="sideBarActive"><span className="buttonIcon" style={{backgroundImage: `url(${userReview})`}}></span>Reviews</NavLink></li>
               <li className="profileSideItem"><NavLink to="/user/businessPhotos" activeClassName="sideBarActive"><span className="buttonIcon"style={{backgroundImage: `url(${userPhoto})`}}></span>Business Photos</NavLink></li> */}
             </ul>
@@ -96,9 +96,9 @@ function User({ profile }) {
           <div className="topContent">
             <div className="profileContentContainer">
               <div className="userProfileAvatar">
-                <NavLink to={`/user_photos/${userId}`}>
+                <a href={`/user_photos/${userId}`}>
                   <img src={user?.avatar} className="profileAvatarImage" alt={`${user?.fname}'s Avatar`}></img>
-                </NavLink>
+                </a>
               </div>
               <div className="topInfoContainer">
                 <div className="profileSpacer"></div>
@@ -123,7 +123,7 @@ function User({ profile }) {
               <h3>{user?.fname} {user?.lname?.slice(0,1)}.</h3>
             </div>
             <ul className="profileSidebar">
-              <li className="profileSideItem"><NavLink to={`/users/${userId}`} activeClassName="sideBarActive"><span className="buttonIcon" style={{backgroundImage: `url(${userIcon})`}}></span>Profile Overview</NavLink></li>
+              <li className="profileSideItem"><a href={`/users/${userId}`} activeClassName="sideBarActive"><span className="buttonIcon" style={{backgroundImage: `url(${userIcon})`}}></span>Profile Overview</a></li>
               {/* <li className="profileSideItem"><NavLink to={`/users/${userId}/reviews`} activeClassName="sideBarActive"><span className="buttonIcon" style={{backgroundImage: `url(${userReview})`}}></span>Reviews</NavLink></li>
               <li className="profileSideItem"><NavLink to={`/users/${userId}/businessPhotos`} activeClassName="sideBarActive"><span className="buttonIcon"style={{backgroundImage: `url(${userPhoto})`}}></span>Business Photos</NavLink></li> */}
             </ul>

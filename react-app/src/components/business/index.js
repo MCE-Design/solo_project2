@@ -53,9 +53,9 @@ function Business() {
             </div>
           </div>
           <div className="businessButtonBox">
-            <NavLink to={`/business_photos/${businessId}`} className="transparentButton businessTopButton bodyButton button">
+            <a href={`/business_photos/${businessId}`} className="transparentButton businessTopButton bodyButton button">
               See Photos
-            </NavLink>
+            </a>
           </div>
         </div>
         <div className="photoCarousel">
@@ -88,22 +88,22 @@ function Business() {
             {/* Change this later to do logged-out user workflow */}
             { sessionUser ? (
               <>
-                <NavLink to={`${businessId}/newreview`} exact={true} className="redButton businessButton bodyButton button" activeClassName='active'>
+                <a href={`${businessId}/newreview`} exact={true} className="redButton businessButton bodyButton button" activeClassName='active'>
                   <div className="buttonIcon" style={{backgroundImage: `url(${write})`}}>
 
                   </div>
                   <div>
                     Write a Review
                   </div>
-                </NavLink>
-                <NavLink to={`/business_photos/${businessId}/add`} exact={true} className="lightButton businessButton bodyButton button" activeClassName='active'>
+                </a>
+                <a href={`/business_photos/${businessId}/add`} exact={true} className="lightButton businessButton bodyButton button" activeClassName='active'>
                   <div className="buttonIcon" style={{backgroundImage: `url(${addPhoto})`}}>
 
                   </div>
                   <div>
                     Add Photo
                   </div>
-                </NavLink>
+                </a>
               </>
             ) : (
               <></>
