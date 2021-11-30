@@ -43,7 +43,7 @@ const LoginForm = () => {
       <div className="loginSignupLeft leftAndRight">
         <div className="loginSignupBody">
           <h2>Login to Yap</h2>
-          <div>New to Yap? <NavLink to="/signup">Sign up</NavLink></div>
+          <div>New to Yap? <a href="/signup">Sign up</a></div>
           <button className="button" onClick={onDemo}>
             Continue With Demo
           </button>
@@ -75,8 +75,9 @@ const LoginForm = () => {
                 className="passwordField"
                 required
               />
-              <button type='submit' className="loginSignupbutton redButton button">Log In</button>
             </div>
+            <button type='submit' className="loginSignupbutton redButton button">Log In</button>
+            <div>New to Yap? <a href="/signup">Sign up</a></div>
           </form>
         </div>
       </div>

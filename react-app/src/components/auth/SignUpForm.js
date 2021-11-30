@@ -62,74 +62,77 @@ const SignUpForm = () => {
         <div className="loginSignupBody">
           <h2>Sign Up for Yap</h2>
           <form onSubmit={onSignUp}>
-          <div>
-            {errors?.map((error, ind) => (
-              <div key={ind}>{error}</div>
-            ))}
-            {console.log(errors)}
+            <div>
+              {errors?.map((error, ind) => (
+                <div key={ind}>{error}</div>
+              ))}
+              {console.log(errors)}
+            </div>
+            <div className="loginSignupInputRow">
+              <input
+                type='text'
+                name='username'
+                onChange={updateUsername}
+                placeholder='username'
+                value={username}
+                required
+              ></input>
+            </div>
+            <div className="loginSignupInputRow">
+              <input
+                type='text'
+                name='firstname'
+                onChange={updateFirstname}
+                placeholder='first name'
+                value={firstname}
+                required
+                className="half"
+              ></input>
+              <input
+                type='text'
+                name='lastname'
+                onChange={updateLastname}
+                placeholder='last name'
+                value={lastname}
+                required
+                className="half"
+              ></input>
+            </div>
+            <div className="loginSignupInputRow">
+              <input
+                type='email'
+                name='email'
+                placeholder='Email'
+                onChange={updateEmail}
+                value={email}
+                required
+              ></input>
+            </div>
+            <div className="loginSignupInputRow">
+              <input
+                type='password'
+                name='password'
+                placeholder='Password'
+                onChange={updatePassword}
+                value={password}
+                required
+              ></input>
+            </div>
+            <div className="loginSignupInputRow">
+              <input
+                type='password'
+                name='repeat_password'
+                placeholder='Repeat Password'
+                onChange={updateRepeatPassword}
+                value={repeatPassword}
+                required={true}
+              ></input>
+            </div>
+            <button type='submit' className="loginSignupbutton redButton button">Sign Up</button>
+          </form>
+          <div className="alreadyOn">
+            Already on Yap?<a href="/login">Log in</a>
           </div>
-          <div className="loginSignupInputRow">
-            <input
-              type='text'
-              name='username'
-              onChange={updateUsername}
-              placeholder='username'
-              value={username}
-              required
-            ></input>
-          </div>
-          <div className="loginSignupInputRow">
-            <input
-              type='text'
-              name='firstname'
-              onChange={updateFirstname}
-              placeholder='first name'
-              value={firstname}
-              required
-            ></input>
-          </div>
-          <div className="loginSignupInputRow">
-            <input
-              type='text'
-              name='lastname'
-              onChange={updateLastname}
-              placeholder='last name'
-              value={lastname}
-              required
-            ></input>
-          </div>
-          <div className="loginSignupInputRow">
-            <input
-              type='email'
-              name='email'
-              placeholder='Email'
-              onChange={updateEmail}
-              value={email}
-              required
-            ></input>
-          </div>
-          <div className="loginSignupInputRow">
-            <input
-              type='password'
-              name='password'
-              placeholder='Password'
-              onChange={updatePassword}
-              value={password}
-              required
-            ></input>
-          </div>
-          <div className="loginSignupInputRow">
-            <input
-              type='password'
-              name='repeat_password'
-              placeholder='Repeat Password'
-              onChange={updateRepeatPassword}
-              value={repeatPassword}
-              required={true}
-            ></input>
-          </div>
-          <button type='submit' className="loginSignupbutton redButton button">Sign Up</button>
-        </form>
         </div>
       </div>
       <div className="loginSignupRight leftAndRight">
