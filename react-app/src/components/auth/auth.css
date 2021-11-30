@@ -1,3 +1,7 @@
+h2 {
+  font-size: 22px;
+}
+
 .loginSignupContainer {
   display: flex;
   margin: 0 auto;
@@ -26,6 +30,36 @@
   padding: 30px 48px;
   max-width: 300px;
   text-align: center;
+}
+
+.loginNewTo {
+  margin-bottom: 25px;
+  font-weight: bold;
+}
+
+.demoLogin {
+  margin-bottom: 15px;
+  border-radius: 5px;
+  padding: 10px 50px;
+  width: 100%;
+  background-color: #FFFFFF;
+  color: #666666;
+  font-family: "Open Sans", "Roboto", Helvetica, Arial, sans-serif;
+  font-weight: bold;
+}
+
+.loginOr {
+  position: relative;
+  border-bottom: 1px solid #CCCCCC;
+}
+
+.loginOrText {
+  position: relative;
+  top: 10px;
+  padding: 0 10px;
+  background-color: #FFFFFF;
+  font-size: 14px;
+  line-height: 14px;
 }
 
 .loginSignupBody form {

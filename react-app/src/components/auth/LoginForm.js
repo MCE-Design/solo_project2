@@ -43,11 +43,11 @@ const LoginForm = () => {
       <div className="loginSignupLeft leftAndRight">
         <div className="loginSignupBody">
           <h2>Login to Yap</h2>
-          <div>New to Yap? <a href="/signup">Sign up</a></div>
-          <button className="button" onClick={onDemo}>
+          <div className="loginNewTo">New to Yap? <a href="/signup">Sign up</a></div>
+          <button className="demoLogin lightButton button" onClick={onDemo}>
             Continue With Demo
           </button>
-          <div><span>OR</span></div>
+          <div className="loginOr"><span className="loginOrText">OR</span></div>
           <form onSubmit={onLogin}>
             <div>
               {errors.map((error, ind) => (
