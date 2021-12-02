@@ -117,6 +117,11 @@ function PhotoDisplay({ profile }) {
                 </li>
                 )
               })}
+              {businessImages?.length === 0 && (
+              <div>
+                <h1>This business has no photos yet</h1>
+              </div>
+              )}
             </ul>
           </div>
         </div>
