@@ -112,7 +112,7 @@ function Business() {
           </div>
 
         </div>
-        <div>
+        <div className="businessMap">
           {/* Maps and Hours */}
         </div>
         <div className="reviewsContainer leftComponentContainer">
