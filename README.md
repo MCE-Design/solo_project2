@@ -6,7 +6,7 @@ Yap is a Yelp clone built using React-Redux on the frontend and Flask on the bac
 
 Current the application can be viewed online at https://yap-reviews.herokuapp.com/
 
-# Tecnologies
+# Technologies
 
 ## Frontend Technologies
 
