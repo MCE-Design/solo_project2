@@ -16,7 +16,7 @@ Yap is a React application.  However, it most of the work has been done using Re
 
 ### Redux
 
-While React is a powerful frontend framework the Redux and React-Redux libraries make it a better experience.  Data can be kept in state as a way to have rapid access to it.
+While React is a powerful frontend framework the Redux and React-Redux libraries make it a better experience.  Data can be kept in state as a way to have rapid access to it, rerendering of the screen is more consistent, and using context is far easier.
 
 ## Backend Technologies
 
@@ -24,9 +24,9 @@ While React is a powerful frontend framework the Redux and React-Redux libraries
 
 Flask does some heavy lifting on the backend and makes forms and validations easy via Alembic and WTForms.
 
-### AWS
+### AWS S3
 
-I've made use of AWS to facilitate image uploading on the site.  Honestly this was the only choice for uploading and hosting images 3rd party.
+I've made use of AWS S3 to facilitate image uploading on the site.  Honestly this was the only choice for uploading and hosting images 3rd party.
 
 # Conclusion
 
