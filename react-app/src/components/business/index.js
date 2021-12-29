@@ -1,7 +1,7 @@
-import React, { useEffect, useState }  from 'react';
+import React, { useRef, useEffect, useState }  from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import "./business.css";
-import 'mapbox-gl/dist/mapbox-gl.css';
+import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
 import { getBusiness } from '../../store/business';
 import { getReviewsByBusiness } from '../../store/review';
 import { useParams, NavLink } from 'react-router-dom';
@@ -13,6 +13,8 @@ import business1_image from '../../images/business_hero_images/business1/page_im
 import business2_image from '../../images/business_hero_images/business2/page_image1.jpg';
 import business3_image from '../../images/business_hero_images/business3/page_image1.jpg';
 
+mapboxgl.accessToken = 'pk.eyJ1IjoibWNlLWRlc2lnbiIsImEiOiJja3g4NmF5eXoxNnN5MnZxdXlpaWcxM3l3In0.A_7OTI9bVe-586aBwNWRSA';
+
 function Business() {
   const dispatch = useDispatch();
   const { businessId } = useParams();
@@ -20,6 +22,12 @@ function Business() {
   const { review } = useSelector((state) => state.review);
   const sessionUser = useSelector(state => state.session.user);
   const [ userReviewed, setUserReviewed ] = useState(false);
+
+  const mapContainer = useRef(null);
+  const map = useRef(null);
+  const [lng, setLng] = useState(-70.9); // Sets LONGITUDE and default LONGITUDE
+  const [lat, setLat] = useState(42.35); // Sets LATITUDE and default LATITUDE
+  const [zoom, setZoom] = useState(9); // Sets ZOOM and default ZOOM
 
   window.document.title = `Yap - ${business?.name}`
 
@@ -35,6 +43,28 @@ function Business() {
       setUserReviewed(false);
     }
   }, [dispatch, review, sessionUser]);
+
+  // Initialize the map
+  useEffect(() => {
+    if (map.current) return; // initialize map only once
+    map.current = new mapboxgl.Map({
+      container: mapContainer.current,
+      style: 'mapbox://styles/mce-design/ckx882y3808wl15prli2yo0q5',
+      center: [lng, lat],
+      zoom: zoom
+    });
+  });
+
+  // STORE the new coordinates
+  useEffect(() => {
+    if (!map.current) return; // wait for map to initialize
+    map.current.on('move', () => {
+      setLng(map.current.getCenter().lng.toFixed(4));
+      setLat(map.current.getCenter().lat.toFixed(4));
+      setZoom(map.current.getZoom().toFixed(2));
+    });
+  });
+
   console.log(business)
   console.log("sessionUser", sessionUser)
   console.log("Reviews", review?.reviews?.length)
@@ -115,6 +145,7 @@ function Business() {
         </div>
         <div className="businessMap">
           {/* Maps and Hours */}
+          <div ref={mapContainer} className="map-container" />
         </div>
         <div className="reviewsContainer leftComponentContainer">
           {/* change later to do logged-out user workflow */}

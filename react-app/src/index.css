@@ -254,3 +254,7 @@ ul {
     min-height: 100px;
   }
 }
+
+.map-container {
+  height: 400px;
+}
