@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/navbar/NavBar';
@@ -15,6 +16,8 @@ import Business from './components/business';
 import PhotoUpload from './components/images/photoUpload';
 import StandAloneReview from './components/reviews/standAloneReview';
 import { authenticate } from './store/session';
+
+mapboxgl.accessToken = 'pk.eyJ1IjoibWNlLWRlc2lnbiIsImEiOiJja3g4NmF5eXoxNnN5MnZxdXlpaWcxM3l3In0.A_7OTI9bVe-586aBwNWRSA';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
