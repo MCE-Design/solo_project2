@@ -1,6 +1,8 @@
 import React, { useEffect, useState }  from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import "./business.css";
+import 'mapbox-gl/dist/mapbox-gl.css';
+import mapboxgl from 'mapbox-gl';
 import { getBusiness } from '../../store/business';
 import { getReviewsByBusiness } from '../../store/review';
 import { useParams, NavLink } from 'react-router-dom';
