@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState }  from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import "./business.css";
+import 'mapbox-gl/dist/mapbox-gl.css';
 import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
 import { getBusiness } from '../../store/business';
 import { getReviewsByBusiness } from '../../store/review';
