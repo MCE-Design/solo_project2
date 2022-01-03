@@ -64,101 +64,42 @@ function Business() {
   console.log("USER ID", sessionUser?.id)
   return (
     <>
-      <div className="businessTop photoContainer container">
-        <div className="businessTopContent">
-          <div className="businessTitleBox">
-            <div className="businessTitle">
-              <h1>{business?.name}</h1>
+      <div className="backPageMain">
+        <div className="contentContainer">
+          <div className="photoStatus">
+            {/* <ul className={errors.length > 0 ? ("alertBox alert") : ("alertbox")}>
+              {console.log("The Errors", errors)}
+              {errors?.map((error) => {
+                  return(
+                  <li key={error} className="">
+                    {error}
+                  </li>
+                  )
+                })}
+            </ul> */}
+          </div>
+          <div className="backPageTop">
+            <div className="backPageLeft">
+              <ul className="photoUploadBusinessInfo">
+                <li>
+                  <h1><NavLink to={`/business/${business?.id}`}>{business?.name}</NavLink><span>:</span> Add Photos</h1>
+                </li>
+                <li>
+                  <NavLink to={`/business_photos/${business?.id}`}>View All Photos</NavLink>
+                </li>
+              </ul>
             </div>
-            <div className="businessRating">
-              <div className="bussinessRatingImage">
+            <div className="backPageRight">
+
+            </div>
+          </div>
+          <div className="photoUploadBottom">
+            <div className="photoUploadContainer backPageLowerContainer">
+              <div className="photoUploadBody">
+
               </div>
-              <div className="businessReviewCount">{review?.reviews?.length} reviews</div>
             </div>
           </div>
-          <div className="businessButtonBox">
-            <a href={`/business_photos/${businessId}`} className="transparentButton businessTopButton bodyButton button">
-              See Photos
-            </a>
-          </div>
-        </div>
-        <div className="photoCarousel">
-          {business?.id === 1 && (
-            <>
-              <img src={business1_image} alt="top_placeholder"/>
-              <img src={business1_image} alt="top_placeholder"/>
-              <img src={business1_image} alt="top_placeholder"/>
-            </>
-          )}
-          {business?.id === 2 && (
-            <>
-              <img src={business2_image} alt="top_placeholder"/>
-              <img src={business2_image} alt="top_placeholder"/>
-              <img src={business2_image} alt="top_placeholder"/>
-            </>
-          )}
-          {business?.id === 3 && (
-            <>
-              <img src={business3_image} alt="top_placeholder"/>
-              <img src={business3_image} alt="top_placeholder"/>
-              <img src={business3_image} alt="top_placeholder"/>
-            </>
-          )}
-        </div>
-      </div>
-      <div className="businessBottom contentBottom">
-        <div className="businessBottomContent">
-          <div className="buttonBox">
-            {/* Change this later to do logged-out user workflow */}
-            { sessionUser ? (
-              <>
-                <a href={`${businessId}/newreview`} exact={true} className="redButton businessButton bodyButton button" activeClassName='active'>
-                  <div className="buttonIcon" style={{backgroundImage: `url(${write})`}}>
-
-                  </div>
-                  <div>
-                    Write a Review
-                  </div>
-                </a>
-                <a href={`/business_photos/${businessId}/add`} exact={true} className="lightButton businessButton bodyButton button" activeClassName='active'>
-                  <div className="buttonIcon" style={{backgroundImage: `url(${addPhoto})`}}>
-
-                  </div>
-                  <div>
-                    Add Photo
-                  </div>
-                </a>
-              </>
-            ) : (
-              <></>
-            )}
-
-          </div>
-
-        </div>
-        <div className="businessMap">
-          {/* Maps and Hours */}
-          <div ref={mapContainer} className="map-container" />
-        </div>
-        <div className="reviewsContainer leftComponentContainer">
-          {/* change later to do logged-out user workflow */}
-          {userReviewed === false && sessionUser ? (
-            <div className="reviewsNewReviewContainer">
-              <NewReview sessionUser = {sessionUser} businessId = {businessId}/>
-            </div>
-          ) : (
-            <></>
-          )}
-          <ul>{/* Map Reviews Here in repeated <li>*/}
-            {review?.reviews?.map((review) => {
-              return(
-              <li key={review.id}>
-                {console.log("HIT MAP")}
-                <ReviewComponent review={review} sessionUser={sessionUser}/>
-              </li>
-              )
-            })}
-          </ul>
         </div>
       </div>
     </>
