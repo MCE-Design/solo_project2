@@ -8,7 +8,7 @@ import { useParams, NavLink } from 'react-router-dom';
 
 mapboxgl.accessToken = 'pk.eyJ1IjoibWNlLWRlc2lnbiIsImEiOiJja3g4NmF5eXoxNnN5MnZxdXlpaWcxM3l3In0.A_7OTI9bVe-586aBwNWRSA';
 
-function Business() {
+function Directions() {
   const dispatch = useDispatch();
   const { businessId } = useParams();
   const { business } = useSelector((state) => state.business);
@@ -81,12 +81,6 @@ function Business() {
           <div className="backPageTop">
             <div className="backPageLeft">
               <ul className="photoUploadBusinessInfo">
-                <li>
-                  <h1><NavLink to={`/business/${business?.id}`}>{business?.name}</NavLink><span>:</span> Add Photos</h1>
-                </li>
-                <li>
-                  <NavLink to={`/business_photos/${business?.id}`}>View All Photos</NavLink>
-                </li>
               </ul>
             </div>
             <div className="backPageRight">
@@ -96,7 +90,7 @@ function Business() {
           <div className="photoUploadBottom">
             <div className="photoUploadContainer backPageLowerContainer">
               <div className="photoUploadBody">
-
+                <div ref={mapContainer} className="map-container" />
               </div>
             </div>
           </div>
@@ -105,4 +99,4 @@ function Business() {
     </>
   );
 }
-export default Business;
+export default Directions;
