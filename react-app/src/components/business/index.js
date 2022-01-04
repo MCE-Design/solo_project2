@@ -119,7 +119,27 @@ function Business() {
           <div>
             <img src={`https://api.mapbox.com/styles/v1/mce-design/ckx882y3808wl15prli2yo0q5/static/pin-s+ff0000(${business?.lng},${business?.lat})/${business?.lng},${business?.lat},15.35,0/315x150?access_token=pk.eyJ1IjoibWNlLWRlc2lnbiIsImEiOiJja3g4NmF5eXoxNnN5MnZxdXlpaWcxM3l3In0.A_7OTI9bVe-586aBwNWRSA`} alt="map"></img>
             <div>
-              {/* Address */}
+              <div>
+                <a href="/">
+                  {business?.address1}
+                </a>
+                {business?.address2 &&
+                  <div>
+                    <b>
+                      {business?.address2}
+                    </b>
+                  </div>
+                }
+                {business?.address3 &&
+                  <div>
+                    {business?.address3}
+                  </div>
+                }
+                <div>
+                  {business?.city}, {business?.state} {business?.zipcode}
+                </div>
+              </div>
+
               {/* Directions Button */}
             </div>
           </div>
