@@ -69,9 +69,17 @@
   padding: 0 40px;
 }
 
+.businessBottom h4 {
+  margin: 0 0 30px;
+  color: #2B273C;
+  size: 20px;
+  font-family: "Poppins", "Roboto", Helvetica, Arial, sans-serif;
+  font-weight: 700;
+}
+
 .businessBottomContent {
   max-width: 1144px;
-  padding: 0 40px;
+  /* padding: 0 40px; */
   margin: 0 auto;
 }
 
