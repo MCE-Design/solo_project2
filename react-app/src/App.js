@@ -12,6 +12,7 @@ import UserEdit from './components/userEdit';
 import PhotoDisplay from './components/images/photoDisplay';
 import Splash from './components/splash';
 import Business from './components/business';
+import Directions from './components/directions';
 import PhotoUpload from './components/images/photoUpload';
 import StandAloneReview from './components/reviews/standAloneReview';
 import { authenticate } from './store/session';
@@ -48,7 +49,7 @@ function App() {
           <UsersList/>
         </ProtectedRoute>
 
-        {/* These two use the same componenant with differen values passed in depending on the route*/}
+        {/* These two use the same componenant with different values passed in depending on the route*/}
         <Route path='/users/:userId' exact={true} >
           <User profile = "other"/>
         </Route>
@@ -60,7 +61,7 @@ function App() {
         </ProtectedRoute>
 
 
-        {/* These two use the same componenant with differen values passed in depending on the route*/}
+        {/* These two use the same componenant with different values passed in depending on the route*/}
         <ProtectedRoute path='/user_photos' exact={true} >
           <PhotoDisplay profile = "self"/>
         </ProtectedRoute>
@@ -75,8 +76,11 @@ function App() {
         <Route path='/business/:businessId' exact={true} >
           <Business />
         </Route>
+        <Route path='/business/:businessId/directions' exact={true}>
+          <Directions />
+        </Route>
 
-        {/* These two use the same componenant with differen values passed in depending on the route*/}
+        {/* These two use the same componenant with different values passed in depending on the route*/}
         {/* Change this to UNPROTECTED when logged-out and new-user workflow is built */}
         <ProtectedRoute path='/business/:businessId/newreview' exact={true} >
           <StandAloneReview reviewType="new"/>
@@ -85,11 +89,11 @@ function App() {
           <StandAloneReview reviewType="edit"/>
         </ProtectedRoute>
 
-        {/* These two use the same componenant with differen values passed in depending on the route*/}
+        {/* These two use the same componenant with different values passed in depending on the route*/}
         <ProtectedRoute path='/user/photos/add' exact={true} >
           <PhotoUpload photoType = "user"/>
         </ProtectedRoute>
-        {/* These two use the same componenant with differen values passed in depending on the route*/}
+        {/* These two use the same componenant with different values passed in depending on the route*/}
         <ProtectedRoute path='/business_photos/:id/add' exact={true} >
           <PhotoUpload photoType = "business"/>
         </ProtectedRoute>

@@ -110,6 +110,10 @@
   padding-top: 32px;
 }
 
+.businessAddress {
+  margin-top: 24px;
+}
+
 .reviewsContainer {
   width: 100%;
   max-width: 1922px;
