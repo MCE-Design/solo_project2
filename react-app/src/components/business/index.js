@@ -120,7 +120,7 @@ function Business() {
           <h4>Location</h4>
           <div>
             <a href={`/business/${businessId}/directions`}>
-              <img src={`https://api.mapbox.com/styles/v1/mce-design/ckx882y3808wl15prli2yo0q5/static/pin-s+ff0000(${business?.lng},${business?.lat})/${business?.lng},${business?.lat},15.35,0/315x150?access_token=pk.eyJ1IjoibWNlLWRlc2lnbiIsImEiOiJja3g4NmF5eXoxNnN5MnZxdXlpaWcxM3l3In0.A_7OTI9bVe-586aBwNWRSA`} alt="map"></img>
+              <img src={`https://api.mapbox.com/styles/v1/mce-design/ckx882y3808wl15prli2yo0q5/static/pin-s+ff0000(${business?.lng},${business?.lat})/${business?.lng},${business?.lat},15.35,0/315x150?access_token=${MAPBOX_API_KEY}`} alt="map"></img>
             </a>
             <div>
               <div className="businessAddress">

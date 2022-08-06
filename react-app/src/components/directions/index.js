@@ -12,6 +12,8 @@ function Directions() {
   const dispatch = useDispatch();
   const { businessId } = useParams();
   const { business } = useSelector((state) => state.business);
+  const defaultLng = useSelector((state) => state.business.business?.lng);
+  const defaultLat = useSelector((state) => state.business.business?.lat);
   const { review } = useSelector((state) => state.review);
   const sessionUser = useSelector(state => state.session.user);
   const [ userReviewed, setUserReviewed ] = useState(false);
@@ -39,13 +41,17 @@ function Directions() {
 
   // Initialize the map
   useEffect(() => {
+    console.log("MAP INIT")
     if (map.current) return; // initialize map only once
-    map.current = new mapboxgl.Map({
-      container: mapContainer.current,
-      style: 'mapbox://styles/mce-design/ckx882y3808wl15prli2yo0q5',
-      center: [lng, lat],
-      zoom: zoom
-    });
+    if ( defaultLat ){
+      map.current = new mapboxgl.Map({
+        container: mapContainer.current,
+        style: 'mapbox://styles/mce-design/ckx882y3808wl15prli2yo0q5',
+        // center: [lng, lat],
+        center: [defaultLng, defaultLat],
+        zoom: zoom
+      });
+    }
   });
 
   // STORE the new coordinates
