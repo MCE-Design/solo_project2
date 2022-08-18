@@ -4,6 +4,7 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
 import { getBusiness } from '../../store/business';
 import { getReviewsByBusiness } from '../../store/review';
+import { getDirections } from '../../store/directions';
 import { useParams, NavLink } from 'react-router-dom';
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_API_KEY;
