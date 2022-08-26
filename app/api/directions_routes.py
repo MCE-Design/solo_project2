@@ -2,15 +2,17 @@ from flask import Blueprint, jsonify, request
 from flask_login import current_user, login_required
 from app.models import db
 from colors import *
+# import requests
 
 directions_routes = Blueprint('directions', __name__)
 
 
-@directions_routes.route("", methods=["POST"])
-def directions():
+@directions_routes.route("", methods=["GET"])
+def directions(directionType):
   print(CGREEN + "\n REQUEST HIT \n", "\n" + CEND)
   if "image" not in request.files:
     return {"errors": ["Image required"]}, 400
+
 
   image = request.files["image"]
   print(CGREEN + "\n CLEARED IMAGE: \n", "\n" + CEND)
@@ -26,6 +28,10 @@ def directions():
   print(CGREEN + "\n HIT \n", "\n" + CEND)
   url = upload["url"]
 
+  try:
+    response = request.get(url, headers=headers)
+  except request.exceptions.ConnectionError:
+    return False
   new_image = Image(
     userId=current_user.id,                          # We'll use the current user as the one who uploaded the image
     imageable_id = request.form["imageable_id"],

@@ -24,6 +24,7 @@ function Directions() {
   const [lng, setLng] = useState(-70.9); // Sets LONGITUDE and default LONGITUDE
   const [lat, setLat] = useState(42.35); // Sets LATITUDE and default LATITUDE
   const [zoom, setZoom] = useState(9); // Sets ZOOM and default ZOOM
+  const [travelType, setTravelType] = useState("driving"); // Sets travel type;
 
   window.document.title = `Yap - ${business?.name}`
 
@@ -97,6 +98,7 @@ function Directions() {
           <div className="photoUploadBottom">
             <div className="photoUploadContainer backPageLowerContainer">
               <div className="photoUploadBody">
+
                 <div ref={mapContainer} className="map-container" />
               </div>
             </div>
